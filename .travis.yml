@@ -1,26 +1,19 @@
 language: android
 jdk: oraclejdk8
-#sudo: required
-
 android:
   components:
-    - tools
-    - tools
-    - platform-tools
-
-# The BuildTools version used by your project
-    - build-tools-25.0.2
-
-# The SDK version used to compile your project
-    - android-25
-
-    - extra-android-m2repository
-    - extra-android-support
-    - extra-google-google_play_services
-    - extra-google-m2repository
-
+  - tools
+  - tools
+  - platform-tools
+  - build-tools-25.0.2
+  - android-25
+  - extra-android-m2repository
+  - extra-android-support
+  - extra-google-google_play_services
+  - extra-google-m2repository
 before_install:
-  - chmod +x gradlew
-
+- openssl aes-256-cbc -K $encrypted_53da7fc45dca_key -iv $encrypted_53da7fc45dca_iv
+  -in google-services.json.enc -out app/google-services.json -d
+- chmod +x gradlew
 script:
-  - ./gradlew build
+- "./gradlew build"
