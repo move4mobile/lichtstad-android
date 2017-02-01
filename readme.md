@@ -1,4 +1,4 @@
-# Lichtstad - Android
+# Lichtstad - Android [![Build Status](https://travis-ci.org/m4mwilco/lichtstad-android.svg?branch=master)](https://travis-ci.org/m4mwilco/lichtstad-android)
 
 De Android app voor de Lichtstad Gramsbergen feestweek.
 
