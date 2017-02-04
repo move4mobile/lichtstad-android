@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad;
+package com.move4mobile.lichtstad.program;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

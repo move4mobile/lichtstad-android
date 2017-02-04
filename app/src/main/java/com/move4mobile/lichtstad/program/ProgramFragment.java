@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad;
+package com.move4mobile.lichtstad.program;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.move4mobile.lichtstad.FirebaseReferences;
+import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
 
 public class ProgramFragment extends Fragment {

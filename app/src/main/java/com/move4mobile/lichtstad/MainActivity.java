@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
+import com.move4mobile.lichtstad.program.ProgramFragment;
 
 public class MainActivity extends AppCompatActivity {
 
