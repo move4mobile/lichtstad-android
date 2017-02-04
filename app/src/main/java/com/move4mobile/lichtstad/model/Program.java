@@ -13,4 +13,13 @@ public class Program {
         return new Date(time);
     }
 
+    @Override
+    public String toString() {
+        return "Program{" +
+                "description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", time=" + time +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
