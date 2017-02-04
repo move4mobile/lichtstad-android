@@ -19,7 +19,7 @@ public class ProgramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
-        Query reference = FirebaseDatabase.getInstance().getReference("program");
+        Query reference = FirebaseReferences.PROGRAM;
         reference.keepSynced(true);
         binding.recyclerView.setAdapter(new ProgramAdapter(reference));
 
