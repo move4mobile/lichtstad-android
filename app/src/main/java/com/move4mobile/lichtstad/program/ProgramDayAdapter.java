@@ -1,7 +1,6 @@
 package com.move4mobile.lichtstad.program;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,10 +10,10 @@ import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.model.Program;
 
 
-public class ProgramAdapter extends FirebaseRecyclerAdapter<Program, ProgramAdapter.ViewHolder> {
+public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> {
 
 
-    public ProgramAdapter(Query ref) {
+    public ProgramDayAdapter(Query ref) {
         super(Program.class, 0, ViewHolder.class, ref);
     }
 

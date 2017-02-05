@@ -53,7 +53,7 @@ public class ProgramDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramDayBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
-        binding.recyclerView.setAdapter(new ProgramAdapter(getProgramReference()));
+        binding.recyclerView.setAdapter(new ProgramDayAdapter(getProgramReference()));
 
         return binding.getRoot();
     }
