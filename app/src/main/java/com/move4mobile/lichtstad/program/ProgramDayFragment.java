@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
-import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
+import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 
 import java.util.Calendar;
 
@@ -51,7 +51,7 @@ public class ProgramDayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
+        FragmentProgramDayBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
         binding.recyclerView.setAdapter(new ProgramAdapter(getProgramReference()));
 
