@@ -28,10 +28,15 @@ public class ProgramFragment extends Fragment {
 
         binding.viewPager.setAdapter(new ProgramPagerAdapter(getChildFragmentManager(), getDays()));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+        getActivity().setActionBar(binding.toolbar);
 
         return binding.getRoot();
     }
 
+    /**
+     * Creates a list of each day the programs should be shown for
+     * @return A list of calendars, one of each day of the event
+     */
     private List<Calendar> getDays() {
         @SuppressLint("SimpleDateFormat") DateFormat format = new SimpleDateFormat(getString(R.string.date_format));
 
