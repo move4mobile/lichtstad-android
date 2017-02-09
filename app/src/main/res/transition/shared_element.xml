@@ -7,5 +7,5 @@
             android:minimumHorizontalAngle="15"
             android:minimumVerticalAngle="0" />
     </changeBounds>
-    <recolor />
+    <transition class="com.move4mobile.lichtstad.transition.Recolor" />
 </transitionSet>
