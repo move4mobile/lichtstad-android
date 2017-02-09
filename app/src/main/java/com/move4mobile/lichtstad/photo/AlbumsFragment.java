@@ -18,6 +18,8 @@ public class AlbumsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAlbumsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_albums, container, false);
 
+        getActivity().setActionBar(binding.toolbar);
+
         return binding.getRoot();
     }
 

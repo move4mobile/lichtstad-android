@@ -18,6 +18,8 @@ public class VideosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentVideosBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_videos, container, false);
 
+        getActivity().setActionBar(binding.toolbar);
+
         return binding.getRoot();
     }
 }
