@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <transition class="com.move4mobile.lichtstad.transition.Recolor" />
     <changeTransform />
     <changeBounds>
         <arcMotion
@@ -7,5 +8,4 @@
             android:minimumHorizontalAngle="15"
             android:minimumVerticalAngle="0" />
     </changeBounds>
-    <transition class="com.move4mobile.lichtstad.transition.Recolor" />
 </transitionSet>
