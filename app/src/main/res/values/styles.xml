@@ -6,11 +6,32 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Program">
+        <item name="colorPrimary">@color/colorPrimaryProgram</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryProgramDark</item>
+        <item name="colorAccent">@color/colorAccentProgram</item>
+    </style>
+    
+    <style name="AppTheme.Result">
+        <item name="colorPrimary">@color/colorPrimaryResult</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryResultDark</item>
+        <item name="colorAccent">@color/colorAccentResult</item>
+    </style>
+    
+    <style name="AppTheme.Photo">
+        <item name="colorPrimary">@color/colorPrimaryPhoto</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryPhotoDark</item>
+        <item name="colorAccent">@color/colorAccentPhoto</item>
+    </style>
+    
+    <style name="AppTheme.Video">
+        <item name="colorPrimary">@color/colorPrimaryVideo</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVideoDark</item>
+        <item name="colorAccent">@color/colorAccentVideo</item>
     </style>
 
 </resources>

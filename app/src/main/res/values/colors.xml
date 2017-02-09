@@ -3,4 +3,20 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    
+    <color name="colorPrimaryProgram">@color/colorPrimary</color>
+    <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentProgram">@color/colorAccent</color>
+    
+    <color name="colorPrimaryResult">#F00</color>
+    <color name="colorPrimaryResultDark">#B00</color>
+    <color name="colorAccentResult">@color/colorAccent</color>
+    
+    <color name="colorPrimaryPhoto">#0F0</color>
+    <color name="colorPrimaryPhotoDark">#0B0</color>
+    <color name="colorAccentPhoto">@color/colorAccent</color>
+    
+    <color name="colorPrimaryVideo">#00F</color>
+    <color name="colorPrimaryVideoDark">#00B</color>
+    <color name="colorAccentVideo">@color/colorAccent</color>
 </resources>
