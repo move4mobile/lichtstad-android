@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.activity_main, new ProgramFragment())
+                .replace(R.id.fragment_container, new ProgramFragment())
                 .commit();
     }
 }

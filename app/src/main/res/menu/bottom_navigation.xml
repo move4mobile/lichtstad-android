@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_program"
+        android:title="@string/menu_program"
+        android:icon="@drawable/ic_program"/>
+
+    <item
+        android:id="@+id/action_results"
+        android:title="@string/menu_results"
+        android:icon="@drawable/ic_results"/>
+
+    <item
+        android:id="@+id/action_photos"
+        android:title="@string/menu_photos"
+        android:icon="@drawable/ic_photos"/>
+
+    <item
+        android:id="@+id/action_videos"
+        android:title="@string/menu_videos"
+        android:icon="@drawable/ic_videos"/>
+
+</menu>
