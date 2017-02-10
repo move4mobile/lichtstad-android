@@ -2,6 +2,8 @@ package com.move4mobile.lichtstad.transition;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.AppBarLayout;
@@ -13,6 +15,8 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 
 import com.move4mobile.lichtstad.R;
+
+import java.util.ArrayList;
 
 /**
  * Creates a reveal effect transition on an {@link AppBarLayout}
@@ -88,6 +92,143 @@ public class AppBarReveal extends Transition {
                 revealedView.setBackground(null);
             }
         });
-        return animator;
+
+        return new UnpausableAnimator(animator);
+    }
+
+    private class UnpausableAnimator extends Animator {
+
+        private final Animator wrappedAnimator;
+
+        private UnpausableAnimator(Animator wrapped) {
+            this.wrappedAnimator = wrapped;
+        }
+
+        @Override
+        public void start() {
+            wrappedAnimator.start();
+        }
+
+        @Override
+        public void cancel() {
+            //Uncancelable
+        }
+
+        @Override
+        public void end() {
+            wrappedAnimator.end();
+        }
+
+        @Override
+        public void pause() {
+            //Unpausable
+        }
+
+        @Override
+        public void resume() {
+            //Unresumable
+        }
+
+        @Override
+        public boolean isPaused() {
+            return wrappedAnimator.isPaused();
+        }
+
+        @Override
+        public long getStartDelay() {
+            return wrappedAnimator.getStartDelay();
+        }
+
+        @Override
+        public void setStartDelay(long startDelay) {
+            wrappedAnimator.setStartDelay(startDelay);
+        }
+
+        @Override
+        public Animator setDuration(long duration) {
+            return wrappedAnimator.setDuration(duration);
+        }
+
+        @Override
+        public long getDuration() {
+            return wrappedAnimator.getDuration();
+        }
+
+        @Override
+        @TargetApi(24)
+        public long getTotalDuration() {
+            return wrappedAnimator.getTotalDuration();
+        }
+
+        @Override
+        public void setInterpolator(TimeInterpolator value) {
+            wrappedAnimator.setInterpolator(value);
+        }
+
+        @Override
+        public TimeInterpolator getInterpolator() {
+            return wrappedAnimator.getInterpolator();
+        }
+
+        @Override
+        public boolean isRunning() {
+            return wrappedAnimator.isRunning();
+        }
+
+        @Override
+        public boolean isStarted() {
+            return wrappedAnimator.isStarted();
+        }
+
+        @Override
+        public void addListener(AnimatorListener listener) {
+            wrappedAnimator.addListener(listener);
+        }
+
+        @Override
+        public void removeListener(AnimatorListener listener) {
+            wrappedAnimator.removeListener(listener);
+        }
+
+        @Override
+        public ArrayList<AnimatorListener> getListeners() {
+            return wrappedAnimator.getListeners();
+        }
+
+        @Override
+        public void addPauseListener(AnimatorPauseListener listener) {
+            wrappedAnimator.addPauseListener(listener);
+        }
+
+        @Override
+        public void removePauseListener(AnimatorPauseListener listener) {
+            wrappedAnimator.removePauseListener(listener);
+        }
+
+        @Override
+        public void removeAllListeners() {
+            wrappedAnimator.removeAllListeners();
+        }
+
+        @SuppressWarnings("CloneDoesntCallSuperClone")
+        @Override
+        public Animator clone() {
+            return new UnpausableAnimator(wrappedAnimator.clone());
+        }
+
+        @Override
+        public void setupStartValues() {
+            wrappedAnimator.setupStartValues();
+        }
+
+        @Override
+        public void setupEndValues() {
+            wrappedAnimator.setupEndValues();
+        }
+
+        @Override
+        public void setTarget(Object target) {
+            wrappedAnimator.setTarget(target);
+        }
     }
 }
