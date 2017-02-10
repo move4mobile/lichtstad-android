@@ -20,11 +20,11 @@ import java.util.ArrayList;
 
 /**
  * Creates a reveal effect transition on an {@link AppBarLayout}
- *
+ * <p>
  * The {@link AppBarLayout} should be setup with a {@link android.widget.FrameLayout} as its direct child
  * Inside the {@link android.widget.FrameLayout} as its first child should be another {@link android.widget.FrameLayout} with id {@link R.id#transitionBackground}
  * Use a vertical {@link android.widget.LinearLayout} as second child to contain the {@link AppBarLayout}'s normal subviews
- *  to replicate normal {@link AppBarLayout behaviour}
+ * to replicate normal {@link AppBarLayout behaviour}
  */
 public class AppBarReveal extends Transition {
 
@@ -32,7 +32,8 @@ public class AppBarReveal extends Transition {
     private static final String PROPNAME_HEIGHT = "lichtstad:appbarreveal:height";
     private static final String PROPNAME_BACKGROUND = "lichtstad:appbarreveal:background";
 
-    public AppBarReveal() {}
+    public AppBarReveal() {
+    }
 
     public AppBarReveal(Context context, AttributeSet attrs) {
         super(context, attrs);
