@@ -17,7 +17,7 @@
     <color name="colorPrimaryPhotoDark">#E01111</color>
     <color name="colorAccentPhoto">@color/colorAccent</color>
     
-    <color name="colorPrimaryVideo">#000</color>
-    <color name="colorPrimaryVideoDark">#000</color>
+    <color name="colorPrimaryVideo">#212121</color>
+    <color name="colorPrimaryVideoDark">#000000</color>
     <color name="colorAccentVideo">@color/colorAccent</color>
 </resources>
