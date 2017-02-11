@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#F37216</color>
+    <color name="colorPrimaryDark">#ED550C</color>
+    <color name="colorAccent">#FFF</color>
+    <color name="textColorPrimary">#FFF</color>
+    
+    <color name="colorPrimaryProgram">@color/colorPrimary</color>
+    <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentProgram">@color/colorAccent</color>
+    
+    <color name="colorPrimaryResult">#0031BA</color>
+    <color name="colorPrimaryResultDark">#001FA3</color>
+    <color name="colorAccentResult">@color/colorAccent</color>
+    
+    <color name="colorPrimaryPhoto">#E71717</color>
+    <color name="colorPrimaryPhotoDark">#D70707</color>
+    <color name="colorAccentPhoto">@color/colorAccent</color>
+    
+    <color name="colorPrimaryVideo">#212121</color>
+    <color name="colorPrimaryVideoDark">#000000</color>
+    <color name="colorAccentVideo">@color/colorAccent</color>
 </resources>
