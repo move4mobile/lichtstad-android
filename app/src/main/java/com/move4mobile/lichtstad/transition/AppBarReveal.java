@@ -78,7 +78,7 @@ public class AppBarReveal extends Transition {
         int centerX = width / 2;
         int centerY = 0;
 
-        int radius = Math.max(width / 2, height);
+        int radius = (int) Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height, 2));
 
         final View revealedView = endValues.view.findViewById(R.id.transitionBackground);
 
