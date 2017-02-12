@@ -4,4 +4,8 @@
     <string name="menu_results">Uitslagen</string>
     <string name="menu_photos">Fotoalbum</string>
     <string name="menu_videos">Video\'s</string>
+    <string name="icon_location_description">Locatie-icoon</string>
+
+    <string name="format_time">HH:mm</string>
+
 </resources>
