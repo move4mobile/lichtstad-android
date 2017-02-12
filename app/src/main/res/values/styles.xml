@@ -7,9 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryToolbar</item>
+        <item name="colorAccent">@color/colorAccentToolbar</item>
     </style>
 
     <style name="AppTheme.Program">
