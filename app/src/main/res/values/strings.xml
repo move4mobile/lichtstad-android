@@ -11,4 +11,20 @@
 
     <string name="default_locale_language">nl</string>
 
+    <!-- By default, Dutch abbreviated months contain a trailing dot, which is exceptionally ugly -->
+    <string-array name="abbreviated_months">
+        <item>jan</item>
+        <item>feb</item>
+        <item>maa</item>
+        <item>apr</item>
+        <item>mei</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>okt</item>
+        <item>nov</item>
+        <item>dec</item>
+    </string-array>
+
 </resources>
