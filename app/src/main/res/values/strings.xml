@@ -9,4 +9,6 @@
     <string name="format_time">HH:mm</string>
     <string name="format_tab_date">EEEE\'\n\'dd MMM</string>
 
+    <string name="default_locale_language">nl</string>
+
 </resources>
