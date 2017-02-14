@@ -31,6 +31,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="@dimen/list_start_text_end_padding"
                 android:text="@{program.timeAsDate}"
+                android:textAlignment="center"
                 android:textColor="?android:colorAccent"
                 android:textSize="@dimen/list_item_title_text_size"
                 app:format="@{@string/format_time}" />
