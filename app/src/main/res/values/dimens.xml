@@ -1,9 +1,21 @@
 <resources>
     <dimen name="status_bar_height">24dp</dimen>
-    <dimen name="list_start_padding">16dp</dimen>
-    <dimen name="list_end_padding">16dp</dimen>
-    <dimen name="list_top_padding">16dp</dimen>
-    <dimen name="list_bottom_padding">16dp</dimen>
+
+    <dimen name="list_start_padding">8dp</dimen>
+    <dimen name="list_end_padding">8dp</dimen>
+    <dimen name="list_top_padding">8dp</dimen>
+    <dimen name="list_bottom_padding">8dp</dimen>
+
+    <dimen name="list_card_start_margin">4dp</dimen>
+    <dimen name="list_card_end_margin">4dp</dimen>
+    <dimen name="list_card_top_margin">2dp</dimen>
+    <dimen name="list_card_bottom_margin">2dp</dimen>
+
+    <dimen name="list_content_start_padding">16dp</dimen>
+    <dimen name="list_content_end_padding">16dp</dimen>
+    <dimen name="list_content_top_padding">16dp</dimen>
+    <dimen name="list_content_bottom_padding">16dp</dimen>
+
     <dimen name="list_start_text_width">48sp</dimen>
     <dimen name="list_start_text_end_padding">16dp</dimen>
     <dimen name="list_item_title_text_size">16sp</dimen>

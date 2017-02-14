@@ -12,11 +12,14 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="0dp"
-        app:contentPaddingBottom="@dimen/list_bottom_padding"
-        app:contentPaddingLeft="@dimen/list_start_padding"
-        app:contentPaddingRight="@dimen/list_end_padding"
-        app:contentPaddingTop="@dimen/list_top_padding">
+        android:layout_marginStart="@dimen/list_card_start_margin"
+        android:layout_marginEnd="@dimen/list_card_end_margin"
+        android:layout_marginTop="@dimen/list_card_top_margin"
+        android:layout_marginBottom="@dimen/list_card_bottom_margin"
+        app:contentPaddingBottom="@dimen/list_content_bottom_padding"
+        app:contentPaddingLeft="@dimen/list_content_start_padding"
+        app:contentPaddingRight="@dimen/list_content_end_padding"
+        app:contentPaddingTop="@dimen/list_content_top_padding">
 
         <RelativeLayout
             android:layout_width="match_parent"
