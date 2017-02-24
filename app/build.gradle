@@ -8,7 +8,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.move4mobile.lichtstad"
+        applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
