@@ -1,7 +1,10 @@
 package com.move4mobile.lichtstad.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.Date;
 
+@IgnoreExtraProperties
 public class Program {
 
     public String description;
