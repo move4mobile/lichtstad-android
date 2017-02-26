@@ -1,6 +1,7 @@
 package com.move4mobile.lichtstad.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.PropertyName;
 
 import java.util.Date;
 
@@ -11,6 +12,9 @@ public class Program {
     public String location;
     public long time;
     public String title;
+
+    @PropertyName("image_url")
+    public String imageUrl;
 
     public Date getTimeAsDate() {
         return new Date(time);
