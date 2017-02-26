@@ -30,12 +30,15 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:support-v13:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.google.firebase:firebase-core:$firebaseVersion"
     compile "com.google.firebase:firebase-database:$firebaseVersion"
     compile "com.google.firebase:firebase-crash:$firebaseVersion"
     compile "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
+
+    compile "com.squareup.picasso:picasso:2.5.2"
 }
 
 apply plugin: 'com.google.gms.google-services'

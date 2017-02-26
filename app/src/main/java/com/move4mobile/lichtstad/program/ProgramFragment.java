@@ -26,7 +26,7 @@ public class ProgramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
-        binding.viewPager.setAdapter(new ProgramPagerAdapter(getChildFragmentManager(), getDays()));
+        binding.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), getDays()));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         getActivity().setActionBar(binding.toolbar);
 

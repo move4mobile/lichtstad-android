@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,9 @@ public class ProgramDayFragment extends Fragment {
         FragmentProgramDayBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
         binding.recyclerView.setAdapter(new ProgramDayAdapter(getProgramReference()));
+
+        DividerItemDecoration decoration = new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        binding.recyclerView.addItemDecoration(decoration);
 
         return binding.getRoot();
     }
