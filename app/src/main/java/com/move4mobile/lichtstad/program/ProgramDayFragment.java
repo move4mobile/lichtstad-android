@@ -20,6 +20,7 @@ import java.util.Calendar;
 public class ProgramDayFragment extends Fragment {
 
     private static final String ARG_DAY = "day";
+    private FragmentProgramDayBinding binding;
 
     /**
      * Create a new instance of this class.
@@ -52,7 +53,7 @@ public class ProgramDayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentProgramDayBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
         binding.recyclerView.setAdapter(new ProgramDayAdapter(getProgramReference()));
 
@@ -60,6 +61,16 @@ public class ProgramDayFragment extends Fragment {
         binding.recyclerView.addItemDecoration(decoration);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (binding.recyclerView.getAdapter() instanceof ProgramDayAdapter) {
+            ProgramDayAdapter adapter = (ProgramDayAdapter) binding.recyclerView.getAdapter();
+            adapter.cleanup();
+        }
+        binding = null;
     }
 
     /**
