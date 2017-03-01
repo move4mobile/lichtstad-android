@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.databinding.RecyclerTransitionRebindCallback;
@@ -21,6 +22,13 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     public ProgramDayAdapter(Query ref) {
         super(Program.class, 0, ViewHolder.class, ref);
         this.presenter = new ProgramPresenter();
+    }
+
+    @Override
+    protected Program parseSnapshot(DataSnapshot snapshot) {
+        Program program = super.parseSnapshot(snapshot);
+        program.key = snapshot.getKey();
+        return program;
     }
 
     @Override
