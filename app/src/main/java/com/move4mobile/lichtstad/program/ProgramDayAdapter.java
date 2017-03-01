@@ -11,17 +11,16 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.databinding.RecyclerTransitionRebindCallback;
 import com.move4mobile.lichtstad.model.Program;
-import com.move4mobile.lichtstad.presenter.ProgramPresenter;
 
 
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> {
 
-    private final ProgramPresenter presenter;
+    private final ProgramPresenter presenter = new ProgramPresenter();
     private final OnRebindCallback rebindCallback = new RecyclerTransitionRebindCallback();
 
     public ProgramDayAdapter(Query ref) {
         super(Program.class, 0, ViewHolder.class, ref);
-        this.presenter = new ProgramPresenter();
+        this.registerAdapterDataObserver(new PresenterDataObserver());
     }
 
     @Override
@@ -51,6 +50,15 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         public ViewHolder(ListItemProgramBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+    }
+
+    private class PresenterDataObserver extends RecyclerView.AdapterDataObserver {
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            for (int i = positionStart; i < positionStart + itemCount; i++) {
+                presenter.onProgramRemoved(getItem(i));
+            }
         }
     }
 

@@ -1,7 +1,5 @@
 package com.move4mobile.lichtstad.model;
 
-import android.databinding.ObservableBoolean;
-
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.PropertyName;
@@ -24,8 +22,6 @@ public class Program {
     public Date getTimeAsDate() {
         return new Date(time);
     }
-
-    public final ObservableBoolean expanded = new ObservableBoolean();
 
     @Override
     public String toString() {
