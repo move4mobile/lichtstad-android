@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "25.1.1"
 ext.firebaseVersion = "10.0.1"
 ext.firebaseUIVersion = "1.1.1"
+
+def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
+def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
     compileSdkVersion 25
@@ -11,19 +15,37 @@ android {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
+        versionCode buildNumber
         versionName "1.0"
 
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("CEST")'
     }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword System.getenv('KEYSTORE_PASSWORD')
+            keyAlias "lichtstad"
+            keyPassword System.getenv('KEYSTORE_PASSWORD')
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            debuggable false
         }
     }
     dataBinding {
         enabled true
+    }
+
+    play {
+        jsonFile file('play-keys.json')
+        track playTrack
+        untrackOld playTrack == 'beta'
     }
 }
 
