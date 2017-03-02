@@ -20,7 +20,24 @@ before_install:
   -in app/google-services.json.enc -out app/google-services.json -d
 - chmod +x gradlew
 script:
+- "if [ $TRAVIS_PULL_REQUEST ]"
+- "then"
+- "echo \"Pull request, not deploying\""
 - "./gradlew assembleProduction"
+- "elif [ $TRAVIS_BRANCH == 'master' ]"
+- "then"
+- "echo \"Push to master, deploying to beta\""
+- "EXPORT PLAY_TRACK='beta'"
+- "./gradlew publishApkRelease"
+- "elif [ $TRAVIS_BRANCH == 'develop' ]"
+- "echo \"Push to develop, deploying to alpha\""
+- "then"
+- "EXPORT PLAY_TRACK='alpha'"
+- "./gradlew publishApkRelease"
+- "else"
+- "echo \"Push to $TRAVIS_BRANCH, not deploying\""
+- "./gradlew assembleProduction"
+- "fi"
 notifications:
   email: false
   slack:

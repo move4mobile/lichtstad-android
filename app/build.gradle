@@ -6,6 +6,7 @@ ext.firebaseVersion = "10.0.1"
 ext.firebaseUIVersion = "1.1.1"
 
 def buildNumber = System.getenv("TRAVIS_BUILD_NUMBER") ?: 1
+def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
     compileSdkVersion 25
@@ -42,7 +43,9 @@ android {
     }
 
     play {
-        jsonFile = file('play-keys.json')
+        jsonFile file('play-keys.json')
+        track playTrack
+        untrackOld playTrack == 'beta'
     }
 }
 
