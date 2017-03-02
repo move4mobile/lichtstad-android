@@ -6,12 +6,12 @@ then
 elif [ "$TRAVIS_BRANCH" = 'master' ]
 then
     echo "Push to master, deploying to beta"
-    EXPORT PLAY_TRACK='beta'
+    export PLAY_TRACK='beta'
     bash ./gradlew publishApkRelease
 elif [ "$TRAVIS_BRANCH" = 'develop' ]
 then
     echo "Push to develop, deploying to alpha"
-    EXPORT PLAY_TRACK='alpha'
+    export PLAY_TRACK='alpha'
     bash ./gradlew publishApkRelease
 else
     echo "Push to $TRAVIS_BRANCH, not deploying"
