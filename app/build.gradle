@@ -16,16 +16,6 @@ android {
 
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("CEST")'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-    }
-    dataBinding {
-        enabled true
-    }
 
     signingConfigs {
         release {
@@ -34,6 +24,18 @@ android {
             keyAlias "lichtstad"
             keyPassword System.getenv('KEYSTORE_PASSWORD')
         }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            debuggable false
+        }
+    }
+    dataBinding {
+        enabled true
     }
 }
 
