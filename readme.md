@@ -12,8 +12,8 @@ Hiervoor zul je eerst een Firebase project moeten aanmaken in de [console](https
 
 ### Play Store
 
-Deze applicatie wordt door Travis automatisch geüpload naar de Play Store.
-Pushes naar develop worden in het alpha channel gezet. Het alpha channel gebruikt closed alpha testing.
+Deze applicatie wordt door Travis automatisch geüpload naar de Play Store.  
+Pushes naar develop worden in het alpha channel gezet. Het alpha channel gebruikt closed alpha testing.  
 Pushes naar master worden in het beta channel gezet. Het alpha channel maakt gebruik van open beta testing,
-wat betekent dat de release voor iedereen te downloaden is. Zorg dus dat eerst goed is getest met de develop versie.
+wat betekent dat de release voor iedereen te downloaden is. Zorg dus dat eerst goed is getest met de develop versie.  
 De release naar de productietrack wordt handmatig gedaan vanuit de Play Developer Console.
