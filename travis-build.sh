@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $TRAVIS_PULL_REQUEST ]
+if [ $TRAVIS_PULL_REQUEST != false ]
 then
     echo "Pull request, not deploying"
     bash ./gradlew assembleRelease
