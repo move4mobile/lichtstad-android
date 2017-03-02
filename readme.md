@@ -9,3 +9,11 @@ De Android app voor de Lichtstad Gramsbergen feestweek.
 
 Download `google-services.json` en plaats deze in `./app`.
 Hiervoor zul je eerst een Firebase project moeten aanmaken in de [console](https://console.firebase.google.com). Heb je dit al gedaan, of al toegang tot een project, dan is [hier](https://support.google.com/firebase/answer/7015592) te vinden hoe je het bestand genereert.
+
+### Play Store
+
+Deze applicatie wordt door Travis automatisch geüpload naar de Play Store.
+Pushes naar develop worden in het alpha channel gezet. Het alpha channel gebruikt closed alpha testing.
+Pushes naar master worden in het beta channel gezet. Het alpha channel maakt gebruik van open beta testing,
+wat betekent dat de release voor iedereen te downloaden is. Zorg dus dat eerst goed is getest met de develop versie.
+De release naar de productietrack wordt handmatig gedaan vanuit de Play Developer Console.
