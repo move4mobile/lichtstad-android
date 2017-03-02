@@ -1,3 +1,4 @@
 /build
 google-services.json
 *.apk
+secrets.tar
