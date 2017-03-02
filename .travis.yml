@@ -18,7 +18,7 @@ before_install:
   -in app/google-services.json.enc -out app/google-services.json -d
 - chmod +x gradlew
 script:
-- "./gradlew build"
+- "./gradlew assembleProduction"
 notifications:
   email: false
   slack:

@@ -4,6 +4,8 @@ ext.supportVersion = "25.1.1"
 ext.firebaseVersion = "10.0.1"
 ext.firebaseUIVersion = "1.1.1"
 
+def buildNumber = System.getenv("TRAVIS_BUILD_NUMBER") ?: 1
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -11,7 +13,7 @@ android {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
+        versionCode buildNumber
         versionName "1.0"
 
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("CEST")'
