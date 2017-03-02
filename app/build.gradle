@@ -20,10 +20,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     dataBinding {
         enabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword System.getenv('KEYSTORE_PASSWORD')
+            keyAlias "lichtstad"
+            keyPassword System.getenv('KEYSTORE_PASSWORD')
+        }
     }
 }
 
