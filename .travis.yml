@@ -16,7 +16,7 @@ before_install:
   -in app/secrets.tar.enc -out app/secrets.tar -d
 - tar xvf app/secrets.tar -C app
 script:
-- travis-build.sh
+- ./travis-build.sh
 notifications:
   email: false
   slack:
