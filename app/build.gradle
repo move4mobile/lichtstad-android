@@ -18,6 +18,8 @@ android {
         versionCode buildNumber
         versionName "1.0"
 
+        resConfigs "nl"
+
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("CEST")'
     }
 
