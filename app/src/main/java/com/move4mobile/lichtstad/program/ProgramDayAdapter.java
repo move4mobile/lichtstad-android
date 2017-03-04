@@ -1,8 +1,11 @@
 package com.move4mobile.lichtstad.program;
 
+import android.databinding.ObservableArrayMap;
+import android.databinding.ObservableMap;
 import android.databinding.OnRebindCallback;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -13,10 +16,11 @@ import com.move4mobile.lichtstad.databinding.RecyclerTransitionRebindCallback;
 import com.move4mobile.lichtstad.model.Program;
 
 
-public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> {
+public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
 
-    private final ProgramPresenter presenter = new ProgramPresenter();
     private final OnRebindCallback rebindCallback = new RecyclerTransitionRebindCallback();
+
+    public ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
 
     public ProgramDayAdapter(Query ref) {
         super(Program.class, 0, ViewHolder.class, ref);
@@ -40,7 +44,22 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     @Override
     protected void populateViewHolder(ViewHolder viewHolder, Program model, int position) {
         viewHolder.binding.setProgram(model);
-        viewHolder.binding.setPresenter(presenter);
+        viewHolder.binding.setPresenter(this);
+    }
+
+    @Override
+    public ObservableMap<String, Boolean> getExpandedMap() {
+        return expandedMap;
+    }
+
+    public void onProgramClick(View view, Program program) {
+        Boolean wasExpanded = expandedMap.get(program.key);
+        wasExpanded = wasExpanded == null ? false : wasExpanded;
+        expandedMap.put(program.key, !wasExpanded);
+    }
+
+    void onProgramRemoved(Program program) {
+        expandedMap.remove(program.key);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -57,7 +76,7 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             for (int i = positionStart; i < positionStart + itemCount; i++) {
-                presenter.onProgramRemoved(getItem(i));
+                onProgramRemoved(getItem(i));
             }
         }
     }
