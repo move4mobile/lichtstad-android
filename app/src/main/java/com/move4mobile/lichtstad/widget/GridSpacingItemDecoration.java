@@ -19,17 +19,25 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        int spanCount = 1;
+        int spanCount;
+        int column;
+
+        int position = parent.getChildAdapterPosition(view);
+
         if (parent.getLayoutManager() instanceof GridLayoutManager) {
             GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
             spanCount = layoutManager.getSpanCount();
+            column = ((GridLayoutManager.LayoutParams) view.getLayoutParams()).getSpanIndex();
         } else if (parent.getLayoutManager() instanceof StaggeredGridLayoutManager) {
             StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) parent.getLayoutManager();
             spanCount = layoutManager.getSpanCount();
+            column = ((StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams()).getSpanIndex();
+        } else {
+            spanCount = 1;
+            column = position % spanCount;
         }
 
-        int position = parent.getChildAdapterPosition(view); // item position
-        int column = position % spanCount; // item column
+         // item position
 
         if (includeEdge) {
             outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)

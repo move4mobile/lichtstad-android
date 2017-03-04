@@ -24,6 +24,8 @@ public class VideosAdapter extends FirebaseRecyclerAdapter<Video, VideosAdapter.
     @Override
     protected void populateViewHolder(ViewHolder viewHolder, Video model, int position) {
         viewHolder.binding.setVideo(model);
+        // Immediately execute the binding, or the StaggeredGridLayoutManager trips
+        viewHolder.binding.executePendingBindings();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
