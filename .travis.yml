@@ -15,6 +15,9 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_3b9733f1f5a9_key -iv $encrypted_3b9733f1f5a9_iv
   -in app/secrets.tar.enc -out app/secrets.tar -d
 - tar xvf app/secrets.tar -C app
+- mkdir "$ANDROID_HOME/licenses" || true
+- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+- echo -e "\n504667f4c0de7af1a06de9f4b1727b84351f2910" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 script:
 - ./travis-build.sh
 notifications:

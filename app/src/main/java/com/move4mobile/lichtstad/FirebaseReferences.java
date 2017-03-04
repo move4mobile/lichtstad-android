@@ -17,10 +17,16 @@ public final class FirebaseReferences {
     public static final DatabaseReference PROGRAM = FirebaseDatabase.getInstance().getReference("program");
 
     /**
+     * The reference to the database holding the list of videos
+     */
+    public static final DatabaseReference YOUTUBE = FirebaseDatabase.getInstance().getReference("youtube");
+
+    /**
      * A collection of all {@link DatabaseReference}s used in this application.
      */
     public static final Collection<DatabaseReference> ALL = Collections.unmodifiableCollection(Arrays.asList(
-            PROGRAM
+            PROGRAM,
+            YOUTUBE
     ));
 
 }
