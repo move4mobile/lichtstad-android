@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">
     <string name="app_name">Lichtstad</string>
     <string name="menu_program">Programma</string>
     <string name="menu_results">Uitslagen</string>
@@ -11,7 +11,7 @@
 
     <string name="default_locale_language">nl</string>
 
-    <!-- By default, Dutch abbreviated months contain a trailing dot, which is exceptionally ugly -->
+    <!-- By default, Dutch abbreviated months contain a trailing dot, which is hideous -->
     <string-array name="abbreviated_months">
         <item>jan</item>
         <item>feb</item>
