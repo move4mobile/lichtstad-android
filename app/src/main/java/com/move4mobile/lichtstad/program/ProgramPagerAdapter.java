@@ -48,7 +48,7 @@ public class ProgramPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String formattedDate = format.format(days.get(position).getTime()).toUpperCase();
+        String formattedDate = format.format(days.get(position).getTime()).toUpperCase(context.getResources().getConfiguration().locale);
         String[] lines = formattedDate.split("\n", 2);
         if (lines.length == 0) {
             throw new IllegalStateException();
