@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.util.Log;
@@ -102,18 +101,16 @@ public class ContextFixer implements Application.ActivityLifecycleCallbacks {
     }
 
     private static void setLanguage(Context context, String language) {
-        Locale locale = new Locale(language);
+        Locale currentLocale = context.getResources().getConfiguration().locale;
+
+        Locale locale = new Locale(language, currentLocale.getCountry());
         Locale.setDefault(locale);
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(locale);
-        } else {
-            configuration.locale = locale;
-        }
+        configuration.setLocale(locale);
 
         context.createConfigurationContext(configuration);
-        Log.d(TAG, "Set " + context + " language to: " + language);
+        Log.d(TAG, "Set " + context + " language to: " + locale);
     }
 
 }

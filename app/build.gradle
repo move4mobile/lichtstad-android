@@ -40,8 +40,14 @@ android {
             debuggable false
         }
     }
+
     dataBinding {
         enabled true
+    }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+        warningsAsErrors true
     }
 
     play {
