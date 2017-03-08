@@ -1,0 +1,5 @@
+<lint>
+    <issue id="UnusedResources">
+        <ignore path="**/generated/**"/>
+    </issue>
+</lint>
