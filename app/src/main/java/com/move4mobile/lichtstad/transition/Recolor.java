@@ -85,7 +85,7 @@ public class Recolor extends Transition {
                 int endColorValue = endColor.getColor();
                 endColor.setColor(startColor.getColor());
                 changed = true;
-                return ObjectAnimator.ofArgb(endBackground, "color", startColor.getColor(),
+                return ObjectAnimator.ofArgb(endColor, "color", startColor.getColor(),
                         endColorValue);
             }
         }
