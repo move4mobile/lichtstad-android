@@ -47,6 +47,7 @@ android {
 
     lintOptions {
         lintConfig file("lint.xml")
+        warningsAsErrors true
     }
 
     play {
