@@ -10,9 +10,9 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemVideoBinding;
 import com.move4mobile.lichtstad.model.Video;
 
-public class VideosAdapter extends FirebaseRecyclerAdapter<Video, VideosAdapter.ViewHolder> implements VideoPresenter {
+public class VideosYearAdapter extends FirebaseRecyclerAdapter<Video, VideosYearAdapter.ViewHolder> implements VideoPresenter {
 
-    public VideosAdapter(Query ref) {
+    public VideosYearAdapter(Query ref) {
         super(Video.class, 0, ViewHolder.class, ref);
     }
 
