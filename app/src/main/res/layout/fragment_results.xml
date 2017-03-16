@@ -5,43 +5,37 @@
 
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/AppTheme.Result">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_appbar"
-            android:theme="@style/Toolbar"
-            android:transitionName="@string/transtition_name_appbar">
+            android:layout_height="@dimen/status_bar_height"
+            android:background="?android:colorPrimaryDark"/>
 
-            <FrameLayout
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/status_bar_height">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="?android:colorPrimary"
+                android:theme="@style/Toolbar"
+                android:transitionName="@string/transtition_name_appbar">
 
-                <FrameLayout
-                    android:id="@+id/transitionBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" />
-
-                <LinearLayout
+                <Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:transitionName="toolbar" />
+            </android.support.design.widget.AppBarLayout>
 
-                    <Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:transitionName="toolbar" />
-                </LinearLayout>
-            </FrameLayout>
-        </android.support.design.widget.AppBarLayout>
-
-    </android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
 
 </layout>
