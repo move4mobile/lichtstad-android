@@ -15,7 +15,7 @@ import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
 import com.move4mobile.lichtstad.photo.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
-import com.move4mobile.lichtstad.video.VideosFragment;
+import com.move4mobile.lichtstad.video.VideoFragment;
 
 public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
                 showFragment(new AlbumsFragment());
                 return true;
             case R.id.action_videos:
-                showFragment(new VideosFragment());
+                showFragment(new VideoFragment());
                 return true;
             default:
                 return false;
