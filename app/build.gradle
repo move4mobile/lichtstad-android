@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "25.3.0"
-ext.firebaseVersion = "10.2.0"
+ext.firebaseVersion = "10.2.1"
 ext.firebaseUIVersion = "1.2.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
