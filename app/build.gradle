@@ -63,7 +63,6 @@ dependencies {
     compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:support-v13:$supportVersion"
     compile "com.android.support:design:$supportVersion"
-    compile "com.android.support:percent:$supportVersion"
     compile "com.google.firebase:firebase-core:$firebaseVersion"
     compile "com.google.firebase:firebase-database:$firebaseVersion"
     compile "com.google.firebase:firebase-crash:$firebaseVersion"
