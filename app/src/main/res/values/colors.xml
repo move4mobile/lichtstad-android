@@ -8,6 +8,7 @@
     <color name="textColorPrimaryToolbar">#FFFFFFFF</color>
     <color name="textColorSecondaryToolbar">#B3FFFFFF</color>
     <color name="colorAccentToolbar">#FFFFFFFF</color>
+    <color name="itemInactive">#73000000</color>
 
     <color name="colorPrimaryProgram">@color/colorPrimary</color>
     <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
