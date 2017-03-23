@@ -29,9 +29,11 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new ProgramFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProgramFragment())
+                    .commit();
+        }
     }
 
     @Override
