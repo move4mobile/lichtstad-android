@@ -5,10 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 
 import com.move4mobile.lichtstad.R;
 
@@ -48,7 +52,7 @@ public class ProgramPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String formattedDate = format.format(days.get(position).getTime()).toUpperCase(context.getResources().getConfiguration().locale);
+        String formattedDate = format.format(days.get(position).getTime());
         String[] lines = formattedDate.split("\n", 2);
         if (lines.length == 0) {
             throw new IllegalStateException();
@@ -57,9 +61,15 @@ public class ProgramPagerAdapter extends FragmentStatePagerAdapter {
             return formattedDate;
         }
 
+        String date = lines[1].toUpperCase(context.getResources().getConfiguration().locale);
+        SpannableString spannedDate = new SpannableString(date);
+        spannedDate.setSpan(new RelativeSizeSpan(1.25f), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannedDate.setSpan(new StyleSpan(Typeface.BOLD), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannedDate.setSpan(new TypefaceSpan("sans-serif"), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
         return new SpannableStringBuilder()
                 .append(lines[0])
                 .append('\n')
-                .append(lines[1], new RelativeSizeSpan(1.25f), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                .append(spannedDate);
     }
 }
