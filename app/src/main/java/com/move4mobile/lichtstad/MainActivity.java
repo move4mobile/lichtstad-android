@@ -15,6 +15,7 @@ import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
 import com.move4mobile.lichtstad.photo.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
+import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
 import com.move4mobile.lichtstad.video.VideoFragment;
 
 public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -28,10 +29,19 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
+        BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
+                this,
+                R.color.bottom_navigation_tint_program,
+                R.color.bottom_navigation_tint_result,
+                R.color.bottom_navigation_tint_photo,
+                R.color.bottom_navigation_tint_video
+        );
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new ProgramFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProgramFragment())
+                    .commit();
+        }
     }
 
     @Override

@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F37216</color>
-    <color name="colorPrimaryDark">#ED550C</color>
-    <color name="colorAccent">#0031BA</color>
+    <color name="colorPrimary">#F47216</color>
+    <color name="colorPrimaryDark">#E06914</color>
+    <color name="colorAccent">#0031bb</color>
     <color name="textColorPrimary">#DE000000</color>
     <color name="textColorSecondary">#8A000000</color>
     <color name="textColorPrimaryToolbar">#FFFFFFFF</color>
     <color name="textColorSecondaryToolbar">#B3FFFFFF</color>
     <color name="colorAccentToolbar">#FFFFFFFF</color>
+    <color name="itemInactive">#73000000</color>
 
     <color name="colorPrimaryProgram">@color/colorPrimary</color>
     <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
     <color name="colorAccentProgram">@color/colorAccent</color>
 
     <color name="colorPrimaryResult">@color/colorAccent</color>
-    <color name="colorPrimaryResultDark">#001FA3</color>
+    <color name="colorPrimaryResultDark">#002DAC</color>
     <color name="colorAccentResult">@color/colorPrimary</color>
     
     <color name="colorPrimaryPhoto">#E71717</color>
-    <color name="colorPrimaryPhotoDark">#D70707</color>
+    <color name="colorPrimaryPhotoDark">#D41515</color>
     <color name="colorAccentPhoto">@color/colorAccent</color>
 
-    <color name="colorPrimaryVideo">#212121</color>
-    <color name="colorPrimaryVideoDark">#000000</color>
-    <color name="colorAccentVideo">@color/colorAccent</color>
+    <color name="colorPrimaryVideo">#000000</color>
+    <color name="colorPrimaryVideoDark">#1F1F1F</color>
+    <color name="colorAccentVideo">@color/colorPrimary</color>
 </resources>
