@@ -21,11 +21,11 @@ public class VideoFragment extends Fragment {
         FragmentVideoBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_video, container, false);
 
         PagerAdapter adapter = new VideoPagerAdapter(getChildFragmentManager(), getYears());
-        binding.viewPager.setAdapter(adapter);
-        binding.viewPager.setCurrentItem(adapter.getCount() - 1);
+        binding.component.viewPager.setAdapter(adapter);
+        binding.component.viewPager.setCurrentItem(adapter.getCount() - 1);
 
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
-        getActivity().setActionBar(binding.toolbar);
+        binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
+        getActivity().setActionBar(binding.component.toolbar);
 
         return binding.getRoot();
     }
