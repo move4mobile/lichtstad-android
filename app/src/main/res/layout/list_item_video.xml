@@ -11,7 +11,7 @@
 
         <variable
             name="presenter"
-            type="com.move4mobile.lichtstad.video.VideoPresenter"/>
+            type="com.move4mobile.lichtstad.video.VideoPresenter" />
 
     </data>
 
@@ -51,14 +51,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"
                 android:text="@{video.title}"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/previewImage" />
+
+            <ImageView
+                android:id="@+id/playButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/play_circle"
+                android:contentDescription="@string/play_button_description"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/previewImage"
+                app:layout_constraintLeft_toLeftOf="@+id/previewImage"
+                app:layout_constraintRight_toRightOf="@+id/previewImage"
+                app:layout_constraintTop_toTopOf="@+id/previewImage" />
 
         </android.support.constraint.ConstraintLayout>
 

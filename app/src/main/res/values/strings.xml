@@ -5,6 +5,7 @@
     <string name="menu_photos">Foto\'s</string>
     <string name="menu_videos">Video\'s</string>
     <string name="icon_location_description">Locatie-icoon</string>
+    <string name="play_button_description">Afspeelknop</string>
 
     <string name="format_time">HH:mm</string>
     <string name="format_tab_date">EEEE\'\n\'dd MMM</string>
