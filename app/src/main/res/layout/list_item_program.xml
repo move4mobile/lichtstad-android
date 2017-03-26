@@ -82,7 +82,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/title"
                     android:layout_toEndOf="@+id/location_icon"
-                    android:text="@{program.location}"
+                    android:text="@{program.location.name}"
                     android:textColor="?android:textColorSecondary"
                     android:textSize="@dimen/list_item_subtitle_text_size" />
 
