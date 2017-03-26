@@ -34,7 +34,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="?android:actionBarSize"
                     android:orientation="vertical"
-                    app:layout_scrollFlags="scroll|enterAlways|snap" />
+                    app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/toolbarIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="6dp"
+                            android:contentDescription="@string/menu_videos"
+                            android:src="@drawable/ic_video_large"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/menu_videos"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                            app:layout_constraintStart_toEndOf="@+id/toolbarIcon"
+                            app:layout_constraintTop_toTopOf="@+id/toolbarIcon" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:contentDescription="@string/dashed_line_description"
+                            android:src="@drawable/dashed_line"
+                            app:layout_constraintStart_toStartOf="@+id/textView"
+                            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </Toolbar>
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tabLayout"
