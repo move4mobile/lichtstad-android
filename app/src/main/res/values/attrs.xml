@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Component">
+        <attr name="componentTitle" format="string"/>
+        <attr name="componentImage" format="reference"/>
+    </declare-styleable>
+
+</resources>

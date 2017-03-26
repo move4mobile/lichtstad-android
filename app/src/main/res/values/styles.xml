@@ -13,28 +13,45 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="AppTheme.Program">
+    <style name="AppTheme.Default">
+        <item name="tabMode">fixed</item>
+        <item name="tabPaddingEnd">50dp</item>
+        <item name="tabPaddingStart">50dp</item>
+    </style>
+
+    <style name="AppTheme.Program" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryProgram</item>
         <item name="colorPrimaryDark">@color/colorPrimaryProgramDark</item>
         <item name="colorAccent">@color/colorAccentProgram</item>
+        <item name="componentTitle">@string/menu_program</item>
+        <item name="componentImage">@drawable/ic_program_large</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabPaddingEnd">0dp</item>
+        <item name="tabPaddingStart">0dp</item>
     </style>
 
-    <style name="AppTheme.Result">
+    <style name="AppTheme.Result" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryResult</item>
         <item name="colorPrimaryDark">@color/colorPrimaryResultDark</item>
         <item name="colorAccent">@color/colorAccentResult</item>
+        <item name="componentTitle">@string/menu_results</item>
+        <item name="componentImage">@drawable/ic_results_large</item>
     </style>
 
-    <style name="AppTheme.Photo">
+    <style name="AppTheme.Photo" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryPhoto</item>
         <item name="colorPrimaryDark">@color/colorPrimaryPhotoDark</item>
         <item name="colorAccent">@color/colorAccentPhoto</item>
+        <item name="componentTitle">@string/menu_photos</item>
+        <item name="componentImage">@drawable/ic_photos_large</item>
     </style>
 
-    <style name="AppTheme.Video">
+    <style name="AppTheme.Video" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryVideo</item>
         <item name="colorPrimaryDark">@color/colorPrimaryVideoDark</item>
         <item name="colorAccent">@color/colorAccentVideo</item>
+        <item name="componentTitle">@string/menu_videos</item>
+        <item name="componentImage">@drawable/ic_videos_large</item>
     </style>
 
     <style name="Toolbar">
