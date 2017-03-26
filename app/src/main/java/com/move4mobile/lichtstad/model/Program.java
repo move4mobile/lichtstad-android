@@ -12,7 +12,7 @@ public class Program {
     @Exclude
     public String key;
     public String description;
-    public String location;
+    public Location location;
     public long time;
     public String title;
 
