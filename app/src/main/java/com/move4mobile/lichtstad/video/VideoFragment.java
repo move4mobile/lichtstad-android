@@ -11,16 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.move4mobile.lichtstad.R;
+import com.move4mobile.lichtstad.adapter.YearFragmentPagerAdapter;
 import com.move4mobile.lichtstad.databinding.FragmentVideoBinding;
 
-public class VideoFragment extends Fragment {
+public class VideoFragment extends Fragment implements YearFragmentPagerAdapter.FragmentSupplier {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         FragmentVideoBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_video, container, false);
 
-        PagerAdapter adapter = new VideoPagerAdapter(getChildFragmentManager(), getYears());
+        PagerAdapter adapter = new YearFragmentPagerAdapter(getChildFragmentManager(), getYears(), this);
         binding.component.viewPager.setAdapter(adapter);
         binding.component.viewPager.setCurrentItem(adapter.getCount() - 1);
 
@@ -33,5 +34,10 @@ public class VideoFragment extends Fragment {
     @NonNull
     private int[] getYears() {
         return getActivity().getResources().getIntArray(R.array.album_years);
+    }
+
+    @Override
+    public Fragment supplyFragment(int year) {
+        return VideosYearFragment.newInstance(year);
     }
 }
