@@ -1,10 +1,7 @@
-package com.move4mobile.lichtstad.video;
+package com.move4mobile.lichtstad.photo;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -17,25 +14,23 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
-import com.move4mobile.lichtstad.databinding.FragmentVideosYearBinding;
-import com.move4mobile.lichtstad.model.Video;
+import com.move4mobile.lichtstad.databinding.FragmentAlbumsYearBinding;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
-import java.util.Calendar;
-
-public class VideosYearFragment extends Fragment implements VideoClickListener {
+public class AlbumYearFragment extends Fragment {
 
     private static final String ARG_YEAR = "year";
-    public static VideosYearFragment newInstance(int year) {
+
+    public static AlbumYearFragment newInstance(int year) {
         Bundle arguments = new Bundle();
         arguments.putInt(ARG_YEAR, year);
 
-        VideosYearFragment fragment = new VideosYearFragment();
+        AlbumYearFragment fragment = new AlbumYearFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
 
-    private FragmentVideosYearBinding binding;
+    private FragmentAlbumsYearBinding binding;
 
     private int year;
 
@@ -53,13 +48,12 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_videos_year, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_albums_year, container, false);
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_spacing), true));
 
-        VideosYearAdapter adapter = new VideosYearAdapter(getQuery());
-        adapter.setVideoClickListener(this);
+        AlbumsYearAdapter adapter = new AlbumsYearAdapter(getQuery());
         binding.recyclerView.setAdapter(adapter);
 
         return binding.getRoot();
@@ -76,32 +70,11 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     }
 
     private Query getQuery() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, 0, 1, 0, 0, 0);
-
-        long startOfYear = calendar.getTimeInMillis();
-
-        calendar.roll(Calendar.YEAR, 1);
-        calendar.roll(Calendar.MILLISECOND, -1);
-
-        long endOfYear = calendar.getTimeInMillis();
-
-        return FirebaseReferences.YOUTUBE
-                .orderByChild("date")
-                .startAt((double)startOfYear, "date")
-                .endAt((double)endOfYear, "date");
+        return FirebaseReferences.ALBUM
+                .child("" + year);
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {
         return new StaggeredGridLayoutManager(getResources().getInteger(R.integer.video_span_count), RecyclerView.VERTICAL);
-    }
-
-    @Override
-    public void onVideoClick(Video video) {
-        watchYoutubeVideo(getActivity(), video.id);
-    }
-
-    private static void watchYoutubeVideo(Context context, String id){
-        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id)));
     }
 }

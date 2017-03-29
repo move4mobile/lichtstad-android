@@ -24,6 +24,7 @@
 
     <dimen name="card_content_padding">8dp</dimen>
 
-    <dimen name="video_spacing">8dp</dimen>
+    <dimen name="card_spacing">8dp</dimen>
     <integer name="video_span_count">2</integer>
+    <integer name="album_span_count">2</integer>
 </resources>
