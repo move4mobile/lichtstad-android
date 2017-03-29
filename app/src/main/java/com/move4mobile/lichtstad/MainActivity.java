@@ -33,6 +33,7 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
                 R.color.bottom_navigation_tint_video
         );
 
+        binding.fragmentPager.setScrollEnabled(false);
         binding.fragmentPager.setAdapter(new ComponentPagerAdapter(getFragmentManager()));
         binding.fragmentPager.addOnPageChangeListener(this);
     }
