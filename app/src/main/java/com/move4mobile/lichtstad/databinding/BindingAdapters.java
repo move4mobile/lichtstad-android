@@ -24,6 +24,11 @@ public class BindingAdapters {
         view.setText(dateFormat.format(date));
     }
 
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, long text) {
+        view.setText(String.valueOf(text));
+    }
+
     @BindingAdapter("android:src")
     public static void setSource(ImageView imageView, String source) {
         Picasso.with(imageView.getContext())

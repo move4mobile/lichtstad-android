@@ -23,6 +23,8 @@
     <dimen name="list_item_extra_info_padding">8dp</dimen>
 
     <dimen name="card_content_padding">8dp</dimen>
+    <dimen name="background_rounded_size">24sp</dimen>
+    <dimen name="background_rounded_corner_radius">12sp</dimen> <!-- Should be half of background_rounded_size -->
 
     <dimen name="card_spacing">8dp</dimen>
     <integer name="video_span_count">2</integer>
