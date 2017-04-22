@@ -7,13 +7,14 @@
 
     </data>
 
-    <FrameLayout
+    <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/AppTheme.Result">
+        android:theme="@style/AppTheme.Result"
+        android:fitsSystemWindows="true">
 
         <include layout="@layout/layout_fragment_component" android:id="@+id/component"/>
 
-    </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
 
 </layout>
