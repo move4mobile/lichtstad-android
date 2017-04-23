@@ -1,20 +1,24 @@
 package com.move4mobile.lichtstad;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.ViewPager;
+import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
+import com.move4mobile.lichtstad.photo.AlbumsFragment;
+import com.move4mobile.lichtstad.program.ProgramFragment;
+import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
+import com.move4mobile.lichtstad.video.VideoFragment;
 
-public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
-
-    private ActivityMainBinding binding;
+public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +26,7 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
@@ -33,59 +37,43 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
                 R.color.bottom_navigation_tint_video
         );
 
-        binding.fragmentPager.setScrollEnabled(false);
-        binding.fragmentPager.setAdapter(new ComponentPagerAdapter(getFragmentManager()));
-        binding.fragmentPager.addOnPageChangeListener(this);
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProgramFragment())
+                    .commit();
+        }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_program:
-                showFragment(ComponentPagerAdapter.POSITION_PROGRAM);
+                showFragment(new ProgramFragment());
                 return true;
             case R.id.action_results:
-                showFragment(ComponentPagerAdapter.POSITION_RESULTS);
+                showFragment(new ResultsFragment());
                 return true;
             case R.id.action_photos:
-                showFragment(ComponentPagerAdapter.POSITION_PHOTOS);
+                showFragment(new AlbumsFragment());
                 return true;
             case R.id.action_videos:
-                showFragment(ComponentPagerAdapter.POSITION_VIDEOS);
+                showFragment(new VideoFragment());
                 return true;
             default:
                 return false;
         }
-
-
     }
 
-    private void showFragment(int position) {
-        if (binding != null) {
-            binding.fragmentPager.setCurrentItem(position, false);
+    private void showFragment(Fragment fragment) {
+        fragment.setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element));
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        View appBar = findViewById(R.id.appbar);
+        if (appBar != null) {
+            transaction.addSharedElement(appBar, appBar.getTransitionName());
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        binding = null;
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (binding != null) {
-            binding.bottomNavigation.getMenu().getItem(position).setChecked(true);
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
+        transaction.replace(R.id.fragment_container, fragment)
+                .commit();
     }
 }
