@@ -18,7 +18,7 @@ public class ResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentResultsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_results, container, false);
 
-        getActivity().setActionBar(binding.component.toolbar);
+        getActivity().setActionBar(binding.component.toolbar.toolbar);
 
         return binding.getRoot();
     }
