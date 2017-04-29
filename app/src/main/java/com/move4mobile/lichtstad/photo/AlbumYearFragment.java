@@ -15,9 +15,10 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumsYearBinding;
+import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
-public class AlbumYearFragment extends Fragment {
+public class AlbumYearFragment extends Fragment implements AlbumClickListener {
 
     private static final String ARG_YEAR = "year";
 
@@ -54,6 +55,7 @@ public class AlbumYearFragment extends Fragment {
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_spacing), true));
 
         AlbumsYearAdapter adapter = new AlbumsYearAdapter(getQuery());
+        adapter.setAlbumClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
         return binding.getRoot();
@@ -67,6 +69,11 @@ public class AlbumYearFragment extends Fragment {
             adapter.cleanup();
         }
         binding = null;
+    }
+
+    @Override
+    public void onAlbumClick(Album album) {
+        getActivity().startActivity(AlbumActivity.newInstanceIntent(getActivity(), album));
     }
 
     private Query getQuery() {

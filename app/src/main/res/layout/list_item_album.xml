@@ -9,6 +9,10 @@
             name="album"
             type="com.move4mobile.lichtstad.model.Album" />
 
+        <variable
+            name="presenter"
+            type="com.move4mobile.lichtstad.photo.AlbumPresenter" />
+
     </data>
 
     <android.support.v7.widget.CardView
@@ -16,6 +20,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onAlbumClick(view, album)}"
         app:contentPadding="@dimen/card_content_padding">
 
         <android.support.constraint.ConstraintLayout

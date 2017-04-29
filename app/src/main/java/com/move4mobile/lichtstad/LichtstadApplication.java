@@ -27,7 +27,7 @@ public class LichtstadApplication extends Application {
      */
     private void initializeDatabase() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        for (DatabaseReference reference : FirebaseReferences.ALL) {
+        for (DatabaseReference reference : FirebaseReferences.ALL_SYNCED) {
             reference.keepSynced(true);
         }
     }
