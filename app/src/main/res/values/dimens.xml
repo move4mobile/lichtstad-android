@@ -27,6 +27,8 @@
     <dimen name="background_rounded_corner_radius">12sp</dimen> <!-- Should be half of background_rounded_size -->
 
     <dimen name="card_spacing">8dp</dimen>
+    <dimen name="photo_spacing">4dp</dimen>
     <integer name="video_span_count">2</integer>
     <integer name="album_span_count">2</integer>
+    <integer name="photo_span_count">4</integer>
 </resources>

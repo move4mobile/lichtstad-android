@@ -26,7 +26,7 @@ public class VideoFragment extends Fragment implements YearFragmentPagerAdapter.
         binding.component.viewPager.setCurrentItem(adapter.getCount() - 1);
 
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
-        getActivity().setActionBar(binding.component.toolbar);
+        getActivity().setActionBar(binding.component.toolbar.toolbar);
 
         return binding.getRoot();
     }

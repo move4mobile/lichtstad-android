@@ -28,7 +28,7 @@ public class ProgramFragment extends Fragment {
 
         binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), getDays()));
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
-        getActivity().setActionBar(binding.component.toolbar);
+        getActivity().setActionBar(binding.component.toolbar.toolbar);
 
         return binding.getRoot();
     }

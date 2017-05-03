@@ -7,6 +7,7 @@
     <string name="icon_location_description">Locatie-icoon</string>
     <string name="play_button_description">Afspeelknop</string>
     <string name="dashed_line_description">Stippellijn</string>
+    <string name="photo_description">Foto</string>
 
     <string name="format_time">HH:mm</string>
     <string name="format_tab_date">EEEE\'\n\'dd MMM</string>

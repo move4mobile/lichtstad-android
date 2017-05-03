@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:orientation="vertical"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:titleTextColor="@android:color/transparent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/toolbarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:contentDescription="?attr/componentTitle"
+                android:src="?attr/componentImage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="?attr/componentTitle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                app:layout_constraintStart_toEndOf="@+id/toolbarIcon"
+                app:layout_constraintTop_toTopOf="@+id/toolbarIcon" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/dashed_line_description"
+                android:src="@drawable/dashed_line"
+                app:layout_constraintStart_toStartOf="@+id/toolbarTitle"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarTitle" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </Toolbar>
+
+</layout>
