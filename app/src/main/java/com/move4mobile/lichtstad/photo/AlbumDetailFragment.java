@@ -4,8 +4,8 @@ import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +16,7 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
+import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 public class AlbumDetailFragment extends Fragment {
 
@@ -51,6 +52,7 @@ public class AlbumDetailFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_album_detail, container, false);
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
+        binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.photo_spacing), false));
 
         AlbumDetailAdapter adapter = new AlbumDetailAdapter(getQuery());
         binding.recyclerView.setAdapter(adapter);
@@ -77,6 +79,6 @@ public class AlbumDetailFragment extends Fragment {
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {
-        return new StaggeredGridLayoutManager(getResources().getInteger(R.integer.video_span_count), RecyclerView.VERTICAL);
+        return new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.photo_span_count));
     }
 }

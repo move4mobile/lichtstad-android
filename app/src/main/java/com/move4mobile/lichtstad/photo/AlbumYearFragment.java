@@ -82,6 +82,6 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {
-        return new StaggeredGridLayoutManager(getResources().getInteger(R.integer.video_span_count), RecyclerView.VERTICAL);
+        return new StaggeredGridLayoutManager(getResources().getInteger(R.integer.album_span_count), RecyclerView.VERTICAL);
     }
 }
