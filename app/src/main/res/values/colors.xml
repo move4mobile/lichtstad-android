@@ -10,6 +10,8 @@
     <color name="colorAccentToolbar">#FFFFFFFF</color>
     <color name="itemInactive">#73000000</color>
 
+    <color name="ic_launcher_background">@color/colorAccent</color>
+
     <color name="colorPrimaryProgram">@color/colorPrimary</color>
     <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
     <color name="colorAccentProgram">@color/colorAccent</color>
