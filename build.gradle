@@ -4,11 +4,12 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
         classpath 'com.google.gms:google-services:3.0.0'
-        classpath 'com.github.triplet.gradle:play-publisher:1.2.0-beta1'
+        classpath 'com.github.OrdonTeam:gradle-play-publisher:fd17d2d2027a2fb95ceba12a1558598f626cf14d'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
