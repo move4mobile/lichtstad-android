@@ -15,6 +15,9 @@ public class Album implements Parcelable {
     @Exclude
     public String key;
 
+    @Exclude
+    public String year;
+
     @PropertyName("photo_count")
     public long photoCount;
 
@@ -41,6 +44,7 @@ public class Album implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.key);
+        dest.writeString(this.year);
         dest.writeLong(this.photoCount);
         dest.writeString(this.thumbnailUrl);
         dest.writeParcelable(this.thumbnailSize, flags);
@@ -53,6 +57,7 @@ public class Album implements Parcelable {
 
     protected Album(Parcel in) {
         this.key = in.readString();
+        this.year = in.readString();
         this.photoCount = in.readLong();
         this.thumbnailUrl = in.readString();
         this.thumbnailSize = in.readParcelable(Size.class.getClassLoader());

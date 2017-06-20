@@ -74,6 +74,7 @@ public class AlbumDetailFragment extends Fragment {
 
     private Query getQuery() {
         return FirebaseReferences.ALBUM_CONTENT
+                .child(album.year)
                 .child(album.key)
                 .orderByChild("order");
     }

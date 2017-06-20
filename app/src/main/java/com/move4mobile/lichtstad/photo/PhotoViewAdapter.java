@@ -28,7 +28,7 @@ public class PhotoViewAdapter extends FirebaseRecyclerAdapter<Photo, PhotoViewAd
 
     @Override
     protected void populateViewHolder(ViewHolder viewHolder, Photo model, int position) {
-
+        viewHolder.binding.setPhoto(model);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
