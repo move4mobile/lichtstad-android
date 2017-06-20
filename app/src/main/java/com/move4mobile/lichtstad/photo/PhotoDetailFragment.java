@@ -2,10 +2,14 @@ package com.move4mobile.lichtstad.photo;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
+import android.graphics.PointF;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.widget.SinglePageLinearSnapHelper;
 
 /**
  * Created by wilcowolters on 16/05/2017.
@@ -60,9 +65,8 @@ public class PhotoDetailFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_detail, container, false);
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SnapHelper snapHelper = new LinearSnapHelper();
+        SnapHelper snapHelper = new SinglePageLinearSnapHelper();
         snapHelper.attachToRecyclerView(binding.recyclerView);
-        binding.recyclerView.setOnFlingListener(snapHelper);
 
         PhotoViewAdapter adapter = new PhotoViewAdapter(getQuery());
         binding.recyclerView.setAdapter(adapter);

@@ -11,6 +11,8 @@
     <com.github.chrisbanes.photoview.PhotoView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:src="@{photo.imageUrl}" />
+        android:src="@{photo.imageUrl}"
+        android:scaleType="center"
+        />
 </layout>
 
