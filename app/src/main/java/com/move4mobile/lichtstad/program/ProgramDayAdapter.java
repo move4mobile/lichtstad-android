@@ -14,6 +14,7 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.databinding.RecyclerTransitionRebindCallback;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.snapshotparser.ProgramSnapshotParser;
 
 
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
@@ -23,15 +24,8 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     public ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
 
     public ProgramDayAdapter(Query ref) {
-        super(Program.class, 0, ViewHolder.class, ref);
+        super(new ProgramSnapshotParser(), 0, ViewHolder.class, ref);
         this.registerAdapterDataObserver(new PresenterDataObserver());
-    }
-
-    @Override
-    protected Program parseSnapshot(DataSnapshot snapshot) {
-        Program program = super.parseSnapshot(snapshot);
-        program.key = snapshot.getKey();
-        return program;
     }
 
     @Override

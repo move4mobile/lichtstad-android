@@ -10,21 +10,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemAlbumBinding;
 import com.move4mobile.lichtstad.model.Album;
+import com.move4mobile.lichtstad.snapshotparser.AlbumSnapshotParser;
 
 public class AlbumsYearAdapter extends FirebaseRecyclerAdapter<Album, AlbumsYearAdapter.ViewHolder> implements AlbumPresenter {
 
     public AlbumsYearAdapter(Query ref) {
-        super(Album.class, 0, ViewHolder.class, ref);
+        super(new AlbumSnapshotParser(), 0, ViewHolder.class, ref);
     }
 
     private AlbumClickListener albumClickListener;
-
-    @Override
-    protected Album parseSnapshot(DataSnapshot snapshot) {
-        Album album = super.parseSnapshot(snapshot);
-        album.key = snapshot.getKey();
-        return album;
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
