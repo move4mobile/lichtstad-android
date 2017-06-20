@@ -14,6 +14,7 @@ public class AlbumSnapshotParser extends ClassSnapshotParser<Album> {
     public Album parseSnapshot(DataSnapshot snapshot) {
         Album album = super.parseSnapshot(snapshot);
         album.key = snapshot.getKey();
+        album.year = snapshot.getRef().getParent().getKey();
         return album;
     }
 }

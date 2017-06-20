@@ -23,6 +23,9 @@
         <activity
             android:name=".photo.AlbumActivity"
             android:theme="@style/AppTheme.Photo" />
+        <activity
+            android:name=".photo.PhotoViewActivity"
+            android:theme="@style/AppTheme.Photo" />
     </application>
 
 </manifest>
