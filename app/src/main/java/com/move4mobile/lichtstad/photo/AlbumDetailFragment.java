@@ -16,9 +16,10 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
+import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
-public class AlbumDetailFragment extends Fragment {
+public class AlbumDetailFragment extends Fragment implements PhotoClickListener {
 
     private static final String ARG_ALBUM = "ALBUM";
 
@@ -55,6 +56,7 @@ public class AlbumDetailFragment extends Fragment {
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.photo_spacing), false));
 
         AlbumDetailAdapter adapter = new AlbumDetailAdapter(getQuery());
+        adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
         binding.toolbar.toolbarTitle.setText(album.title);
@@ -70,6 +72,11 @@ public class AlbumDetailFragment extends Fragment {
             adapter.cleanup();
         }
         binding = null;
+    }
+
+    @Override
+    public void onPhotoClick(Photo photo) {
+        getActivity().startActivity(PhotoViewActivity.newInstanceIntent(getActivity(), album, photo));
     }
 
     private Query getQuery() {
