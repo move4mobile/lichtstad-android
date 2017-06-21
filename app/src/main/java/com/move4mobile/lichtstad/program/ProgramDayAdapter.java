@@ -25,7 +25,6 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
 
     public ProgramDayAdapter(Query ref) {
         super(new ProgramSnapshotParser(), 0, ViewHolder.class, ref);
-        this.registerAdapterDataObserver(new PresenterDataObserver());
     }
 
     @Override
@@ -49,11 +48,9 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     public void onProgramClick(View view, Program program) {
         Boolean wasExpanded = expandedMap.get(program.key);
         wasExpanded = wasExpanded == null ? false : wasExpanded;
+        //We can't remove the key from the map, as we can not receive which objects were deleted
+        //Since the memory leaked is so small, this should not be a problem
         expandedMap.put(program.key, !wasExpanded);
-    }
-
-    void onProgramRemoved(Program program) {
-        expandedMap.remove(program.key);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,15 +60,6 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         public ViewHolder(ListItemProgramBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-        }
-    }
-
-    private class PresenterDataObserver extends RecyclerView.AdapterDataObserver {
-        @Override
-        public void onItemRangeRemoved(int positionStart, int itemCount) {
-            for (int i = positionStart; i < positionStart + itemCount; i++) {
-                onProgramRemoved(getItem(i));
-            }
         }
     }
 
