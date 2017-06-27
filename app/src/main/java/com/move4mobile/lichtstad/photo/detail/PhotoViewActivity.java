@@ -51,7 +51,7 @@ public class PhotoViewActivity extends Activity {
 
         if (album != null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, PhotoDetailFragment.newInstance(album, currentPhoto))
+                    .replace(R.id.fragment_container, PhotoPagerFragment.newInstance(album, currentPhoto))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");

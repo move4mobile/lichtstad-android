@@ -14,7 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
-import com.move4mobile.lichtstad.databinding.FragmentPhotoDetailBinding;
+import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.widget.SinglePageLinearSnapHelper;
@@ -23,22 +23,22 @@ import com.move4mobile.lichtstad.widget.SinglePageLinearSnapHelper;
  * Created by wilcowolters on 16/05/2017.
  */
 
-public class PhotoDetailFragment extends Fragment {
+public class PhotoPagerFragment extends Fragment {
 
     private static final String ARG_ALBUM = "ALBUM";
     private static final String ARG_CURRENT_PHOTO = "CURRENT_PHOTO";
 
-    public static PhotoDetailFragment newInstance(Album album, @Nullable Photo currentPhoto) {
+    public static PhotoPagerFragment newInstance(Album album, @Nullable Photo currentPhoto) {
         Bundle arguments = new Bundle();
         arguments.putParcelable(ARG_ALBUM, album);
 
 
-        PhotoDetailFragment fragment = new PhotoDetailFragment();
+        PhotoPagerFragment fragment = new PhotoPagerFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
 
-    private FragmentPhotoDetailBinding binding;
+    private FragmentPhotoPagerBinding binding;
 
     private Album album;
 
@@ -56,7 +56,7 @@ public class PhotoDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_detail, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         SnapHelper snapHelper = new SinglePageLinearSnapHelper();
