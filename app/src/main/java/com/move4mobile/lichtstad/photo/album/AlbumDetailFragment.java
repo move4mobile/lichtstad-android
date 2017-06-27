@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.album;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
@@ -17,6 +17,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.photo.detail.PhotoViewActivity;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 public class AlbumDetailFragment extends Fragment implements PhotoClickListener {

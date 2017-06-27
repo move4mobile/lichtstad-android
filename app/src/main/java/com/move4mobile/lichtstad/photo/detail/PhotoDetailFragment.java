@@ -1,15 +1,10 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.detail;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
-import android.graphics.PointF;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +14,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
-import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;

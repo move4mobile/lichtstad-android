@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.detail;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
-import com.move4mobile.lichtstad.databinding.ListItemPhotoBinding;
 import com.move4mobile.lichtstad.databinding.ListItemPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Photo;
 

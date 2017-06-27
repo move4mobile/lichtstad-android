@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
-import com.move4mobile.lichtstad.photo.AlbumsFragment;
+import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;

@@ -11,7 +11,7 @@
 
         <variable
             name="presenter"
-            type="com.move4mobile.lichtstad.photo.AlbumPresenter" />
+            type="com.move4mobile.lichtstad.photo.album.AlbumPresenter" />
 
     </data>
 

@@ -7,7 +7,7 @@
 
         <variable
             name="presenter"
-            type="com.move4mobile.lichtstad.photo.PhotoPresenter" />
+            type="com.move4mobile.lichtstad.photo.detail.PhotoPresenter" />
 
         <variable
             name="photo"

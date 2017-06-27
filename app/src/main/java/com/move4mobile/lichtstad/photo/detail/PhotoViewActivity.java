@@ -1,62 +1,64 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.detail;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.move4mobile.lichtstad.R;
-import com.move4mobile.lichtstad.databinding.ActivityAlbumBinding;
+import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
 import com.move4mobile.lichtstad.model.Album;
+import com.move4mobile.lichtstad.model.Photo;
 
-
-public class AlbumActivity extends Activity {
+public class PhotoViewActivity extends Activity {
 
     public static final String EXTRA_ALBUM = "ALBUM";
+    public static final String EXTRA_CURRENT_PHOTO = "CURRENT_PHOTO";
 
-    public static Intent newInstanceIntent(Context context, Album album) {
-        Intent intent = new Intent(context, AlbumActivity.class);
+    private static final String TAG = PhotoViewActivity.class.getSimpleName();
+
+    public static Intent newInstanceIntent(Context context, @NonNull Album album, @Nullable Photo currentPhoto) {
+        Intent intent = new Intent(context, PhotoViewActivity.class);
         intent.putExtra(EXTRA_ALBUM, album);
+        intent.putExtra(EXTRA_CURRENT_PHOTO, currentPhoto);
         return intent;
     }
-
-    private static final String TAG = AlbumActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityAlbumBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_album);
+        ActivityViewPhotoBinding viewPhotoBinding = DataBindingUtil.setContentView(this, R.layout.activity_view_photo);
 
         if (savedInstanceState == null) {
-            applyFragment(getIntent());
+            applyIntent(getIntent());
         }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        setIntent(intent);
-
-        applyFragment(intent);
+        applyIntent(intent);
     }
 
-    private void applyFragment(Intent intent) {
+    private void applyIntent(Intent intent) {
         Album album = intent.getParcelableExtra(EXTRA_ALBUM);
+        Photo currentPhoto = intent.getParcelableExtra(EXTRA_CURRENT_PHOTO);
 
         if (album != null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, AlbumDetailFragment.newInstance(album))
+                    .replace(R.id.fragment_container, PhotoDetailFragment.newInstance(album, currentPhoto))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            //TODO: show error?
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, null)
                     .commit();
         }
+
     }
 }
