@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
@@ -17,6 +18,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 import com.move4mobile.lichtstad.widget.SinglePageLinearSnapHelper;
 
 /**
@@ -58,12 +60,7 @@ public class PhotoPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SnapHelper snapHelper = new SinglePageLinearSnapHelper();
-        snapHelper.attachToRecyclerView(binding.recyclerView);
-
-        PhotoViewAdapter adapter = new PhotoViewAdapter(getQuery());
-        binding.recyclerView.setAdapter(adapter);
+        binding.viewPager.setAdapter(new PhotoPagerAdapter(getQuery()));
 
         return binding.getRoot();
     }
@@ -72,8 +69,8 @@ public class PhotoPagerFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
+        if (binding.viewPager.getAdapter() instanceof FirebaseViewPagerAdapter) {
+            FirebaseViewPagerAdapter adapter = (FirebaseViewPagerAdapter) binding.viewPager.getAdapter();
             adapter.cleanup();
         }
 
