@@ -2,6 +2,7 @@ package com.move4mobile.lichtstad.photo.detail;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
@@ -60,7 +62,14 @@ public class PhotoPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
 
-        binding.viewPager.setAdapter(new PhotoPagerAdapter(getQuery()));
+        PhotoPagerAdapter adapter = new PhotoPagerAdapter(getQuery());
+        adapter.setOnMatrixChangedListener(new PhotoPagerAdapter.OnMatrixChangedListener() {
+            @Override
+            public void onMatrixChanged(RectF matrix, PhotoView photoView) {
+                photoView.setAllowParentInterceptOnEdge(photoView.getScale() <= 1);
+            }
+        });
+        binding.viewPager.setAdapter(adapter);
 
         return binding.getRoot();
     }
