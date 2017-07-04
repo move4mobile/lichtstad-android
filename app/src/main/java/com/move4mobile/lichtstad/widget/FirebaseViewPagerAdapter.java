@@ -12,6 +12,7 @@ import com.firebase.ui.database.ObservableSnapshotArray;
 import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.R;
 
@@ -20,7 +21,7 @@ public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implement
     private static final String TAG = FirebaseViewPagerAdapter.class.getSimpleName();
     private static final int VIEW_TAG = R.string.app_name;
 
-    private final ObservableSnapshotArray<T> mSnapshots;
+    protected final ObservableSnapshotArray<T> mSnapshots;
 
     public FirebaseViewPagerAdapter(ObservableSnapshotArray<T> snapshots) {
         mSnapshots = snapshots;
@@ -46,6 +47,14 @@ public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implement
 
     public void cleanup() {
         mSnapshots.removeChangeEventListener(this);
+    }
+
+    public T getItem(int position) {
+        return mSnapshots.getObject(position);
+    }
+
+    public DatabaseReference getRef(int position) {
+        return mSnapshots.get(position).getRef();
     }
 
     @Override

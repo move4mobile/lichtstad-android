@@ -3,11 +3,15 @@ package com.move4mobile.lichtstad.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.PropertyName;
 
 @IgnoreExtraProperties
 public class Photo implements Parcelable {
+
+    @Exclude
+    public String key;
 
     @PropertyName("thumbnail")
     public String thumbnailUrl;
@@ -25,6 +29,7 @@ public class Photo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.key);
         dest.writeString(this.thumbnailUrl);
         dest.writeString(this.imageUrl);
         dest.writeParcelable(this.size, flags);
@@ -34,12 +39,13 @@ public class Photo implements Parcelable {
     }
 
     protected Photo(Parcel in) {
+        this.key = in.readString();
         this.thumbnailUrl = in.readString();
         this.imageUrl = in.readString();
         this.size = in.readParcelable(Size.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Photo> CREATOR = new Parcelable.Creator<Photo>() {
+    public static final Creator<Photo> CREATOR = new Creator<Photo>() {
         @Override
         public Photo createFromParcel(Parcel source) {
             return new Photo(source);

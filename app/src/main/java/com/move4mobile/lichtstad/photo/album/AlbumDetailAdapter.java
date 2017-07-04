@@ -10,11 +10,13 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemPhotoBinding;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.detail.PhotoPresenter;
+import com.move4mobile.lichtstad.snapshotparser.AlbumSnapshotParser;
+import com.move4mobile.lichtstad.snapshotparser.PhotoSnapshotParser;
 
 public class AlbumDetailAdapter extends FirebaseRecyclerAdapter<Photo, AlbumDetailAdapter.ViewHolder> implements PhotoPresenter {
 
     public AlbumDetailAdapter(Query ref) {
-        super(Photo.class, 0, ViewHolder.class, ref);
+        super(new PhotoSnapshotParser(), 0, ViewHolder.class, ref);
     }
 
     private PhotoClickListener photoClickListener = null;
