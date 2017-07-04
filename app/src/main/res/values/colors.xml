@@ -9,6 +9,7 @@
     <color name="textColorSecondaryToolbar">#B3FFFFFF</color>
     <color name="colorAccentToolbar">#FFFFFFFF</color>
     <color name="itemInactive">#73000000</color>
+    <color name="translucentWindowBar">#9A000000</color>
 
     <color name="ic_launcher_background">@color/colorAccent</color>
 

@@ -46,6 +46,12 @@
         <item name="componentImage">@drawable/ic_photos_large</item>
     </style>
 
+    <style name="AppTheme.Photo.Detail">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@color/translucentWindowBar</item>
+        <item name="android:statusBarColor">@color/translucentWindowBar</item>
+    </style>
+
     <style name="AppTheme.Video" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryVideo</item>
         <item name="colorPrimaryDark">@color/colorPrimaryVideoDark</item>
