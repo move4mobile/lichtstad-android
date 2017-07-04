@@ -1,6 +1,7 @@
 package com.move4mobile.lichtstad.photo.album;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -53,10 +54,12 @@ public class AlbumActivity extends Activity {
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            //TODO: show error?
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, null)
-                    .commit();
+            Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+            if (currentFragment != null) {
+                getFragmentManager().beginTransaction()
+                        .remove(currentFragment)
+                        .commit();
+            }
         }
     }
 }

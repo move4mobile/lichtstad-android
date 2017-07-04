@@ -47,6 +47,10 @@
     </style>
 
     <style name="AppTheme.Photo.Detail">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
+        <item name="android:textColorSecondary">@color/textColorPrimaryToolbar</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:navigationBarColor">@color/translucentWindowBar</item>
         <item name="android:statusBarColor">@color/translucentWindowBar</item>

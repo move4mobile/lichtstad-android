@@ -6,7 +6,9 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +20,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.photo.album.AlbumActivity;
 import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 
 /**
@@ -90,6 +93,10 @@ public class PhotoPagerFragment extends Fragment {
             }
         });
         binding.viewPager.setAdapter(adapter);
+        getActivity().setActionBar(binding.toolbar);
+
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActivity().setTitle(album.title);
 
         return binding.getRoot();
     }

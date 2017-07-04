@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.photo.album.AlbumActivity;
 
 public class PhotoViewActivity extends Activity {
 
@@ -43,6 +45,16 @@ public class PhotoViewActivity extends Activity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         applyIntent(intent);
+    }
+
+    @Nullable
+    @Override
+    public Intent getParentActivityIntent() {
+        Intent parentIntent = super.getParentActivityIntent();
+        if (parentIntent != null) {
+            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().getParcelableExtra(EXTRA_ALBUM));
+        }
+        return parentIntent;
     }
 
     private void applyIntent(Intent intent) {
