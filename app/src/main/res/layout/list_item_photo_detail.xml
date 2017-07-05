@@ -9,10 +9,10 @@
     </data>
 
     <com.github.chrisbanes.photoview.PhotoView
-        android:layout_height="match_parent"
+        android:id="@+id/photoView"
         android:layout_width="match_parent"
-        android:src="@{photo.imageUrl}"
+        android:layout_height="match_parent"
         android:scaleType="center"
-        />
+        android:src="@{photo.imageUrl}" />
 </layout>
 

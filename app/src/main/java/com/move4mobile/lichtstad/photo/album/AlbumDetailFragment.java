@@ -1,16 +1,11 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.album;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
-import android.graphics.PointF;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,31 +15,25 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
-import com.move4mobile.lichtstad.databinding.FragmentPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
-import com.move4mobile.lichtstad.widget.SinglePageLinearSnapHelper;
+import com.move4mobile.lichtstad.photo.detail.PhotoViewActivity;
+import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
-/**
- * Created by wilcowolters on 16/05/2017.
- */
-
-public class PhotoDetailFragment extends Fragment {
+public class AlbumDetailFragment extends Fragment implements PhotoClickListener {
 
     private static final String ARG_ALBUM = "ALBUM";
-    private static final String ARG_CURRENT_PHOTO = "CURRENT_PHOTO";
 
-    public static PhotoDetailFragment newInstance(Album album, @Nullable Photo currentPhoto) {
+    public static AlbumDetailFragment newInstance(Album album) {
         Bundle arguments = new Bundle();
         arguments.putParcelable(ARG_ALBUM, album);
 
-
-        PhotoDetailFragment fragment = new PhotoDetailFragment();
+        AlbumDetailFragment fragment = new AlbumDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
 
-    private FragmentPhotoDetailBinding binding;
+    private FragmentAlbumDetailBinding binding;
 
     private Album album;
 
@@ -56,20 +45,22 @@ public class PhotoDetailFragment extends Fragment {
             throw new IllegalStateException("No album");
         }
 
-        album = getArguments().getParcelable(ARG_ALBUM);
+        this.album = getArguments().getParcelable(ARG_ALBUM);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_detail, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_album_detail, container, false);
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SnapHelper snapHelper = new SinglePageLinearSnapHelper();
-        snapHelper.attachToRecyclerView(binding.recyclerView);
+        binding.recyclerView.setLayoutManager(getLayoutManager());
+        binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.photo_spacing), false));
 
-        PhotoViewAdapter adapter = new PhotoViewAdapter(getQuery());
+        AlbumDetailAdapter adapter = new AlbumDetailAdapter(getQuery());
+        adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
+
+        binding.toolbar.toolbarTitle.setText(album.title);
 
         return binding.getRoot();
     }
@@ -77,13 +68,16 @@ public class PhotoDetailFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
             FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
             adapter.cleanup();
         }
-
         binding = null;
+    }
+
+    @Override
+    public void onPhotoClick(Photo photo) {
+        getActivity().startActivity(PhotoViewActivity.newInstanceIntent(getActivity(), album, photo));
     }
 
     private Query getQuery() {
@@ -91,5 +85,9 @@ public class PhotoDetailFragment extends Fragment {
                 .child(album.year)
                 .child(album.key)
                 .orderByChild("order");
+    }
+
+    private RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.photo_span_count));
     }
 }
