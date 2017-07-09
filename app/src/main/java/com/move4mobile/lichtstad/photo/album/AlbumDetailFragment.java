@@ -60,7 +60,9 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
         adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
-        binding.toolbar.toolbarTitle.setText(album.title);
+        getActivity().setActionBar(binding.toolbar);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActivity().setTitle(album.title);
 
         return binding.getRoot();
     }

@@ -39,6 +39,7 @@
     </style>
 
     <style name="AppTheme.Photo" parent="AppTheme.Default">
+        <item name="android:colorControlNormal">@color/textColorPrimaryToolbar</item>
         <item name="colorPrimary">@color/colorPrimaryPhoto</item>
         <item name="colorPrimaryDark">@color/colorPrimaryPhotoDark</item>
         <item name="colorAccent">@color/colorAccentPhoto</item>
