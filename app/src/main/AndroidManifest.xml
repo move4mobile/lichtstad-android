@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,13 +24,14 @@
         </activity>
         <activity
             android:name=".photo.album.AlbumActivity"
-            android:theme="@style/AppTheme.Photo"
-            android:parentActivityName=".MainActivity"/>
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.Photo" />
         <activity
             android:name=".photo.detail.PhotoViewActivity"
-            android:theme="@style/AppTheme.Photo.Detail"
             android:label="@string/menu_photos"
-            android:parentActivityName=".photo.album.AlbumActivity"/>
+            android:parentActivityName=".photo.album.AlbumActivity"
+            android:theme="@style/AppTheme.Photo.Detail" />
     </application>
 
 </manifest>
