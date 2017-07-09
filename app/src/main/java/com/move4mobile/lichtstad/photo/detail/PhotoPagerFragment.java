@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +21,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.util.ImageSharer;
 import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 
 /**
@@ -60,6 +64,7 @@ public class PhotoPagerFragment extends Fragment {
         }
 
         album = getArguments().getParcelable(ARG_ALBUM);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -99,6 +104,24 @@ public class PhotoPagerFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.photo_details, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                shareCurrentPhoto();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -124,5 +147,27 @@ public class PhotoPagerFragment extends Fragment {
                 .child(album.year)
                 .child(album.key)
                 .orderByChild("order");
+    }
+
+    private void shareCurrentPhoto() {
+        Photo photo = getCurrentPhoto();
+        if (photo != null) {
+            sharePhoto(photo);
+        }
+    }
+
+    @Nullable
+    private Photo getCurrentPhoto() {
+        if (binding != null) {
+            int currentIndex = binding.viewPager.getCurrentItem();
+            if (currentIndex >= 0 && binding.viewPager.getAdapter() instanceof PhotoPagerAdapter) {
+                return ((PhotoPagerAdapter) binding.viewPager.getAdapter()).getItem(currentIndex);
+            }
+        }
+        return null;
+    }
+
+    private void sharePhoto(@NonNull final Photo photo) {
+        new ImageSharer(getActivity()).shareImage(photo.imageUrl);
     }
 }

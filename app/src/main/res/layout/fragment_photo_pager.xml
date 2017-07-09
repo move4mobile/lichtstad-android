@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:pageMargin="@{(int)@dimen/photo_view_spacing}"/>
+            app:pageMargin="@{(int)@dimen/photo_view_spacing}" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -24,10 +24,16 @@
             android:layout_gravity="top"
             android:fitsSystemWindows="true">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/background_transparent_toolbar" />
+
             <Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:actionBarSize" />
+                android:layout_height="?android:actionBarSize"
+                android:theme="@style/Toolbar" />
         </FrameLayout>
 
     </FrameLayout>

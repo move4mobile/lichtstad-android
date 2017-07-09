@@ -32,6 +32,18 @@
             android:label="@string/menu_photos"
             android:parentActivityName=".photo.album.AlbumActivity"
             android:theme="@style/AppTheme.Photo.Detail" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
+
+
     </application>
 
 </manifest>
