@@ -1,14 +1,23 @@
 package com.move4mobile.lichtstad.photo.detail;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +28,12 @@ import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by wilcowolters on 16/05/2017.
@@ -60,6 +75,7 @@ public class PhotoPagerFragment extends Fragment {
         }
 
         album = getArguments().getParcelable(ARG_ALBUM);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -99,6 +115,24 @@ public class PhotoPagerFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.photo_details, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                shareCurrentPhoto();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -124,5 +158,72 @@ public class PhotoPagerFragment extends Fragment {
                 .child(album.year)
                 .child(album.key)
                 .orderByChild("order");
+    }
+
+    private void shareCurrentPhoto() {
+        Photo photo = getCurrentPhoto();
+        if (photo != null) {
+            sharePhoto(photo);
+        }
+    }
+
+    @Nullable
+    private Photo getCurrentPhoto() {
+        if (binding != null) {
+            int currentIndex = binding.viewPager.getCurrentItem();
+            if (currentIndex >= 0 && binding.viewPager.getAdapter() instanceof PhotoPagerAdapter) {
+                return ((PhotoPagerAdapter) binding.viewPager.getAdapter()).getItem(currentIndex);
+            }
+        }
+        return null;
+    }
+
+    private void sharePhoto(@NonNull final Photo photo) {
+        Picasso.with(getActivity())
+                .load(photo.imageUrl)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        if (!isAdded()) {
+                            return;
+                        }
+
+                        String mimeType = "image/*";
+                        String extension = MimeTypeMap.getFileExtensionFromUrl(photo.imageUrl);
+                        if (extension != null) {
+                            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+                        }
+
+                        Intent shareIntent = new Intent();
+                        shareIntent.setAction(Intent.ACTION_SEND);
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap));
+                        shareIntent.setType(mimeType);
+                        startActivity(Intent.createChooser(shareIntent, getText(R.string.share_to)));
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {}
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {}
+                });
+    }
+
+    private Uri getLocalBitmapUri(Bitmap bmp) {
+        Uri bmpUri = null;
+        try {
+            File directory = new File(getActivity().getCacheDir(), "shares");
+            if (!directory.mkdirs()) {
+                return null;
+            }
+            File file =  new File(directory, "share_image_" + System.currentTimeMillis() + ".png");
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
+            bmpUri = FileProvider.getUriForFile(getActivity(), "nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
     }
 }

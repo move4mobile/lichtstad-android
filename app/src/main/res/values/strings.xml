@@ -13,6 +13,8 @@
     <string name="format_tab_date">EEEE\'\n\'dd MMM</string>
 
     <string name="default_locale_language">nl</string>
+    <string name="share">Delen</string>
+    <string name="share_to">Aan</string>
 
     <!-- By default, Dutch abbreviated months contain a trailing dot, which is hideous -->
     <string-array name="abbreviated_months">
