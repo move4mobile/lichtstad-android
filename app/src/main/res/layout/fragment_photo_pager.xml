@@ -11,11 +11,12 @@
         android:layout_height="match_parent"
         android:background="#000000">
 
-        <android.support.v4.view.ViewPager
+        <com.move4mobile.lichtstad.widget.HackyViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:pageMargin="@{(int)@dimen/photo_view_spacing}"/>
 
         <FrameLayout
             android:layout_width="match_parent"
