@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +23,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".photo.AlbumActivity"
+            android:name=".photo.album.AlbumActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.Photo" />
         <activity
-            android:name=".photo.PhotoViewActivity"
-            android:theme="@style/AppTheme.Photo" />
+            android:name=".photo.detail.PhotoViewActivity"
+            android:label="@string/menu_photos"
+            android:parentActivityName=".photo.album.AlbumActivity"
+            android:theme="@style/AppTheme.Photo.Detail" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
+
+
     </application>
 
 </manifest>

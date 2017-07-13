@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.detail;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.photo.album.AlbumActivity;
 
 public class PhotoViewActivity extends Activity {
 
@@ -45,13 +47,23 @@ public class PhotoViewActivity extends Activity {
         applyIntent(intent);
     }
 
+    @Nullable
+    @Override
+    public Intent getParentActivityIntent() {
+        Intent parentIntent = super.getParentActivityIntent();
+        if (parentIntent != null) {
+            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().getParcelableExtra(EXTRA_ALBUM));
+        }
+        return parentIntent;
+    }
+
     private void applyIntent(Intent intent) {
         Album album = intent.getParcelableExtra(EXTRA_ALBUM);
         Photo currentPhoto = intent.getParcelableExtra(EXTRA_CURRENT_PHOTO);
 
         if (album != null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, PhotoDetailFragment.newInstance(album, currentPhoto))
+                    .replace(R.id.fragment_container, PhotoPagerFragment.newInstance(album, currentPhoto))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");

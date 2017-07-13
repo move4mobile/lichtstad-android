@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.detail;
 
 import android.view.View;
 

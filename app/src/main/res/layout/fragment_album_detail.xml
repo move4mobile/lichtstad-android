@@ -18,9 +18,11 @@
             android:theme="@style/Toolbar"
             android:transitionName="@string/transition_name_appbar">
 
-            <include
+            <Toolbar
                 android:id="@+id/toolbar"
-                layout="@layout/layout_toolbar" />
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"/>
 
         </android.support.design.widget.AppBarLayout>
 

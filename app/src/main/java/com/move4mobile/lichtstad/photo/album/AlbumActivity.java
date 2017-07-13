@@ -1,6 +1,7 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.album;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -11,6 +12,8 @@ import android.util.Log;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityAlbumBinding;
 import com.move4mobile.lichtstad.model.Album;
+
+import java.util.Objects;
 
 
 public class AlbumActivity extends Activity {
@@ -24,6 +27,8 @@ public class AlbumActivity extends Activity {
     }
 
     private static final String TAG = AlbumActivity.class.getSimpleName();
+
+    private String currentAlbumKey;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,15 +53,20 @@ public class AlbumActivity extends Activity {
         Album album = intent.getParcelableExtra(EXTRA_ALBUM);
 
         if (album != null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, AlbumDetailFragment.newInstance(album))
-                    .commit();
+            if (!Objects.equals(currentAlbumKey, album.key)) {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, AlbumDetailFragment.newInstance(album))
+                        .commit();
+            }
+            currentAlbumKey = album.key;
         } else {
             Log.e(TAG, "No album passed as extra");
-            //TODO: show error?
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, null)
-                    .commit();
+            Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+            if (currentFragment != null) {
+                getFragmentManager().beginTransaction()
+                        .remove(currentFragment)
+                        .commit();
+            }
         }
     }
 }

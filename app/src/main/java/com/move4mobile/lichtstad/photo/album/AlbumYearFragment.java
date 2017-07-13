@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.photo;
+package com.move4mobile.lichtstad.photo.album;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
