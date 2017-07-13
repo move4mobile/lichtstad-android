@@ -81,8 +81,8 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
         long startOfYear = calendar.getTimeInMillis();
 
-        calendar.roll(Calendar.YEAR, 1);
-        calendar.roll(Calendar.MILLISECOND, -1);
+        calendar.add(Calendar.YEAR, 1);
+        calendar.add(Calendar.MILLISECOND, -1);
 
         long endOfYear = calendar.getTimeInMillis();
 
