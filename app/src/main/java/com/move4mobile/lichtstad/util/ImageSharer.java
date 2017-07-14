@@ -1,5 +1,6 @@
 package com.move4mobile.lichtstad.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,10 +21,10 @@ import java.io.IOException;
 public class ImageSharer {
 
     public static final String AUTHORITY = "nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider";
-    private final Context context;
+    private final Activity context;
 
-    public ImageSharer(Context context) {
-        this.context = context.getApplicationContext();
+    public ImageSharer(Activity context) {
+        this.context = context;
     }
 
     public void shareImage(@NonNull final String imageUrl) {
