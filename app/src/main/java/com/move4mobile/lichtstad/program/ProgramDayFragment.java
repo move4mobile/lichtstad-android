@@ -105,8 +105,8 @@ public class ProgramDayFragment extends Fragment {
      */
     private Calendar getEndOfDay() {
         Calendar endOfDay = (Calendar) getStartOfDay().clone();
-        endOfDay.roll(Calendar.DAY_OF_MONTH, 1);
-        endOfDay.roll(Calendar.MILLISECOND, -1);
+        endOfDay.add(Calendar.DAY_OF_MONTH, 1);
+        endOfDay.add(Calendar.MILLISECOND, -1);
         return endOfDay;
     }
 }
