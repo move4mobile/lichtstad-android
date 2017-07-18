@@ -71,7 +71,7 @@ dependencies {
     compile "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
 
     compile "com.squareup.picasso:picasso:2.5.2"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 

@@ -34,9 +34,10 @@
                 android:contentDescription="@{result.title}"
                 android:scaleType="centerCrop"
                 android:src="@{result.imageUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/title"
@@ -47,7 +48,7 @@
                 android:text="@{result.title}"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/list_item_title_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toStartOf="@+id/more_icon"
                 app:layout_constraintStart_toEndOf="@+id/image"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,9 +59,28 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/icon_more_data_description"
                 android:src="@drawable/ic_more_data"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <ViewStub
+                android:id="@+id/webview_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:inflatedId="@+id/webview"
+                android:layout="@layout/result_webview"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
         </android.support.constraint.ConstraintLayout>
 

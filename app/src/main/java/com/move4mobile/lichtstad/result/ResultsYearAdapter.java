@@ -9,10 +9,6 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
 
-/**
- * Created by wilcowolters on 18/07/2017.
- */
-
 public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> {
 
     public ResultsYearAdapter(Query ref) {
