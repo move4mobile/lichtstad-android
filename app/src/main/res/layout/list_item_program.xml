@@ -23,6 +23,7 @@
         android:layout_marginStart="@dimen/list_card_start_margin"
         android:layout_marginTop="@dimen/list_card_top_margin"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{(view) -> presenter.onProgramClick(view, program)}"
         app:contentPaddingBottom="@dimen/list_content_bottom_padding"

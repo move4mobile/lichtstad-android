@@ -50,9 +50,9 @@ public class AlbumsYearAdapter extends FirebaseRecyclerAdapter<Album, AlbumsYear
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final ListItemAlbumBinding binding;
+        final ListItemAlbumBinding binding;
 
-        public ViewHolder(ListItemAlbumBinding binding) {
+        ViewHolder(ListItemAlbumBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

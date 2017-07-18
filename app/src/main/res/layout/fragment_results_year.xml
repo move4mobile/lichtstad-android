@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/list_bottom_padding"
+        android:paddingEnd="@dimen/list_end_padding"
+        android:paddingStart="@dimen/list_start_padding"
+        android:paddingTop="@dimen/list_top_padding"
+        android:theme="@style/AppTheme.Result" />
+    <!-- The theme gets lost in the view pager, so readd it here -->
+
+</layout>

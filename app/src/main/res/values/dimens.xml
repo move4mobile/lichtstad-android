@@ -16,6 +16,8 @@
     <dimen name="list_content_top_padding">16dp</dimen>
     <dimen name="list_content_bottom_padding">16dp</dimen>
 
+    <dimen name="list_result_padding">8dp</dimen>
+
     <dimen name="list_start_text_width">48sp</dimen>
     <dimen name="list_start_text_end_padding">16dp</dimen>
     <dimen name="list_item_title_text_size">16sp</dimen>
