@@ -33,7 +33,7 @@ public class AlbumsFragment extends Fragment implements YearFragmentPagerAdapter
 
     @NonNull
     private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.album_years);
+        return getActivity().getResources().getIntArray(R.array.history_years);
     }
 
     @Override

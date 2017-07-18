@@ -15,7 +15,7 @@
         <item>2017-09-02</item>
     </string-array>
 
-    <integer-array name="album_years">
+    <integer-array name="history_years">
         <item>2016</item>
         <item>2017</item>
     </integer-array>
