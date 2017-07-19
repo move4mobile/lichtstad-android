@@ -12,7 +12,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.model.Program;
-import com.move4mobile.lichtstad.snapshotparser.ProgramSnapshotParser;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
 
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
@@ -20,7 +20,7 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     public ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
 
     public ProgramDayAdapter(Query ref) {
-        super(new ProgramSnapshotParser(), 0, ViewHolder.class, ref);
+        super(new KeyedSnapshotParser<>(Program.class), 0, ViewHolder.class, ref);
     }
 
     @Override

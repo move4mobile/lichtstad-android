@@ -3,11 +3,12 @@ package com.move4mobile.lichtstad.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.PropertyName;
+import com.move4mobile.lichtstad.snapshotparser.Keyed;
 
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Program {
+public class Program implements Keyed {
 
     @Exclude
     private String key;

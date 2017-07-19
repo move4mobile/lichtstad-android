@@ -6,11 +6,12 @@ import android.os.Parcelable;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.PropertyName;
+import com.move4mobile.lichtstad.snapshotparser.Keyed;
 
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Album implements Parcelable {
+public class Album implements Keyed, Parcelable {
 
     @Exclude
     private String key;

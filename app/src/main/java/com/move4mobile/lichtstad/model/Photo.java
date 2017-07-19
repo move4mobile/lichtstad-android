@@ -6,9 +6,10 @@ import android.os.Parcelable;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.PropertyName;
+import com.move4mobile.lichtstad.snapshotparser.Keyed;
 
 @IgnoreExtraProperties
-public class Photo implements Parcelable {
+public class Photo implements Keyed, Parcelable {
 
     @Exclude
     private String key;
@@ -20,7 +21,6 @@ public class Photo implements Parcelable {
     private String imageUrl;
 
     private Size size;
-
 
     @Override
     public int describeContents() {
