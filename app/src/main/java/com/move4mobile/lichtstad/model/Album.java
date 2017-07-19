@@ -74,10 +74,12 @@ public class Album implements Keyed, Parcelable {
         }
     };
 
+    @Override
     public String getKey() {
         return key;
     }
 
+    @Override
     public void setKey(String key) {
         this.key = key;
     }

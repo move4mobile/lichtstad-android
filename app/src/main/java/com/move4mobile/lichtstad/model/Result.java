@@ -3,9 +3,14 @@ package com.move4mobile.lichtstad.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
+import com.move4mobile.lichtstad.snapshotparser.Keyed;
 
-public class Result implements Parcelable {
+public class Result implements Keyed, Parcelable {
+
+    @Exclude
+    private String key;
 
     private String imageUrl;
 
@@ -21,6 +26,7 @@ public class Result implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.getKey());
         dest.writeString(this.getImageUrl());
         dest.writeString(this.getTitle());
         dest.writeString(this.getUrl());
@@ -30,6 +36,7 @@ public class Result implements Parcelable {
     }
 
     protected Result(Parcel in) {
+        this.setKey(in.readString());
         this.setImageUrl(in.readString());
         this.setTitle(in.readString());
         this.setUrl(in.readString());
@@ -46,6 +53,16 @@ public class Result implements Parcelable {
             return new Result[size];
         }
     };
+
+    @Override
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     @PropertyName("image")
     public String getImageUrl() {
