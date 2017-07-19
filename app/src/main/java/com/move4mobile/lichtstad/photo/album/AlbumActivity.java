@@ -53,12 +53,12 @@ public class AlbumActivity extends Activity {
         Album album = intent.getParcelableExtra(EXTRA_ALBUM);
 
         if (album != null) {
-            if (!Objects.equals(currentAlbumKey, album.key)) {
+            if (!Objects.equals(currentAlbumKey, album.getKey())) {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, AlbumDetailFragment.newInstance(album))
                         .commit();
             }
-            currentAlbumKey = album.key;
+            currentAlbumKey = album.getKey();
         } else {
             Log.e(TAG, "No album passed as extra");
             Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragment_container);

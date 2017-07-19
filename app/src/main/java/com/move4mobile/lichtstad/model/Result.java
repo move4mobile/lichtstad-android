@@ -8,11 +8,11 @@ import com.google.firebase.database.PropertyName;
 public class Result implements Parcelable {
 
     @PropertyName("image")
-    public String imageUrl;
+    private String imageUrl;
 
-    public String title;
+    private String title;
 
-    public String url;
+    private String url;
 
 
     @Override
@@ -22,18 +22,18 @@ public class Result implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.imageUrl);
-        dest.writeString(this.title);
-        dest.writeString(this.url);
+        dest.writeString(this.getImageUrl());
+        dest.writeString(this.getTitle());
+        dest.writeString(this.getUrl());
     }
 
     public Result() {
     }
 
     protected Result(Parcel in) {
-        this.imageUrl = in.readString();
-        this.title = in.readString();
-        this.url = in.readString();
+        this.setImageUrl(in.readString());
+        this.setTitle(in.readString());
+        this.setUrl(in.readString());
     }
 
     public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>() {
@@ -47,4 +47,28 @@ public class Result implements Parcelable {
             return new Result[size];
         }
     };
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

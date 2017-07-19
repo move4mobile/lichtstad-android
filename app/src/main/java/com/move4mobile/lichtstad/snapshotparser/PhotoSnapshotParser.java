@@ -12,7 +12,7 @@ public class PhotoSnapshotParser extends ClassSnapshotParser<Photo> {
     @Override
     public Photo parseSnapshot(DataSnapshot snapshot) {
         Photo photo = super.parseSnapshot(snapshot);
-        photo.key = snapshot.getKey();
+        photo.setKey(snapshot.getKey());
         return photo;
     }
 }

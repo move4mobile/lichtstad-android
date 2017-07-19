@@ -11,15 +11,15 @@ import com.google.firebase.database.PropertyName;
 public class Photo implements Parcelable {
 
     @Exclude
-    public String key;
+    private String key;
 
     @PropertyName("thumbnail")
-    public String thumbnailUrl;
+    private String thumbnailUrl;
 
     @PropertyName("image")
-    public String imageUrl;
+    private String imageUrl;
 
-    public Size size;
+    private Size size;
 
 
     @Override
@@ -29,20 +29,20 @@ public class Photo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.key);
-        dest.writeString(this.thumbnailUrl);
-        dest.writeString(this.imageUrl);
-        dest.writeParcelable(this.size, flags);
+        dest.writeString(this.getKey());
+        dest.writeString(this.getThumbnailUrl());
+        dest.writeString(this.getImageUrl());
+        dest.writeParcelable(this.getSize(), flags);
     }
 
     public Photo() {
     }
 
     protected Photo(Parcel in) {
-        this.key = in.readString();
-        this.thumbnailUrl = in.readString();
-        this.imageUrl = in.readString();
-        this.size = in.readParcelable(Size.class.getClassLoader());
+        this.setKey(in.readString());
+        this.setThumbnailUrl(in.readString());
+        this.setImageUrl(in.readString());
+        this.setSize(in.<Size>readParcelable(Size.class.getClassLoader()));
     }
 
     public static final Creator<Photo> CREATOR = new Creator<Photo>() {
@@ -56,4 +56,36 @@ public class Photo implements Parcelable {
             return new Photo[size];
         }
     };
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
 }

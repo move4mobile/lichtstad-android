@@ -86,7 +86,7 @@ public class PhotoPagerFragment extends Fragment {
                 if (scrollToPhoto != null) {
                     for (int i = 0; i < adapter.getSnapshots().size(); i++) {
                         DataSnapshot snapshot = adapter.getSnapshots().get(i);
-                        if (snapshot.getKey().equals(scrollToPhoto.key)) {
+                        if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
                             binding.viewPager.setCurrentItem(i, false);
                         }
                     }
@@ -98,7 +98,7 @@ public class PhotoPagerFragment extends Fragment {
         getActivity().setActionBar(binding.toolbar);
 
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActivity().setTitle(album.title);
+        getActivity().setTitle(album.getTitle());
 
         return binding.getRoot();
     }
@@ -144,8 +144,8 @@ public class PhotoPagerFragment extends Fragment {
 
     private Query getQuery() {
         return FirebaseReferences.ALBUM_CONTENT
-                .child(album.year)
-                .child(album.key)
+                .child(album.getYear())
+                .child(album.getKey())
                 .orderByChild("order");
     }
 
@@ -168,6 +168,6 @@ public class PhotoPagerFragment extends Fragment {
     }
 
     private void sharePhoto(@NonNull final Photo photo) {
-        new ImageSharer(getActivity()).shareImage(photo.imageUrl);
+        new ImageSharer(getActivity()).shareImage(photo.getImageUrl());
     }
 }

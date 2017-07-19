@@ -13,7 +13,7 @@ public class ProgramSnapshotParser extends ClassSnapshotParser<Program> {
     @Override
     public Program parseSnapshot(DataSnapshot snapshot) {
         Program program = super.parseSnapshot(snapshot);
-        program.key = snapshot.getKey();
+        program.setKey(snapshot.getKey());
         return program;
     }
 }

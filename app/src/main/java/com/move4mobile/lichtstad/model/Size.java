@@ -8,9 +8,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Size implements Parcelable {
 
-    public double width;
-    public double height;
-
+    private double width;
+    private double height;
 
     @Override
     public int describeContents() {
@@ -19,16 +18,16 @@ public class Size implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(this.width);
-        dest.writeDouble(this.height);
+        dest.writeDouble(this.getWidth());
+        dest.writeDouble(this.getHeight());
     }
 
     public Size() {
     }
 
     protected Size(Parcel in) {
-        this.width = in.readDouble();
-        this.height = in.readDouble();
+        this.setWidth(in.readDouble());
+        this.setHeight(in.readDouble());
     }
 
     public static final Parcelable.Creator<Size> CREATOR = new Parcelable.Creator<Size>() {
@@ -42,4 +41,20 @@ public class Size implements Parcelable {
             return new Size[size];
         }
     };
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
 }

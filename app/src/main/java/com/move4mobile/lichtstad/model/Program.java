@@ -10,26 +10,74 @@ import java.util.Date;
 public class Program {
 
     @Exclude
-    public String key;
-    public String description;
-    public Location location;
-    public long time;
-    public String title;
+    private String key;
+    private String description;
+    private Location location;
+    private long time;
+    private String title;
 
     @PropertyName("image_url")
-    public String imageUrl;
+    private String imageUrl;
 
     public Date getTimeAsDate() {
-        return new Date(time);
+        return new Date(getTime());
     }
 
     @Override
     public String toString() {
         return "Program{" +
-                "description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", time=" + time +
-                ", title='" + title + '\'' +
+                "description='" + getDescription() + '\'' +
+                ", location='" + getLocation() + '\'' +
+                ", time=" + getTime() +
+                ", title='" + getTitle() + '\'' +
                 '}';
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

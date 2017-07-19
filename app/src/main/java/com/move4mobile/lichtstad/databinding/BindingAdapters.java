@@ -44,7 +44,7 @@ public class BindingAdapters {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
 
         if (layoutParams instanceof ConstraintLayout.LayoutParams) {
-            ((ConstraintLayout.LayoutParams) layoutParams).dimensionRatio = "h," + size.width + ":" + size.height;
+            ((ConstraintLayout.LayoutParams) layoutParams).dimensionRatio = "h," + size.getWidth() + ":" + size.getHeight();
         } else {
             Log.w("dimensionRatio", "Asked to set ratio to LayoutParams of class " + layoutParams.getClass());
         }
