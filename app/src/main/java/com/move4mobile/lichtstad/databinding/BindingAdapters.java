@@ -31,7 +31,7 @@ public class BindingAdapters {
 
     @BindingAdapter("android:src")
     public static void setSource(ImageView imageView, String source) {
-        if (source.length() == 0) {
+        if (source != null && source.length() == 0) {
             source = null;
         }
         Picasso.with(imageView.getContext())
