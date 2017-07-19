@@ -19,18 +19,14 @@ public class Album implements Keyed, Parcelable {
     @Exclude
     private String year;
 
-    @PropertyName("photo_count")
     private long photoCount;
 
-    @PropertyName("thumbnail")
     private String thumbnailUrl;
 
-    @PropertyName("thumbnail_size")
     private Size thumbnailSize;
 
     private String title;
 
-    @PropertyName("upload_time")
     private long uploadTime;
 
     public Date getUploadTimeAsDate() {
@@ -94,42 +90,52 @@ public class Album implements Keyed, Parcelable {
         this.year = year;
     }
 
+    @PropertyName("photo_count")
     public long getPhotoCount() {
         return photoCount;
     }
 
+    @PropertyName("photo_count")
     public void setPhotoCount(long photoCount) {
         this.photoCount = photoCount;
     }
 
+    @PropertyName("thumbnail")
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
+    @PropertyName("thumbnail")
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
 
+    @PropertyName("thumbnail_size")
     public Size getThumbnailSize() {
         return thumbnailSize;
     }
 
+    @PropertyName("thumbnail_size")
     public void setThumbnailSize(Size thumbnailSize) {
         this.thumbnailSize = thumbnailSize;
     }
 
+    @PropertyName("title")
     public String getTitle() {
         return title;
     }
 
+    @PropertyName("title")
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @PropertyName("upload_time")
     public long getUploadTime() {
         return uploadTime;
     }
 
+    @PropertyName("upload_time")
     public void setUploadTime(long uploadTime) {
         this.uploadTime = uploadTime;
     }

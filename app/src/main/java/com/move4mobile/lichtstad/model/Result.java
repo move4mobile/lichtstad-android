@@ -7,7 +7,6 @@ import com.google.firebase.database.PropertyName;
 
 public class Result implements Parcelable {
 
-    @PropertyName("image")
     private String imageUrl;
 
     private String title;
@@ -48,26 +47,32 @@ public class Result implements Parcelable {
         }
     };
 
+    @PropertyName("image")
     public String getImageUrl() {
         return imageUrl;
     }
 
+    @PropertyName("image")
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
+    @PropertyName("title")
     public String getTitle() {
         return title;
     }
 
+    @PropertyName("title")
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @PropertyName("url")
     public String getUrl() {
         return url;
     }
 
+    @PropertyName("url")
     public void setUrl(String url) {
         this.url = url;
     }

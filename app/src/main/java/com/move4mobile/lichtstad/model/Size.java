@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.PropertyName;
 
 @IgnoreExtraProperties
 public class Size implements Parcelable {
@@ -42,18 +43,22 @@ public class Size implements Parcelable {
         }
     };
 
+    @PropertyName("width")
     public double getWidth() {
         return width;
     }
 
+    @PropertyName("width")
     public void setWidth(double width) {
         this.width = width;
     }
 
+    @PropertyName("height")
     public double getHeight() {
         return height;
     }
 
+    @PropertyName("height")
     public void setHeight(double height) {
         this.height = height;
     }

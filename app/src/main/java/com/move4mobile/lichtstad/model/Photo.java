@@ -14,10 +14,8 @@ public class Photo implements Keyed, Parcelable {
     @Exclude
     private String key;
 
-    @PropertyName("thumbnail")
     private String thumbnailUrl;
 
-    @PropertyName("image")
     private String imageUrl;
 
     private Size size;
@@ -65,26 +63,32 @@ public class Photo implements Keyed, Parcelable {
         this.key = key;
     }
 
+    @PropertyName("thumbnail")
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
+    @PropertyName("thumbnail")
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
 
+    @PropertyName("image")
     public String getImageUrl() {
         return imageUrl;
     }
 
+    @PropertyName("image")
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
+    @PropertyName("size")
     public Size getSize() {
         return size;
     }
 
+    @PropertyName("size")
     public void setSize(Size size) {
         this.size = size;
     }

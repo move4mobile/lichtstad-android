@@ -17,7 +17,6 @@ public class Program implements Keyed {
     private long time;
     private String title;
 
-    @PropertyName("image_url")
     private String imageUrl;
 
     public Date getTimeAsDate() {
@@ -42,42 +41,52 @@ public class Program implements Keyed {
         this.key = key;
     }
 
+    @PropertyName("description")
     public String getDescription() {
         return description;
     }
 
+    @PropertyName("description")
     public void setDescription(String description) {
         this.description = description;
     }
 
+    @PropertyName("location")
     public Location getLocation() {
         return location;
     }
 
+    @PropertyName("location")
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    @PropertyName("time")
     public long getTime() {
         return time;
     }
 
+    @PropertyName("time")
     public void setTime(long time) {
         this.time = time;
     }
 
+    @PropertyName("title")
     public String getTitle() {
         return title;
     }
 
+    @PropertyName("title")
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @PropertyName("image_url")
     public String getImageUrl() {
         return imageUrl;
     }
 
+    @PropertyName("image_url")
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
