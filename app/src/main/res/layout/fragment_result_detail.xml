@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="result"
+            type="com.move4mobile.lichtstad.model.Result" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme.Result">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/list_bottom_padding"
+            android:layout_marginEnd="@dimen/list_end_padding"
+            android:layout_marginStart="@dimen/list_start_padding"
+            android:layout_marginTop="@dimen/list_top_padding"
+            android:clickable="true"
+            tools:ignore="KeyboardInaccessibleWidget">
+            <!-- KeyboardInaccessibleWidget because it prevents the views below this CardView from responding to touches -->
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+
+</layout>

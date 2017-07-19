@@ -15,8 +15,9 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentResultsYearBinding;
+import com.move4mobile.lichtstad.model.Result;
 
-public class ResultYearFragment extends Fragment {
+public class ResultYearFragment extends Fragment implements ResultClickListener {
 
     private static final String ARG_YEAR = "year";
 
@@ -51,6 +52,7 @@ public class ResultYearFragment extends Fragment {
         binding.recyclerView.setLayoutManager(getLayoutManager());
 
         ResultsYearAdapter adapter = new ResultsYearAdapter(getQuery());
+        adapter.setResultClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
         return binding.getRoot();
@@ -64,6 +66,15 @@ public class ResultYearFragment extends Fragment {
             adapter.cleanup();
         }
         binding = null;
+    }
+
+    @Override
+    public void onResultClick(Result result) {
+        ResultDetailFragment detailFragment = ResultDetailFragment.newInstance(result);
+        getActivity().getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .add(R.id.fragment_container, detailFragment)
+                .commit();
     }
 
     private Query getQuery() {

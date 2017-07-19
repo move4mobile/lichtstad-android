@@ -28,9 +28,21 @@ public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsY
         viewHolder.binding.setPresenter(this);
     }
 
+    private ResultClickListener resultClickListener;
+
+    public ResultClickListener getResultClickListener() {
+        return resultClickListener;
+    }
+
+    public void setResultClickListener(ResultClickListener resultClickListener) {
+        this.resultClickListener = resultClickListener;
+    }
+
     @Override
     public void onResultClick(View view, Result result) {
-
+        if (resultClickListener != null) {
+            resultClickListener.onResultClick(result);
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

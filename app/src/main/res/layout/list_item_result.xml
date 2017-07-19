@@ -25,6 +25,7 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onResultClick(view, result)}"
         app:contentPadding="@dimen/list_result_padding">
 
         <android.support.constraint.ConstraintLayout
