@@ -19,7 +19,7 @@ import com.move4mobile.lichtstad.databinding.FragmentResultDetailBinding;
 import com.move4mobile.lichtstad.model.Result;
 import com.move4mobile.lichtstad.model.ResultContent;
 
-public class ResultDetailFragment extends Fragment implements ValueEventListener {
+public class ResultDetailFragment extends Fragment implements ValueEventListener, ResultDetailPresenter {
 
     private static final String ARG_RESULT = "RESULT";
 
@@ -54,16 +54,8 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_detail, container, false);
 
+        binding.setPresenter(this);
         binding.setResult(result);
-        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragmentManager()
-                        .beginTransaction()
-                        .remove(ResultDetailFragment.this)
-                        .commit();
-            }
-        });
 
         query.addValueEventListener(this);
 
@@ -95,5 +87,18 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
         if (binding != null) {
             binding.setContent(null);
         }
+    }
+
+    @Override
+    public void onBackgroundClicked() {
+        onCloseClicked();
+    }
+
+    @Override
+    public void onCloseClicked() {
+        getFragmentManager()
+                .beginTransaction()
+                .remove(this)
+                .commit();
     }
 }

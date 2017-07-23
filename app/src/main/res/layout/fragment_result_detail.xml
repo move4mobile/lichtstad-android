@@ -13,11 +13,16 @@
             name="content"
             type="com.move4mobile.lichtstad.model.ResultContent" />
 
+        <variable
+            name="presenter"
+            type="com.move4mobile.lichtstad.result.ResultDetailPresenter" />
+
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="@{() -> presenter.onBackgroundClicked()}"
         android:theme="@style/AppTheme.Result">
 
         <android.support.v7.widget.CardView
@@ -42,7 +47,8 @@
                     android:layout_height="?android:attr/actionBarSize"
                     android:background="#FFF"
                     android:elevation="4dp"
-                    android:navigationIcon="@drawable/ic_close" />
+                    android:navigationIcon="@drawable/ic_close"
+                    app:navigationOnClickListener="@{(view) -> presenter.onCloseClicked()}" />
 
                 <!-- The webview draws the scroll bars wrong without the Scrollview -->
                 <ScrollView
