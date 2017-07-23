@@ -9,11 +9,12 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
+import com.move4mobile.lichtstad.snapshotparser.ResultSnapshotParser;
 
 public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
 
     public ResultsYearAdapter(Query ref) {
-        super(Result.class, 0, ViewHolder.class, ref);
+        super(new ResultSnapshotParser(), 0, ViewHolder.class, ref);
     }
 
     @Override

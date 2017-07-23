@@ -8,6 +8,10 @@
             name="result"
             type="com.move4mobile.lichtstad.model.Result" />
 
+        <variable
+            name="content"
+            type="com.move4mobile.lichtstad.model.ResultContent" />
+
     </data>
 
     <FrameLayout
@@ -29,7 +33,8 @@
             <WebView
                 android:id="@+id/webview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                content="@{content.html}"/>
 
         </android.support.v7.widget.CardView>
     </FrameLayout>

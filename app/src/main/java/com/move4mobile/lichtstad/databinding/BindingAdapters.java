@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,11 @@ public class BindingAdapters {
         } else {
             Log.w("dimensionRatio", "Asked to set ratio to LayoutParams of class " + layoutParams.getClass());
         }
+    }
+
+    @BindingAdapter("content")
+    public static void setContent(WebView webView, String content) {
+        webView.loadData(content, "text/html; charset=UTF-8", null);
     }
 
 }

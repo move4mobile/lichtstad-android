@@ -12,6 +12,9 @@ public class Result implements Keyed, Parcelable {
     @Exclude
     private String key;
 
+    @Exclude
+    private String year;
+
     private String imageUrl;
 
     private String title;
@@ -27,6 +30,7 @@ public class Result implements Keyed, Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.getKey());
+        dest.writeString(this.getYear());
         dest.writeString(this.getImageUrl());
         dest.writeString(this.getTitle());
         dest.writeString(this.getUrl());
@@ -37,6 +41,7 @@ public class Result implements Keyed, Parcelable {
 
     protected Result(Parcel in) {
         this.setKey(in.readString());
+        this.setYear(in.readString());
         this.setImageUrl(in.readString());
         this.setTitle(in.readString());
         this.setUrl(in.readString());
@@ -62,6 +67,14 @@ public class Result implements Keyed, Parcelable {
     @Override
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     @PropertyName("image")
