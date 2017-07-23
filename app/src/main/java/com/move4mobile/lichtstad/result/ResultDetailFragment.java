@@ -55,6 +55,15 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_detail, container, false);
 
         binding.setResult(result);
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .remove(ResultDetailFragment.this)
+                        .commit();
+            }
+        });
 
         query.addValueEventListener(this);
 
