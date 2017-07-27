@@ -1,6 +1,7 @@
 package com.move4mobile.lichtstad.result;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -97,8 +98,6 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
     @Override
     public void onCloseClicked() {
         getFragmentManager()
-                .beginTransaction()
-                .remove(this)
-                .commit();
+                .popBackStack(ResultYearFragment.BACKSTACK_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 }

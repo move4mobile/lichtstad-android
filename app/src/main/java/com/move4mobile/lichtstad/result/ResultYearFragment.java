@@ -21,6 +21,8 @@ import com.move4mobile.lichtstad.model.Result;
 
 public class ResultYearFragment extends Fragment implements ResultClickListener {
 
+    public static final String BACKSTACK_NAME = "resultYear";
+
     private static final String ARG_YEAR = "year";
 
     public static ResultYearFragment newInstance(int year) {
@@ -77,7 +79,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
         detailFragment.setSharedElementEnterTransition(transitionInflater.inflateTransition(R.transition.shared_element));
 
         getActivity().getFragmentManager().beginTransaction()
-                .addToBackStack(null)
+                .addToBackStack(BACKSTACK_NAME)
                 .replace(R.id.fragment_container, detailFragment)
                 .addSharedElement(binding.getRoot(), getString(R.string.transition_name_card))
                 .addSharedElement(binding.title, getString(R.string.transition_name_title))
