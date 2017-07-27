@@ -1,5 +1,6 @@
 package com.move4mobile.lichtstad.result;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsY
     @Override
     public void onResultClick(View view, Result result) {
         if (resultClickListener != null) {
-            resultClickListener.onResultClick(result);
+            resultClickListener.onResultClick(result, DataBindingUtil.<ListItemResultBinding>findBinding(view));
         }
     }
 

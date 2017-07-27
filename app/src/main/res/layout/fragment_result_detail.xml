@@ -33,6 +33,7 @@
             android:layout_marginStart="@dimen/list_start_padding"
             android:layout_marginTop="@dimen/list_top_padding"
             android:clickable="true"
+            android:transitionName="@string/transition_name_card"
             tools:ignore="KeyboardInaccessibleWidget">
             <!-- KeyboardInaccessibleWidget because it prevents the views below this CardView from responding to touches -->
 
@@ -73,7 +74,8 @@
                             android:paddingStart="16dp"
                             android:paddingTop="16dp"
                             android:text="@{result.title}"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                            android:transitionName="@string/transition_name_title" />
 
                         <WebView
                             android:id="@+id/webview"

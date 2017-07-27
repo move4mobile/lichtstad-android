@@ -10,10 +10,12 @@
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/AppTheme.Result"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.Result">
 
-        <include layout="@layout/layout_fragment_component" android:id="@+id/component"/>
+        <include
+            android:id="@+id/component"
+            layout="@layout/layout_fragment_component" />
 
     </android.support.v4.widget.DrawerLayout>
 

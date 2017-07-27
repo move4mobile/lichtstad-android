@@ -26,6 +26,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{(view) -> presenter.onResultClick(view, result)}"
+        android:transitionName="@{@string/transition_name_card + result.key}"
         app:contentPadding="@dimen/list_result_padding">
 
         <android.support.constraint.ConstraintLayout
@@ -53,11 +54,12 @@
                 android:text="@{result.title}"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/list_item_title_text_size"
+                android:transitionName="@{@string/transition_name_title + result.key}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/more_icon"
                 app:layout_constraintStart_toEndOf="@+id/image"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text=""/>
+                tools:text="" />
 
             <ImageView
                 android:id="@+id/more_icon"

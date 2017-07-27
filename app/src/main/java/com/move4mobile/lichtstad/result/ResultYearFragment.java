@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentResultsYearBinding;
+import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
 
 public class ResultYearFragment extends Fragment implements ResultClickListener {
@@ -69,11 +71,19 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
     }
 
     @Override
-    public void onResultClick(Result result) {
+    public void onResultClick(Result result, ListItemResultBinding binding) {
         ResultDetailFragment detailFragment = ResultDetailFragment.newInstance(result);
+        TransitionInflater transitionInflater = TransitionInflater.from(binding.getRoot().getContext());
+        detailFragment.setSharedElementEnterTransition(transitionInflater.inflateTransition(R.transition.shared_element));
+
+        setExitTransition(transitionInflater.inflateTransition(android.R.transition.explode));
+
         getActivity().getFragmentManager().beginTransaction()
                 .addToBackStack(null)
-                .add(R.id.fragment_container, detailFragment)
+                //I would like to use .add here, but shared elements don't work in that case.
+                .replace(R.id.fragment_container, detailFragment)
+                .addSharedElement(binding.getRoot(), getString(R.string.transition_name_card))
+                .addSharedElement(binding.title, getString(R.string.transition_name_title))
                 .commit();
     }
 
