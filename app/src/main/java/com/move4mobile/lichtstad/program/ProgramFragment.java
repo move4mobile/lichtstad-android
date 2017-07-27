@@ -1,7 +1,6 @@
 package com.move4mobile.lichtstad.program;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
 
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ProgramFragment extends Fragment {
+public class ProgramFragment extends BaseContentFragment {
 
     @Nullable
     @Override

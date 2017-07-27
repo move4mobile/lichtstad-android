@@ -10,11 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.adapter.YearFragmentPagerAdapter;
 import com.move4mobile.lichtstad.databinding.FragmentResultsBinding;
 
-public class ResultsFragment extends Fragment implements YearFragmentPagerAdapter.FragmentSupplier {
+public class ResultsFragment extends BaseContentFragment implements YearFragmentPagerAdapter.FragmentSupplier {
 
     @Nullable
     @Override

@@ -5,8 +5,10 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,6 +64,10 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
             default:
                 return false;
         }
+    }
+
+    public void setStatusBarColor(@ColorInt int color) {
+        this.<DrawerLayout>findViewById(R.id.fragment_container).setStatusBarBackgroundColor(color);
     }
 
     private void showFragment(Fragment fragment) {
