@@ -19,19 +19,16 @@
 
     </data>
 
-    <FrameLayout
+    <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:onClick="@{() -> presenter.onBackgroundClicked()}"
         android:theme="@style/AppTheme.Result">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/list_bottom_padding"
-            android:layout_marginEnd="@dimen/list_end_padding"
-            android:layout_marginStart="@dimen/list_start_padding"
-            android:layout_marginTop="@dimen/list_top_padding"
             android:clickable="true"
             android:transitionName="@string/transition_name_card"
             tools:ignore="KeyboardInaccessibleWidget">
@@ -87,6 +84,6 @@
                 </ScrollView>
             </LinearLayout>
         </android.support.v7.widget.CardView>
-    </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
 
 </layout>

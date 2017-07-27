@@ -76,11 +76,8 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
         TransitionInflater transitionInflater = TransitionInflater.from(binding.getRoot().getContext());
         detailFragment.setSharedElementEnterTransition(transitionInflater.inflateTransition(R.transition.shared_element));
 
-        setExitTransition(transitionInflater.inflateTransition(android.R.transition.explode));
-
         getActivity().getFragmentManager().beginTransaction()
                 .addToBackStack(null)
-                //I would like to use .add here, but shared elements don't work in that case.
                 .replace(R.id.fragment_container, detailFragment)
                 .addSharedElement(binding.getRoot(), getString(R.string.transition_name_card))
                 .addSharedElement(binding.title, getString(R.string.transition_name_title))
