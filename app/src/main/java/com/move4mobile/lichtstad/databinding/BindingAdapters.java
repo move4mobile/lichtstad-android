@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class BindingAdapters {
 
     @BindingAdapter("android:src")
     public static void setSource(ImageView imageView, String source) {
-        if (source.length() == 0) {
+        if (source != null && source.length() == 0) {
             source = null;
         }
         Picasso.with(imageView.getContext())
@@ -44,10 +45,15 @@ public class BindingAdapters {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
 
         if (layoutParams instanceof ConstraintLayout.LayoutParams) {
-            ((ConstraintLayout.LayoutParams) layoutParams).dimensionRatio = "h," + size.width + ":" + size.height;
+            ((ConstraintLayout.LayoutParams) layoutParams).dimensionRatio = "h," + size.getWidth() + ":" + size.getHeight();
         } else {
             Log.w("dimensionRatio", "Asked to set ratio to LayoutParams of class " + layoutParams.getClass());
         }
+    }
+
+    @BindingAdapter("content")
+    public static void setContent(WebView webView, String content) {
+        webView.loadData(content, "text/html; charset=UTF-8", null);
     }
 
 }

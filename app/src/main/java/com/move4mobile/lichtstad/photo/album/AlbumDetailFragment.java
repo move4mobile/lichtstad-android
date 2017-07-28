@@ -62,7 +62,7 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
 
         getActivity().setActionBar(binding.toolbar);
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActivity().setTitle(album.title);
+        getActivity().setTitle(album.getTitle());
 
         return binding.getRoot();
     }
@@ -84,8 +84,8 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
 
     private Query getQuery() {
         return FirebaseReferences.ALBUM_CONTENT
-                .child(album.year)
-                .child(album.key)
+                .child(album.getYear())
+                .child(album.getKey())
                 .orderByChild("order");
     }
 

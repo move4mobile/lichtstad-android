@@ -98,7 +98,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     @Override
     public void onVideoClick(Video video) {
-        watchYoutubeVideo(getActivity(), video.id);
+        watchYoutubeVideo(getActivity(), video.getId());
     }
 
     private static void watchYoutubeVideo(Context context, String id){

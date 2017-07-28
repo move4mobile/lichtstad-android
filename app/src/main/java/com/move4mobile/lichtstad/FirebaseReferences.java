@@ -17,6 +17,16 @@ public final class FirebaseReferences {
     public static final DatabaseReference PROGRAM = FirebaseDatabase.getInstance().getReference("program");
 
     /**
+     * The reference to the database holding the results.
+     */
+    public static final DatabaseReference RESULT = FirebaseDatabase.getInstance().getReference("result");
+
+    /**
+     * The reference to the database holding the content of the results.
+     */
+    public static final DatabaseReference RESULT_CONTENT = FirebaseDatabase.getInstance().getReference("result_content");
+
+    /**
      * The reference to the database holding the list of videos.
      */
     public static final DatabaseReference YOUTUBE = FirebaseDatabase.getInstance().getReference("youtube");
@@ -36,6 +46,8 @@ public final class FirebaseReferences {
      */
     public static final Collection<DatabaseReference> ALL = Collections.unmodifiableCollection(Arrays.asList(
             PROGRAM,
+            RESULT,
+            RESULT_CONTENT,
             YOUTUBE,
             ALBUM,
             ALBUM_CONTENT
@@ -46,6 +58,8 @@ public final class FirebaseReferences {
      */
     public static final Collection<DatabaseReference> ALL_SYNCED = Collections.unmodifiableCollection(Arrays.asList(
             PROGRAM,
+            RESULT,
+            RESULT_CONTENT,
             YOUTUBE,
             ALBUM
     ));

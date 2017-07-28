@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.PropertyName;
 
 @IgnoreExtraProperties
 public class Size implements Parcelable {
 
-    public double width;
-    public double height;
-
+    private double width;
+    private double height;
 
     @Override
     public int describeContents() {
@@ -19,16 +19,16 @@ public class Size implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(this.width);
-        dest.writeDouble(this.height);
+        dest.writeDouble(this.getWidth());
+        dest.writeDouble(this.getHeight());
     }
 
     public Size() {
     }
 
     protected Size(Parcel in) {
-        this.width = in.readDouble();
-        this.height = in.readDouble();
+        this.setWidth(in.readDouble());
+        this.setHeight(in.readDouble());
     }
 
     public static final Parcelable.Creator<Size> CREATOR = new Parcelable.Creator<Size>() {
@@ -42,4 +42,24 @@ public class Size implements Parcelable {
             return new Size[size];
         }
     };
+
+    @PropertyName("width")
+    public double getWidth() {
+        return width;
+    }
+
+    @PropertyName("width")
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    @PropertyName("height")
+    public double getHeight() {
+        return height;
+    }
+
+    @PropertyName("height")
+    public void setHeight(double height) {
+        this.height = height;
+    }
 }

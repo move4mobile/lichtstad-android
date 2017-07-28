@@ -1,10 +1,9 @@
 package com.move4mobile.lichtstad.snapshotparser;
 
-import com.firebase.ui.database.ClassSnapshotParser;
 import com.google.firebase.database.DataSnapshot;
 import com.move4mobile.lichtstad.model.Album;
 
-public class AlbumSnapshotParser extends ClassSnapshotParser<Album> {
+public class AlbumSnapshotParser extends KeyedSnapshotParser<Album> {
 
     public AlbumSnapshotParser() {
         super(Album.class);
@@ -12,9 +11,8 @@ public class AlbumSnapshotParser extends ClassSnapshotParser<Album> {
 
     @Override
     public Album parseSnapshot(DataSnapshot snapshot) {
-        Album album = super.parseSnapshot(snapshot);
-        album.key = snapshot.getKey();
-        album.year = snapshot.getRef().getParent().getKey();
-        return album;
+        Album parsed = super.parseSnapshot(snapshot);
+        parsed.setYear(snapshot.getRef().getParent().getKey());
+        return parsed;
     }
 }
