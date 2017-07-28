@@ -1,7 +1,6 @@
 package com.move4mobile.lichtstad.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -33,10 +32,13 @@ public class ImageSharer {
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        String mimeType = "image/*";
+                        String mimeType = null;
                         String extension = MimeTypeMap.getFileExtensionFromUrl(imageUrl);
                         if (extension != null) {
-                            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+                            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
+                        }
+                        if (mimeType == null) {
+                            mimeType = "image/*";
                         }
 
                         Intent shareIntent = new Intent();
