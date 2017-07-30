@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.move4mobile.lichtstad.BaseContentFragment;
+import com.move4mobile.lichtstad.BuildConfig;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
 
@@ -26,7 +27,11 @@ public class ProgramFragment extends BaseContentFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
-        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), getDays()));
+        List<Calendar> days = getDays();
+        int currentIndex = days.indexOf(getSelectedDay(days));
+
+        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), days));
+        binding.component.viewPager.setCurrentItem(currentIndex);
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
         getActivity().setActionBar(binding.component.toolbar.toolbar);
 
@@ -53,5 +58,19 @@ public class ProgramFragment extends BaseContentFragment {
             days.add(day);
         }
         return days;
+    }
+
+    private Calendar getSelectedDay(List<Calendar> days) {
+        Calendar today = Calendar.getInstance(BuildConfig.EVENT_TIMEZONE);
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+        for (Calendar day : days) {
+            if (today.equals(day)) {
+                return day;
+            }
+        }
+        return days.get(0);
     }
 }
