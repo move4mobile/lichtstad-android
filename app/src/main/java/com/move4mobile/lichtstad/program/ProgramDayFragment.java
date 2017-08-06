@@ -14,6 +14,7 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
+import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 
 import java.util.Calendar;
 
@@ -55,7 +56,11 @@ public class ProgramDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
-        binding.recyclerView.setAdapter(new ProgramDayAdapter(getProgramReference()));
+        ProgramDayAdapter adapter = new ProgramDayAdapter(getProgramReference());
+        binding.recyclerView.setAdapter(adapter);
+
+        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        binding.setItemCount(adapterDataObserver);
 
         return binding.getRoot();
     }
@@ -66,6 +71,7 @@ public class ProgramDayFragment extends Fragment {
         if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
             FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
             adapter.cleanup();
+            binding.getItemCount().cleanup();
         }
         binding = null;
     }

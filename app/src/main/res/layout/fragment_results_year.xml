@@ -4,19 +4,39 @@
 
     <data>
 
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+
+        <import type="android.view.View" />
+
     </data>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/list_bottom_padding"
-        android:paddingEnd="@dimen/list_end_padding"
-        android:paddingStart="@dimen/list_start_padding"
-        android:paddingTop="@dimen/list_top_padding"
-        android:theme="@style/AppTheme.Result" />
-    <!-- The theme gets lost in the view pager, so readd it here -->
+        android:theme="@style/AppTheme.Result">
+        <!-- The theme gets lost in the view pager, so readd it here -->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/list_bottom_padding"
+            android:paddingEnd="@dimen/list_end_padding"
+            android:paddingStart="@dimen/list_start_padding"
+            android:paddingTop="@dimen/list_top_padding" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_content_results"
+            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}"
+             />
+
+    </FrameLayout>
 
 </layout>

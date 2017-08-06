@@ -16,6 +16,7 @@ import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentResultsYearBinding;
+import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
 
@@ -59,6 +60,9 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
         adapter.setResultClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
+        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        binding.setItemCount(adapterDataObserver);
+
         return binding.getRoot();
     }
 
@@ -68,6 +72,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
         if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
             FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
             adapter.cleanup();
+            binding.getItemCount().cleanup();
         }
         binding = null;
     }
