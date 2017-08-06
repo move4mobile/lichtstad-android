@@ -22,7 +22,6 @@
                 android:id="@+id/toolbarIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
                 android:contentDescription="?attr/componentTitle"
                 android:src="?attr/componentImage"
