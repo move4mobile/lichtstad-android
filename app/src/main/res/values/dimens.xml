@@ -36,4 +36,7 @@
     <integer name="video_span_count">2</integer>
     <integer name="album_span_count">2</integer>
     <integer name="photo_span_count">4</integer>
+
+    <dimen name="bottom_nav_elevation">8dp</dimen>
+
 </resources>

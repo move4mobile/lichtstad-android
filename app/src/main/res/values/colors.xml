@@ -10,6 +10,7 @@
     <color name="colorAccentToolbar">#FFFFFFFF</color>
     <color name="itemInactive">#73000000</color>
     <color name="translucentWindowBar">#B4000000</color>
+    <color name="bottomNavBackground">#FFFFFF</color>
 
     <color name="ic_launcher_background">@color/colorAccent</color>
 
