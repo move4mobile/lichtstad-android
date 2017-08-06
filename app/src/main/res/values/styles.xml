@@ -97,6 +97,11 @@
         <item name="android:fontFamily">@font/enzoot</item>
     </style>
 
+    <style name="NoContentTextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
     <style name="Badge">
         <item name="android:textColor">?android:attr/colorAccent</item>
         <item name="android:background">@drawable/background_rounded</item>
