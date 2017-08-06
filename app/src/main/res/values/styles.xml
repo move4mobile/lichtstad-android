@@ -75,6 +75,8 @@
     </style>
 
     <style name="Toolbar.TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <!-- The textstyle should be bold, but we can't remove the boldness to display the current day in normal -->
+        <!-- So set the textstyle in a SpannableString -->
         <item name="android:textAllCaps">false</item>
         <item name="textAllCaps">false</item>
         <!-- For some reason, the entire app gets changed to our custom font by the activity,

@@ -2,7 +2,11 @@ package com.move4mobile.lichtstad.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 
 
 public class YearFragmentPagerAdapter extends FragmentStatePagerAdapter {
@@ -27,7 +31,9 @@ public class YearFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "" + years[position];
+        SpannableString pageTitle = new SpannableString("" + years[position]);
+        pageTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, pageTitle.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        return pageTitle;
     }
 
     public interface FragmentSupplier {
