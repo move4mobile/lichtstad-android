@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityAlbumBinding;
@@ -41,18 +40,6 @@ public class AlbumActivity extends AppCompatActivity {
             applyFragment(getIntent());
         }
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigateUp() {
-        return super.onNavigateUp();
-    }
-
-
 
     @Override
     protected void onNewIntent(Intent intent) {
