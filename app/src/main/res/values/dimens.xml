@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="status_bar_height">24dp</dimen>
 
     <dimen name="list_start_padding">8dp</dimen>

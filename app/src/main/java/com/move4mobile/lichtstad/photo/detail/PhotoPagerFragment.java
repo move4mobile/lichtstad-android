@@ -6,6 +6,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -95,9 +96,8 @@ public class PhotoPagerFragment extends Fragment {
             }
         });
         binding.viewPager.setAdapter(adapter);
-        getActivity().setActionBar(binding.toolbar);
-
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getActivity().setTitle(album.getTitle());
 
         return binding.getRoot();

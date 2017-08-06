@@ -1,14 +1,13 @@
 package com.move4mobile.lichtstad.photo.detail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
@@ -16,7 +15,7 @@ import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.album.AlbumActivity;
 
-public class PhotoViewActivity extends Activity {
+public class PhotoViewActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALBUM = "ALBUM";
     public static final String EXTRA_CURRENT_PHOTO = "CURRENT_PHOTO";

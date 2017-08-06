@@ -34,8 +34,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/no_content_results"
-            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}"
-             />
+            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
 
     </FrameLayout>
 

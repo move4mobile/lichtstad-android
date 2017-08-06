@@ -29,11 +29,12 @@
                 android:layout_height="80dp"
                 android:background="@drawable/background_transparent_toolbar" />
 
-            <Toolbar
+            <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:actionBarSize"
-                android:theme="@style/Toolbar" />
+                android:theme="@style/Toolbar"
+                app:titleTextAppearance="@style/Toolbar.TitleTextAppearance" />
         </FrameLayout>
 
     </FrameLayout>
