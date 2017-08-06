@@ -12,7 +12,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
 
 import com.move4mobile.lichtstad.R;
 
@@ -61,11 +60,12 @@ public class ProgramPagerAdapter extends FragmentStatePagerAdapter {
             return formattedDate;
         }
 
+        SpannableString firstLine = new SpannableString(lines[0]);
+        firstLine.setSpan(new RelativeSizeSpan(13f / 15), 0, firstLine.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
         String date = lines[1].toUpperCase(context.getResources().getConfiguration().locale);
         SpannableString spannedDate = new SpannableString(date);
-        spannedDate.setSpan(new RelativeSizeSpan(1.25f), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannedDate.setSpan(new StyleSpan(Typeface.BOLD), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        spannedDate.setSpan(new TypefaceSpan("sans-serif"), 0, date.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
         return new SpannableStringBuilder()
                 .append(lines[0])

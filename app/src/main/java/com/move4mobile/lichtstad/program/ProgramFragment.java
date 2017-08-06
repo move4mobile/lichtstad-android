@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class ProgramFragment extends BaseContentFragment {
         binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), days));
         binding.component.viewPager.setCurrentItem(currentIndex);
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
-        getActivity().setActionBar(binding.component.toolbar.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);
 
         return binding.getRoot();
     }

@@ -6,7 +6,7 @@
 
     </data>
 
-    <Toolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="?attr/componentTitle"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                android:textAppearance="@style/Toolbar.TitleTextAppearance"
                 app:layout_constraintStart_toEndOf="@+id/toolbarIcon"
                 app:layout_constraintTop_toTopOf="@+id/toolbarIcon" />
 
@@ -51,6 +51,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </Toolbar>
+    </android.support.v7.widget.Toolbar>
 
 </layout>

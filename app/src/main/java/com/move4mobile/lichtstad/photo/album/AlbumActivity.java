@@ -1,12 +1,12 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.move4mobile.lichtstad.R;
@@ -16,7 +16,7 @@ import com.move4mobile.lichtstad.model.Album;
 import java.util.Objects;
 
 
-public class AlbumActivity extends Activity {
+public class AlbumActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALBUM = "ALBUM";
 

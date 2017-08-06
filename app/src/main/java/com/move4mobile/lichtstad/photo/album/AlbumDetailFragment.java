@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -60,8 +61,8 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
         adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
-        getActivity().setActionBar(binding.toolbar);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getActivity().setTitle(album.getTitle());
 
         return binding.getRoot();
