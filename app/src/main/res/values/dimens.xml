@@ -38,5 +38,7 @@
     <integer name="photo_span_count">4</integer>
 
     <dimen name="bottom_nav_elevation">8dp</dimen>
+    <!-- Yeah, maybe you should add an attr for this -->
+    <dimen name="design_tab_text_size_2line" tools:override="true">15sp</dimen>
 
 </resources>

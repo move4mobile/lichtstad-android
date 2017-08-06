@@ -82,8 +82,8 @@
              so we include both for consistency. -->
         <item name="android:fontFamily">@font/enzoot</item>
         <item name="android:textSize">15sp</item>
-        <!-- TextSize seems to stop working when a custom fontFamily is supplied :'(
-             Leaving it here for when it might start working -->
+        <!-- TextSize stops working when the content is more than one line. @dimen/design_tab_text_size_2line is used instead -->
+        <!-- When a custom fontFamily is supplied, the content is seen as though having 2 lines. -->
     </style>
 
     <style name="Toolbar.ItemTextAppearance" parent="TextAppearance.Widget.AppCompat.ExpandedMenu.Item">
