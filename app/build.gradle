@@ -3,15 +3,15 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "26.0.0"
-ext.firebaseVersion = "11.0.2"
-ext.firebaseUIVersion = "2.0.1"
+ext.firebaseVersion = "11.0.4"
+ext.firebaseUIVersion = "2.2.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1" //Don't forget to update travis.yml
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21

@@ -1,7 +1,7 @@
 language: android
 jdk: oraclejdk8
 env:
-  - BUILD_TOOLS_VERSION=26.0.0
+  - BUILD_TOOLS_VERSION=26.0.1
 android:
   components:
   - tools
