@@ -9,16 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
+import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 
 import java.util.Calendar;
 
 public class ProgramDayFragment extends Fragment {
 
     private static final String ARG_DAY = "day";
+    private FragmentProgramDayBinding binding;
 
     /**
      * Create a new instance of this class.
@@ -51,11 +54,26 @@ public class ProgramDayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentProgramDayBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
-        binding.recyclerView.setAdapter(new ProgramDayAdapter(getProgramReference()));
+        ProgramDayAdapter adapter = new ProgramDayAdapter(getProgramReference());
+        binding.recyclerView.setAdapter(adapter);
+
+        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        binding.setItemCount(adapterDataObserver);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
+            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
+            adapter.cleanup();
+            binding.getItemCount().cleanup();
+        }
+        binding = null;
     }
 
     /**
@@ -93,8 +111,8 @@ public class ProgramDayFragment extends Fragment {
      */
     private Calendar getEndOfDay() {
         Calendar endOfDay = (Calendar) getStartOfDay().clone();
-        endOfDay.roll(Calendar.DAY_OF_MONTH, 1);
-        endOfDay.roll(Calendar.MILLISECOND, -1);
+        endOfDay.add(Calendar.DAY_OF_MONTH, 1);
+        endOfDay.add(Calendar.MILLISECOND, -1);
         return endOfDay;
     }
 }

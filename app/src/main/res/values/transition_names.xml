@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="transtition_name_appbar" translatable="false">appbar</string>
+    <string name="transition_name_appbar" translatable="false">appbar</string>
+    <string name="transition_name_card" translatable="false">card</string>
+    <string name="transition_name_title" translatable="false">title</string>
 
 </resources>

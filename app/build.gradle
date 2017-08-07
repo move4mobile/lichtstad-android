@@ -1,41 +1,78 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'com.github.triplet.play'
 
-ext.supportVersion = "25.1.1"
-ext.firebaseVersion = "10.0.1"
-ext.firebaseUIVersion = "1.1.1"
+ext.supportVersion = "26.0.0"
+ext.firebaseVersion = "11.0.4"
+ext.firebaseUIVersion = "2.2.0"
+
+def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
+def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1" //Don't forget to update travis.yml
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
+        versionCode buildNumber
         versionName "1.0"
 
-        buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("CEST")'
+        resConfigs "nl"
+
+        buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("Europe/Amsterdam")'
     }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword System.getenv('KEYSTORE_PASSWORD')
+            keyAlias "lichtstad"
+            keyPassword System.getenv('KEYSTORE_PASSWORD')
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            debuggable false
         }
     }
+
     dataBinding {
         enabled true
+    }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+        warningsAsErrors true
+    }
+
+    play {
+        jsonFile file('play-keys.json')
+        track playTrack
+        untrackOld playTrack == 'beta'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:support-v13:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.google.firebase:firebase-core:$firebaseVersion"
     compile "com.google.firebase:firebase-database:$firebaseVersion"
     compile "com.google.firebase:firebase-crash:$firebaseVersion"
+    compile "com.google.firebase:firebase-perf:$firebaseVersion"
     compile "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
+
+    compile "com.squareup.picasso:picasso:2.5.2"
+    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

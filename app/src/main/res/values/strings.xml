@@ -1,7 +1,41 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">
     <string name="app_name">Lichtstad</string>
     <string name="menu_program">Programma</string>
     <string name="menu_results">Uitslagen</string>
-    <string name="menu_photos">Fotoalbum</string>
+    <string name="menu_photos">Foto\'s</string>
     <string name="menu_videos">Video\'s</string>
+    <string name="icon_location_description">Locatie-icoon</string>
+    <string name="icon_more_data_description">Meer informatie-icoon</string>
+    <string name="play_button_description">Afspeelknop</string>
+    <string name="dashed_line_description">Stippellijn</string>
+    <string name="photo_description">Foto</string>
+
+    <string name="format_time">HH:mm</string>
+    <string name="format_tab_date">EEEE\'\n\'dd MMM</string>
+
+    <string name="default_locale_language">nl</string>
+    <string name="share">Delen</string>
+    <string name="share_to">Aan</string>
+
+    <string name="no_content_program">Vandaag staat er niets op het programma.</string>
+    <string name="no_content_results">Er zijn dit jaar nog geen uitslagen bekend.</string>
+    <string name="no_content_albums">Er zijn nog geen foto\'s dit jaar.</string>
+    <string name="no_content_videos">Er zijn nog geen video\'s dit jaar.</string>
+
+    <!-- By default, Dutch abbreviated months contain a trailing dot, which is hideous -->
+    <string-array name="abbreviated_months">
+        <item>jan</item>
+        <item>feb</item>
+        <item>maa</item>
+        <item>apr</item>
+        <item>mei</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>okt</item>
+        <item>nov</item>
+        <item>dec</item>
+    </string-array>
+
 </resources>

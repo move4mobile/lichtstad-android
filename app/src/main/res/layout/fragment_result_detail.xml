@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="result"
+            type="com.move4mobile.lichtstad.model.Result" />
+
+        <variable
+            name="content"
+            type="com.move4mobile.lichtstad.model.ResultContent" />
+
+        <variable
+            name="presenter"
+            type="com.move4mobile.lichtstad.result.ResultDetailPresenter" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:transitionName="@string/transition_name_card"
+        tools:ignore="KeyboardInaccessibleWidget">
+        <!-- KeyboardInaccessibleWidget because it prevents the views below this CardView from responding to touches -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="#FFF"
+                android:elevation="4dp"
+                android:navigationIcon="@drawable/ic_close"
+                app:navigationOnClickListener="@{(view) -> presenter.onCloseClicked()}" />
+
+            <!-- The webview draws the scroll bars wrong without the Scrollview -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="WebViewLayout">
+                    <!-- The 'subtle bugs' with WebView only occur when the content of the WebView gets smaller.
+                     Since we use the WebView to display static content, this is not a problem. -->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_line_bottom"
+                        android:paddingBottom="12dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:text="@{result.title}"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:transitionName="@string/transition_name_title" />
+
+                    <WebView
+                        android:id="@+id/webview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:content="@{content.html}" />
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>

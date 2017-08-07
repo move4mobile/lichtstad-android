@@ -1,22 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="program"
             type="com.move4mobile.lichtstad.model.Program" />
+
+        <variable
+            name="presenter"
+            type="com.move4mobile.lichtstad.program.ProgramPresenter" />
+
+        <import type="android.view.View" />
     </data>
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="@dimen/list_card_bottom_margin"
+        android:layout_marginEnd="@dimen/list_card_end_margin"
+        android:layout_marginStart="@dimen/list_card_start_margin"
+        android:layout_marginTop="@dimen/list_card_top_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onProgramClick(view, program)}"
+        app:contentPaddingBottom="@dimen/list_content_bottom_padding"
+        app:contentPaddingLeft="@dimen/list_content_start_padding"
+        app:contentPaddingRight="@dimen/list_content_end_padding"
+        app:contentPaddingTop="@dimen/list_content_top_padding">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{program.title}" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="@dimen/list_start_text_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="@dimen/list_start_text_end_padding"
+                    android:text="@{program.timeAsDate}"
+                    android:textAlignment="center"
+                    android:textColor="?android:colorAccent"
+                    android:textSize="@dimen/list_item_title_text_size"
+                    android:textStyle="bold"
+                    app:format="@{@string/format_time}" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/time"
+                    android:text="@{program.title}"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="@dimen/list_item_title_text_size"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/location"
+                    android:layout_alignStart="@+id/title"
+                    android:layout_alignTop="@+id/location"
+                    android:contentDescription="@string/icon_location_description"
+                    android:src="@drawable/ic_location"
+                    android:tint="?android:textColorSecondary" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/title"
+                    android:layout_toEndOf="@+id/location_icon"
+                    android:text="@{program.location.name}"
+                    android:textColor="?android:textColorSecondary"
+                    android:textSize="@dimen/list_item_subtitle_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/extra_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_extra_info_padding"
+                android:visibility="@{safeUnbox(presenter.expandedMap[program.key]) ? View.VISIBLE : View.GONE, default=gone}">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/list_start_text_width"
+                    android:layout_height="@dimen/list_start_text_width"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="@dimen/list_start_text_end_padding"
+                    android:contentDescription="@{program.title}"
+                    android:scaleType="centerCrop"
+                    android:src="@{program.imageUrl}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/image"
+                    android:text="@{program.description}"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 </layout>

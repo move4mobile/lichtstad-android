@@ -1,0 +1,6 @@
+<lint>
+    <issue id="UnusedResources">
+        <ignore path="**/generated/**"/>
+    </issue>
+    <issue id="GradleDependency" severity="informational"/>
+</lint>

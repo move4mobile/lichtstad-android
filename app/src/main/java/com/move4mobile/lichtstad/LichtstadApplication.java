@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.move4mobile.context.ContextFixer;
 
 import java.util.TimeZone;
 
@@ -13,6 +14,7 @@ public class LichtstadApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ContextFixer.startFixing(this, R.string.default_locale_language);
 
         initializeDatabase();
 
@@ -25,7 +27,7 @@ public class LichtstadApplication extends Application {
      */
     private void initializeDatabase() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        for (DatabaseReference reference : FirebaseReferences.ALL) {
+        for (DatabaseReference reference : FirebaseReferences.ALL_SYNCED) {
             reference.keepSynced(true);
         }
     }

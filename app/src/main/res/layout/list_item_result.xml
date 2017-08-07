@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="result"
+            type="com.move4mobile.lichtstad.model.Result" />
+
+        <variable
+            name="presenter"
+            type="com.move4mobile.lichtstad.result.ResultPresenter" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/list_result_vertical_margin"
+        android:layout_marginEnd="@dimen/list_card_end_margin"
+        android:layout_marginStart="@dimen/list_card_start_margin"
+        android:layout_marginTop="@dimen/list_result_vertical_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onResultClick(view, result)}"
+        android:transitionName="@{@string/transition_name_card + result.key}"
+        app:contentPadding="@dimen/list_result_padding">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@{result.title}"
+                android:scaleType="centerCrop"
+                android:src="@{result.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.00" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@{result.title}"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="@dimen/list_item_title_text_size"
+                android:textStyle="bold"
+                android:transitionName="@{@string/transition_name_title + result.key}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/more_icon"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="" />
+
+            <ImageView
+                android:id="@+id/more_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/icon_more_data_description"
+                android:src="@drawable/ic_more_data"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</layout>

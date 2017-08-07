@@ -1,14 +1,16 @@
 package com.move4mobile.lichtstad.program;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.move4mobile.lichtstad.BaseContentFragment;
+import com.move4mobile.lichtstad.BuildConfig;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
 
@@ -19,16 +21,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ProgramFragment extends Fragment {
+public class ProgramFragment extends BaseContentFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
-        binding.viewPager.setAdapter(new ProgramPagerAdapter(getChildFragmentManager(), getDays()));
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
-        getActivity().setActionBar(binding.toolbar);
+        List<Calendar> days = getDays();
+        int currentIndex = days.indexOf(getSelectedDay(days));
+
+        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), days));
+        binding.component.viewPager.setCurrentItem(currentIndex);
+        binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);
 
         return binding.getRoot();
     }
@@ -53,5 +59,19 @@ public class ProgramFragment extends Fragment {
             days.add(day);
         }
         return days;
+    }
+
+    private Calendar getSelectedDay(List<Calendar> days) {
+        Calendar today = Calendar.getInstance(BuildConfig.EVENT_TIMEZONE);
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+        for (Calendar day : days) {
+            if (today.equals(day)) {
+                return day;
+            }
+        }
+        return days.get(0);
     }
 }

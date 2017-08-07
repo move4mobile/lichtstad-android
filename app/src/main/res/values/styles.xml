@@ -7,33 +7,110 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:fontFamily">@font/enzoot</item>
     </style>
 
-    <style name="AppTheme.Program">
+    <style name="AppTheme.Default">
+        <item name="tabMode">fixed</item>
+        <item name="tabPaddingEnd">50dp</item>
+        <item name="tabPaddingStart">50dp</item>
+    </style>
+
+    <style name="AppTheme.Program" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryProgram</item>
         <item name="colorPrimaryDark">@color/colorPrimaryProgramDark</item>
         <item name="colorAccent">@color/colorAccentProgram</item>
+        <item name="componentTitle">@string/menu_program</item>
+        <item name="componentImage">@drawable/ic_program_large</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabPaddingEnd">0dp</item>
+        <item name="tabPaddingStart">0dp</item>
     </style>
 
-    <style name="AppTheme.Result">
+    <style name="AppTheme.Result" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryResult</item>
         <item name="colorPrimaryDark">@color/colorPrimaryResultDark</item>
         <item name="colorAccent">@color/colorAccentResult</item>
+        <item name="componentTitle">@string/menu_results</item>
+        <item name="componentImage">@drawable/ic_results_large</item>
     </style>
 
-    <style name="AppTheme.Photo">
+    <style name="AppTheme.Photo" parent="AppTheme.Default">
+        <item name="android:colorControlNormal">@color/textColorPrimaryToolbar</item>
         <item name="colorPrimary">@color/colorPrimaryPhoto</item>
         <item name="colorPrimaryDark">@color/colorPrimaryPhotoDark</item>
         <item name="colorAccent">@color/colorAccentPhoto</item>
+        <item name="componentTitle">@string/menu_photos</item>
+        <item name="componentImage">@drawable/ic_photos_large</item>
     </style>
 
-    <style name="AppTheme.Video">
+    <style name="AppTheme.Photo.Detail">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@color/translucentWindowBar</item>
+        <item name="android:statusBarColor">@color/translucentWindowBar</item>
+    </style>
+
+    <style name="AppTheme.Video" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryVideo</item>
         <item name="colorPrimaryDark">@color/colorPrimaryVideoDark</item>
         <item name="colorAccent">@color/colorAccentVideo</item>
+        <item name="componentTitle">@string/menu_videos</item>
+        <item name="componentImage">@drawable/ic_videos_large</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryToolbar</item>
+        <item name="colorAccent">@color/colorAccentToolbar</item>
+        <item name="android:itemTextAppearance">@style/Toolbar.ItemTextAppearance</item>
+    </style>
+
+    <style name="Toolbar.TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <!-- The textstyle should be bold, but we can't remove the boldness to display the current day in normal -->
+        <!-- So set the textstyle in a SpannableString -->
+        <item name="android:textAllCaps">false</item>
+        <item name="textAllCaps">false</item>
+        <!-- For some reason, the entire app gets changed to our custom font by the activity,
+             except for the items in the tabs. android:textAllCaps only works without the appcompat library,
+             so we include both for consistency. -->
+        <item name="android:fontFamily">@font/enzoot</item>
+        <item name="android:textSize">15sp</item>
+        <!-- TextSize stops working when the content is more than one line. @dimen/design_tab_text_size_2line is used instead -->
+        <!-- When a custom fontFamily is supplied, the content is seen as though having 2 lines. -->
+    </style>
+
+    <style name="Toolbar.ItemTextAppearance" parent="TextAppearance.Widget.AppCompat.ExpandedMenu.Item">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Toolbar.TitleTextAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/enzoot</item>
+    </style>
+
+    <style name="NoContentTextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="Badge">
+        <item name="android:textColor">?android:attr/colorAccent</item>
+        <item name="android:background">@drawable/background_rounded</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:height">@dimen/background_rounded_size</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

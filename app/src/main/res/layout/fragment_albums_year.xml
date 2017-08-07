@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme.Photo">
+        <!-- The theme gets lost in the view pager, so readd it here -->
+
+        <com.move4mobile.lichtstad.widget.HackedRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical" />
+
+        <TextView
+            style="@style/NoContentTextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_content_albums"
+            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
+
+    </FrameLayout>
+</layout>
