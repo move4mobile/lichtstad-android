@@ -15,6 +15,10 @@
             name="noInternetText"
             type="String" />
 
+        <variable
+            name="showWithContent"
+            type="Boolean" />
+
         <!-- We shouldn't need this variable, as it's always null, but by calling the INSTANCE directly,
              DataBinding forgets to register an observer, so the data is never updated.
              Adding the null check solves this issue -->
@@ -34,6 +38,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@{(onlineObserver ?? OnlineObserver.INSTANCE).isOnline ? noContentText : noInternetText}"
-        android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
+        android:visibility="@{((showWithContent &amp;&amp; !(onlineObserver ?? OnlineObserver.INSTANCE).isOnline) || itemCount.count == 0) ? View.VISIBLE : View.GONE, default=gone}" />
 
 </layout>

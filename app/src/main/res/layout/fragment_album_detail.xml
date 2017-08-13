@@ -4,6 +4,21 @@
 
     <data>
 
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+
+        <!-- We shouldn't need this variable, as it's always null, but by calling the INSTANCE directly,
+             DataBinding forgets to register an observer, so the data is never updated.
+             Adding the null check solves this issue -->
+        <variable
+            name="onlineObserver"
+            type="OnlineObserver" />
+
+        <import type="com.move4mobile.lichtstad.util.OnlineObserver" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -31,7 +46,15 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="@{(onlineObserver ?? OnlineObserver.INSTANCE).isOnline ? View.VISIBLE : View.GONE}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <include
+            layout="@layout/component_text_no_content"
+            app:itemCount="@{itemCount}"
+            app:noContentText="@{@string/no_content_album_detail}"
+            app:noInternetText="@{@string/no_internet_album_detail}"
+            app:showWithContent="@{true}" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

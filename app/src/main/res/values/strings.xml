@@ -21,8 +21,9 @@
     <string name="no_content_results">Er zijn dit jaar nog geen uitslagen bekend.</string>
     <string name="no_content_albums">Er zijn nog geen foto\'s dit jaar.</string>
     <string name="no_content_videos">Er zijn nog geen video\'s dit jaar.</string>
+    <string name="no_content_album_detail">Dit album lijkt leeg te zijn…</string>
     <string name="no_internet">Welkom bij de vernieuwde Lichtstad app!\nZorg dat je minimaal één keer verbinding hebt met internet om de benodigde gegevens te kunnen downloaden. Het programma en de uitslagen kun je daarna altijd en overal bekijken.\nVoor het bekijken van foto\'s en video\'s heb je wel internet nodig.</string>
-    <string name="no_internet_album">Je hebt een internetverbinding nodig om foto\'s te kunnen bekijken.</string>
+    <string name="no_internet_album_detail">Je hebt een internetverbinding nodig om foto\'s te kunnen bekijken.</string>
 
     <!-- By default, Dutch abbreviated months contain a trailing dot, which is hideous -->
     <string-array name="abbreviated_months">
