@@ -15,7 +15,12 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#Picasso
 -dontwarn com.squareup.okhttp.**
+
+#Firebase database
+-keepattributes Signature
 -keepclassmembers class ** {
     @com.google.firebase.database.PropertyName *;
 }
