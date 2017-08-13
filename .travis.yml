@@ -17,6 +17,7 @@ before_install:
 before_script:
 - chmod +x setup.sh travis-build.sh
 - ./setup.sh
+- "./gradlew tasks :app:tasks"
 script:
 - ./travis-build.sh
 notifications:
