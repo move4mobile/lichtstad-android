@@ -11,6 +11,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 
 
@@ -20,7 +21,7 @@ public class PhotoPagerAdapter extends FirebaseViewPagerAdapter<Photo> {
     private OnDataChangedListener onDataChangedListener;
 
     public PhotoPagerAdapter(Query query) {
-        super(Photo.class, query);
+        super(new KeyedSnapshotParser<>(Photo.class), query);
     }
 
     @Override
