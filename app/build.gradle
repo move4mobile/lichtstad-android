@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.firebase-crash'
+apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "26.0.1"
@@ -58,12 +58,6 @@ android {
         untrackOld playTrack == 'beta'
     }
 
-    afterEvaluate {
-        assembleRelease.doLast {
-            firebaseUploadReleaseProguardMapping.execute()
-        }
-    }
-
 }
 
 dependencies {
@@ -81,6 +75,16 @@ dependencies {
     compile "com.squareup.picasso:picasso:2.5.2"
     compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
+}
+
+project.afterEvaluate {
+    try {
+        def publishApkRelease = project.tasks.getByName("publishApkRelease")
+        def firebaseUploadReleaseProguardMapping = project.tasks.getByName("firebaseUploadReleaseProguardMapping")
+        publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
+    } catch (e) {
+        println e
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
