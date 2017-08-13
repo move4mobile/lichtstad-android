@@ -17,7 +17,7 @@
 
         <variable
             name="showWithContent"
-            type="Boolean" />
+            type="boolean" />
 
         <!-- We shouldn't need this variable, as it's always null, but by calling the INSTANCE directly,
              DataBinding forgets to register an observer, so the data is never updated.
