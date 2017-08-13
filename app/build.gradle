@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "26.0.1"
@@ -74,5 +75,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
+
+publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
 
 apply plugin: 'com.google.gms.google-services'

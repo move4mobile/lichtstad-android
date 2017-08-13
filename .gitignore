@@ -9,3 +9,4 @@
 .externalNativeBuild
 keystore.jks
 play-keys.json
+crashreporting_private_key.json
