@@ -76,6 +76,4 @@ dependencies {
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
-publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
-
 apply plugin: 'com.google.gms.google-services'
