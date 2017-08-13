@@ -22,7 +22,7 @@
         android:layout_marginEnd="@dimen/list_card_end_margin"
         android:layout_marginStart="@dimen/list_card_start_margin"
         android:layout_marginTop="@dimen/list_card_top_margin"
-        android:clickable="true"
+        android:clickable="@{program.description.length > 0}"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{(view) -> presenter.onProgramClick(view, program)}"
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/list_item_extra_info_padding"
-                android:visibility="@{safeUnbox(presenter.expandedMap[program.key]) ? View.VISIBLE : View.GONE, default=gone}">
+                android:visibility="@{(program.description.length > 0 &amp;&amp; safeUnbox(presenter.expandedMap[program.key])) ? View.VISIBLE : View.GONE, default=gone}">
 
                 <ImageView
                     android:id="@+id/image"
