@@ -57,6 +57,13 @@ android {
         track playTrack
         untrackOld playTrack == 'beta'
     }
+
+    afterEvaluate {
+        assembleRelease.doLast {
+            firebaseUploadReleaseProguardMapping.execute()
+        }
+    }
+
 }
 
 dependencies {
