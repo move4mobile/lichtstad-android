@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+
+        <variable
+            name="noContentText"
+            type="String" />
+
+        <variable
+            name="noInternetText"
+            type="String" />
+
+        <!-- We shouldn't need this variable, as it's always null, but by calling the INSTANCE directly,
+             DataBinding forgets to register an observer, so the data is never updated.
+             Adding the null check solves this issue -->
+        <variable
+            name="onlineObserver"
+            type="OnlineObserver" />
+
+        <import type="com.move4mobile.lichtstad.util.OnlineObserver" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <TextView
+        style="@style/NoContentTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@{(onlineObserver ?? OnlineObserver.INSTANCE).isOnline ? noContentText : noInternetText}"
+        android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
+
+</layout>
