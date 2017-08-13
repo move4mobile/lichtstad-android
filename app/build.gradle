@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
-ext.supportVersion = "26.0.0"
+ext.supportVersion = "26.0.1"
 ext.firebaseVersion = "11.0.4"
 ext.firebaseUIVersion = "2.2.0"
 
