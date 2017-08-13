@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode buildNumber
         versionName "1.0"
 

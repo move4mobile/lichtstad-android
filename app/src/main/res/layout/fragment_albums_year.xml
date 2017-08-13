@@ -24,13 +24,11 @@
             android:clipToPadding="false"
             android:orientation="vertical" />
 
-        <TextView
-            style="@style/NoContentTextAppearance"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/no_content_albums"
-            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
+        <include
+            layout="@layout/component_text_no_content"
+            app:itemCount="@{itemCount}"
+            app:noContentText="@{@string/no_content_albums}"
+            app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>
 </layout>
