@@ -77,16 +77,6 @@ dependencies {
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
-project.afterEvaluate {
-    try {
-        def publishApkRelease = project.tasks.getByName("publishApkRelease")
-        def firebaseUploadReleaseProguardMapping = project.tasks.getByName("firebaseUploadReleaseProguardMapping")
-        publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
-    } catch (e) {
-        println e
-    }
-}
-
 if (project.tasks.findByName("publishApkRelease")) {
     println("Task publishApkRelease found, setting dependency")
     def publishApkRelease = project.tasks.findByName("publishApkRelease")
