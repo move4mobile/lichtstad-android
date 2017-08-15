@@ -87,4 +87,12 @@ project.afterEvaluate {
     }
 }
 
+if (project.tasks.findByName("publishApkRelease")) {
+    println("Task publishApkRelease found, setting dependency")
+    def publishApkRelease = project.tasks.findByName("publishApkRelease")
+    publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
+} else {
+    println("No task publishApkRelease found, not setting dependency")
+}
+
 apply plugin: 'com.google.gms.google-services'
