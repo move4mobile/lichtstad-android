@@ -1,7 +1,10 @@
 package com.move4mobile.lichtstad;
 
 import android.app.Application;
+import android.provider.Settings;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.move4mobile.context.ContextFixer;
@@ -14,6 +17,12 @@ public class LichtstadApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
+        if ("true".equals(testLabSetting)) {
+            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
+            FirebaseCrash.setCrashCollectionEnabled(false);
+        }
+
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
         initializeDatabase();
