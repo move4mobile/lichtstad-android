@@ -15,3 +15,20 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#Picasso
+-dontwarn com.squareup.okhttp.**
+
+#Firebase database
+-keepattributes Signature
+-keepclassmembers public class com.move4mobile.lichtstad.model.** {
+    *;
+}
+
+#BottomNavigationViewTinter
+-keep class android.support.design.internal.BottomNavigation* {
+    *;
+}
+-keepclassmembernames class android.support.design.internal.BottomNavigation* {
+    *;
+}

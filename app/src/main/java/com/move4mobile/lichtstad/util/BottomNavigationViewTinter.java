@@ -10,6 +10,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * Allows tinting of the buttons of a BottomNavigationView.
+ * If using proguard, include the following lines in your rules:
+
+ -keep class android.support.design.internal.BottomNavigation* {
+    *;
+ }
+ -keepclassmembernames class android.support.design.internal.BottomNavigation* {
+    *;
+ }
+
+ */
 public class BottomNavigationViewTinter {
 
     private static final String TAG = BottomNavigationViewTinter.class.getSimpleName();

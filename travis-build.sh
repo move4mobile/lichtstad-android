@@ -7,12 +7,12 @@ elif [ "$TRAVIS_BRANCH" = 'master' ]
 then
     echo "Push to master, deploying to beta"
     export PLAY_TRACK='beta'
-    bash ./gradlew publishApkRelease
+    bash ./gradlew -PFirebaseServiceAccountFilePath=$TRAVIS_BUILD_DIR/crashreporting_private_key.json publishApkRelease
 elif [ "$TRAVIS_BRANCH" = 'develop' ]
 then
     echo "Push to develop, deploying to alpha"
     export PLAY_TRACK='alpha'
-    bash ./gradlew publishApkRelease
+    bash ./gradlew -PFirebaseServiceAccountFilePath=$TRAVIS_BUILD_DIR/crashreporting_private_key.json publishApkRelease
 else
     echo "Push to $TRAVIS_BRANCH, not deploying"
     bash ./gradlew assembleRelease
