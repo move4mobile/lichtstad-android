@@ -21,6 +21,14 @@
 
 #Firebase database
 -keepattributes Signature
--keepclassmembers class ** {
-    @com.google.firebase.database.PropertyName *;
+-keepclassmembers public class com.move4mobile.lichtstad.model.** {
+    *;
+}
+
+#BottomNavigationViewTinter
+-keep class android.support.design.internal.BottomNavigation* {
+    *;
+}
+-keepclassmembernames class android.support.design.internal.BottomNavigation* {
+    *;
 }
