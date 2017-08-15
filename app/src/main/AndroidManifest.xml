@@ -37,6 +37,10 @@
             android:label="@string/menu_photos"
             android:parentActivityName=".photo.album.AlbumActivity"
             android:theme="@style/AppTheme.Photo.Detail" />
+        <activity
+            android:name=".result.ResultDetailActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.Result" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

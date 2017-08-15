@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
     @Override
     public void onResultClick(Result result, ListItemResultBinding binding) {
-        ResultDetailFragment detailFragment = ResultDetailFragment.newInstance(result);
+        /*ResultDetailFragment detailFragment = ResultDetailFragment.newInstance(result);
         TransitionInflater transitionInflater = TransitionInflater.from(binding.getRoot().getContext());
         detailFragment.setSharedElementEnterTransition(transitionInflater.inflateTransition(R.transition.shared_element));
 
@@ -88,7 +87,8 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
                 .replace(R.id.fragment_container, detailFragment)
                 .addSharedElement(binding.getRoot(), getString(R.string.transition_name_card))
                 .addSharedElement(binding.title, getString(R.string.transition_name_title))
-                .commit();
+                .commit();*/
+        getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), result));
     }
 
     private Query getQuery() {
