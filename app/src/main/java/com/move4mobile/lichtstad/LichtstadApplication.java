@@ -18,7 +18,7 @@ public class LichtstadApplication extends Application {
     public void onCreate() {
         super.onCreate();
         String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
-        if ("true".equals(testLabSetting)) {
+        if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
             FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
             FirebaseCrash.setCrashCollectionEnabled(false);
         }
