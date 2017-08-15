@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:fontFamily">@font/enzoot</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.Default">

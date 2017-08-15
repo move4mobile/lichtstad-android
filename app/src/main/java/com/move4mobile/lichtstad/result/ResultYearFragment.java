@@ -1,11 +1,13 @@
 package com.move4mobile.lichtstad.result;
 
+import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,17 +80,11 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
     @Override
     public void onResultClick(Result result, ListItemResultBinding binding) {
-        /*ResultDetailFragment detailFragment = ResultDetailFragment.newInstance(result);
-        TransitionInflater transitionInflater = TransitionInflater.from(binding.getRoot().getContext());
-        detailFragment.setSharedElementEnterTransition(transitionInflater.inflateTransition(R.transition.shared_element));
-
-        getActivity().getFragmentManager().beginTransaction()
-                .addToBackStack(BACKSTACK_NAME)
-                .replace(R.id.fragment_container, detailFragment)
-                .addSharedElement(binding.getRoot(), getString(R.string.transition_name_card))
-                .addSharedElement(binding.title, getString(R.string.transition_name_title))
-                .commit();*/
-        getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), result));
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                new Pair<View, String>(binding.getRoot(), getString(R.string.transition_name_card)),
+                new Pair<View, String>(binding.title, getString(R.string.transition_name_title))
+        );
+        getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), result), options.toBundle());
     }
 
     private Query getQuery() {
