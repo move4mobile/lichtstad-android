@@ -18,10 +18,11 @@
         android:theme="@style/AppTheme.Result">
         <!-- The theme gets lost in the view pager, so readd it here -->
 
-        <android.support.v7.widget.RecyclerView
+        <com.move4mobile.lichtstad.widget.HackedRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingBottom="@dimen/list_bottom_padding"
