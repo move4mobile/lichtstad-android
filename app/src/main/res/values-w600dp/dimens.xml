@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="list_item_width">600dp</dimen>
+    <dimen name="list_item_width">580dp</dimen>
 
     <integer name="video_span_count">3</integer>
     <integer name="album_span_count">3</integer>
