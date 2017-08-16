@@ -19,32 +19,33 @@
 
     </data>
 
-    <android.support.v7.widget.CardView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:transitionName="@string/transition_name_card"
-        tools:ignore="KeyboardInaccessibleWidget">
-        <!-- KeyboardInaccessibleWidget because it prevents the views below this CardView from responding to touches -->
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="top"
+            android:background="#FFF"
+            android:elevation="4dp"
+            android:navigationIcon="@drawable/ic_close"
+            app:navigationOnClickListener="@{(view) -> presenter.onCloseClicked()}" />
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="#FFF"
-                android:elevation="4dp"
-                android:navigationIcon="@drawable/ic_close"
-                app:navigationOnClickListener="@{(view) -> presenter.onCloseClicked()}" />
+            android:clickable="true"
+            android:transitionName="@string/transition_name_card"
+            app:contentPaddingTop="?android:attr/actionBarSize"
+            tools:ignore="KeyboardInaccessibleWidget">
+            <!-- KeyboardInaccessibleWidget because it prevents the views below this CardView from responding to touches -->
 
             <!-- The webview draws the scroll bars wrong without the Scrollview -->
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <LinearLayout
@@ -75,7 +76,6 @@
                 </LinearLayout>
 
             </ScrollView>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 </layout>

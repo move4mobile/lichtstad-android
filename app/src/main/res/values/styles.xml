@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:fontFamily">@font/enzoot</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.Default">
@@ -50,8 +51,6 @@
     </style>
 
     <style name="AppTheme.Photo.Detail">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorPrimary</item>
         <item name="android:windowTranslucentNavigation">true</item>
