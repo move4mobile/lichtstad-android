@@ -47,7 +47,13 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         //Since the memory leaked is so small, this should not be a problem
         expandedMap.put(program.getKey(), !wasExpanded);
 
-        TransitionManager.beginDelayedTransition((ViewGroup) view.getParent());
+        View animatedParent = view;
+        while (animatedParent != null && !(animatedParent instanceof RecyclerView)) {
+            animatedParent = (View) animatedParent.getParent();
+        }
+        if (animatedParent != null) {
+            TransitionManager.beginDelayedTransition((ViewGroup) animatedParent);
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
