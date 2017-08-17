@@ -16,6 +16,8 @@
     <dimen name="list_content_top_padding">16dp</dimen>
     <dimen name="list_content_bottom_padding">16dp</dimen>
 
+    <dimen name="list_item_width">@dimen/match_parent</dimen>
+
     <dimen name="list_result_padding">8dp</dimen>
     <dimen name="list_result_vertical_margin">2dp</dimen>
 

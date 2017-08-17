@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
-ext.supportVersion = "26.0.0"
-ext.firebaseVersion = "11.0.4"
+ext.supportVersion = "26.0.1"
+ext.firebaseVersion = "11.2.0"
 ext.firebaseUIVersion = "2.2.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
@@ -15,7 +16,7 @@ android {
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode buildNumber
         versionName "1.0"
 
@@ -35,9 +36,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable false
         }
     }
@@ -56,6 +57,7 @@ android {
         track playTrack
         untrackOld playTrack == 'beta'
     }
+
 }
 
 dependencies {
@@ -73,6 +75,16 @@ dependencies {
     compile "com.squareup.picasso:picasso:2.5.2"
     compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
+}
+
+project.afterEvaluate {
+    if (project.tasks.findByName("publishApkRelease")) {
+        println("Task publishApkRelease found, setting dependency")
+        def publishApkRelease = project.tasks.findByName("publishApkRelease")
+        publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
+    } else {
+        println("No task publishApkRelease found, not setting dependency")
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'

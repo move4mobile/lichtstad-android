@@ -19,6 +19,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingBottom="@dimen/list_bottom_padding"
@@ -27,13 +28,11 @@
             android:paddingTop="@dimen/list_top_padding"
             app:layoutManager="LinearLayoutManager" />
 
-        <TextView
-            style="@style/NoContentTextAppearance"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/no_content_program"
-            android:visibility="@{itemCount.count > 0 ? View.GONE : View.VISIBLE, default=gone}" />
+        <include
+            layout="@layout/component_text_no_content"
+            app:itemCount="@{itemCount}"
+            app:noContentText="@{@string/no_content_program}"
+            app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>
 
