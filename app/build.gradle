@@ -12,7 +12,6 @@ def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1" //Don't forget to update travis.yml
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
