@@ -32,3 +32,6 @@
 -keepclassmembernames class android.support.design.internal.BottomNavigation* {
     *;
 }
+
+#While we don't use architecture components, we probably shouldn't care about some classes missing
+-dontwarn android.arch.**
