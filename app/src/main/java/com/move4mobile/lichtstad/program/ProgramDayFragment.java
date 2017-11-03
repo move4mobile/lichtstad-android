@@ -16,6 +16,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
 import java.util.Calendar;
 
@@ -78,7 +79,7 @@ public class ProgramDayFragment extends Fragment {
 
     private FirebaseRecyclerOptions<Program> getAdapterOptions() {
         return new FirebaseRecyclerOptions.Builder<Program>()
-                .setQuery(getProgramReference(), Program.class)
+                .setQuery(getProgramReference(), new KeyedSnapshotParser<>(Program.class))
                 .setLifecycleOwner(this)
                 .build();
     }
