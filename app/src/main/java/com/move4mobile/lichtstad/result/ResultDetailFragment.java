@@ -1,6 +1,6 @@
 package com.move4mobile.lichtstad.result;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

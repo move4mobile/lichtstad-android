@@ -47,12 +47,12 @@ public class ResultDetailActivity extends AppCompatActivity {
         Result result = intent.getParcelableExtra(EXTRA_RESULT);
 
         if (result != null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, ResultDetailFragment.newInstance(result))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, null)
                     .commit();
         }

@@ -2,18 +2,18 @@
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-rc1'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'com.google.gms:google-services:3.1.0'
         // 1.1.0-alpha1 contains fixes for gradle plugin v3.0.0. 1.1.0 and 1.1.1 do not.
         // Only update this dependency when it supports uploading the firebase crash mapping.
         classpath 'com.google.firebase:firebase-plugins:1.1.0-alpha1'
         classpath 'com.github.OrdonTeam:gradle-play-publisher:fd17d2d2027a2fb95ceba12a1558598f626cf14d'
-        classpath 'com.google.guava:guava:21.0'
+        classpath 'com.google.guava:guava:22.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -22,8 +22,8 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven { url 'https://jitpack.io' }
     }
 }

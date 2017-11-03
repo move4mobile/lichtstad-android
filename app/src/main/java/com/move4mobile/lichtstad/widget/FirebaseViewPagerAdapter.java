@@ -1,64 +1,62 @@
 package com.move4mobile.lichtstad.widget;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.OnLifecycleEvent;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.common.ChangeEventType;
 import com.firebase.ui.database.ChangeEventListener;
-import com.firebase.ui.database.ClassSnapshotParser;
-import com.firebase.ui.database.FirebaseArray;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.ObservableSnapshotArray;
-import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.R;
 
 
-public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implements ChangeEventListener {
+public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implements ChangeEventListener, LifecycleObserver {
     private static final String TAG = FirebaseViewPagerAdapter.class.getSimpleName();
     private static final int VIEW_TAG = R.string.app_name;
 
     protected final ObservableSnapshotArray<T> mSnapshots;
 
-    public FirebaseViewPagerAdapter(ObservableSnapshotArray<T> snapshots) {
-        mSnapshots = snapshots;
+    public FirebaseViewPagerAdapter(@NonNull FirebaseRecyclerOptions<T> options) {
+        mSnapshots = options.getSnapshots();
 
-        startListening();
+        if (options.getOwner() != null) {
+            options.getOwner().getLifecycle().addObserver(this);
+        }
     }
 
-    public FirebaseViewPagerAdapter(SnapshotParser<T> parser,
-                                    Query query) {
-        this(new FirebaseArray<>(query, parser));
-    }
-
-    public FirebaseViewPagerAdapter(Class<T> modelClass,
-                                    Query query) {
-        this(new ClassSnapshotParser<>(modelClass), query);
-    }
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void startListening() {
         if (!mSnapshots.isListening(this)) {
             mSnapshots.addChangeEventListener(this);
         }
     }
 
-    public void cleanup() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void stopListening() {
         mSnapshots.removeChangeEventListener(this);
+        notifyDataSetChanged();
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    void cleanup(LifecycleOwner source) {
+        source.getLifecycle().removeObserver(this);
     }
 
     public T getItem(int position) {
-        return mSnapshots.getObject(position);
-    }
-
-    public DatabaseReference getRef(int position) {
-        return mSnapshots.get(position).getRef();
+        return mSnapshots.get(position);
     }
 
     @Override
-    public void onChildChanged(EventType type, DataSnapshot snapshot, int index, int oldIndex) {
+    public void onChildChanged(ChangeEventType type, DataSnapshot snapshot, int index, int oldIndex) {
         notifyDataSetChanged();
     }
 
@@ -67,7 +65,7 @@ public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implement
     }
 
     @Override
-    public void onCancelled(DatabaseError error) {
+    public void onError(DatabaseError error) {
         Log.w(TAG, error.toException());
     }
 
@@ -82,7 +80,7 @@ public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implement
     public int getItemPosition(Object object) {
         View view = (View) object;
         for (int i = 0; i < mSnapshots.size(); i++) {
-            if (mSnapshots.get(i).getKey().equals(view.getTag(VIEW_TAG))) {
+            if (mSnapshots.getSnapshot(i).getKey().equals(view.getTag(VIEW_TAG))) {
                 return i;
             }
         }
@@ -91,9 +89,9 @@ public abstract class FirebaseViewPagerAdapter<T> extends PagerAdapter implement
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = getView(mSnapshots.getObject(position), container);
+        View view = getView(mSnapshots.get(position), container);
 
-        view.setTag(VIEW_TAG, mSnapshots.get(position).getKey());
+        view.setTag(VIEW_TAG, mSnapshots.getSnapshot(position).getKey());
 
         container.addView(view);
 

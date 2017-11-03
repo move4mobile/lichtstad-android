@@ -4,8 +4,8 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
 ext.supportVersion = "26.1.0"
-ext.firebaseVersion = "11.4.0"
-ext.firebaseUIVersion = "2.4.0"
+ext.firebaseVersion = "11.4.2"
+ext.firebaseUIVersion = "3.1.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'

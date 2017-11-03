@@ -9,18 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.Query;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.model.Program;
-import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
 
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
 
     public ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
 
-    public ProgramDayAdapter(Query ref) {
-        super(new KeyedSnapshotParser<>(Program.class), 0, ViewHolder.class, ref);
+    public ProgramDayAdapter(FirebaseRecyclerOptions<Program> options) {
+        super(options);
     }
 
     @Override
@@ -30,9 +29,9 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     }
 
     @Override
-    protected void populateViewHolder(ViewHolder viewHolder, Program model, int position) {
-        viewHolder.binding.setProgram(model);
-        viewHolder.binding.setPresenter(this);
+    protected void onBindViewHolder(ViewHolder holder, int position, Program model) {
+        holder.binding.setProgram(model);
+        holder.binding.setPresenter(this);
     }
 
     @Override

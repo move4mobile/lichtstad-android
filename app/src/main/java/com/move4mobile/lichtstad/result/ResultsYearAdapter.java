@@ -7,15 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.Query;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
-import com.move4mobile.lichtstad.snapshotparser.ResultSnapshotParser;
 
 public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
 
-    public ResultsYearAdapter(Query ref) {
-        super(new ResultSnapshotParser(), 0, ViewHolder.class, ref);
+    public ResultsYearAdapter(FirebaseRecyclerOptions<Result> options) {
+        super(options);
     }
 
     @Override
@@ -25,9 +24,9 @@ public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsY
     }
 
     @Override
-    protected void populateViewHolder(ViewHolder viewHolder, Result model, int position) {
-        viewHolder.binding.setResult(model);
-        viewHolder.binding.setPresenter(this);
+    protected void onBindViewHolder(ViewHolder holder, int position, Result model) {
+        holder.binding.setResult(model);
+        holder.binding.setPresenter(this);
     }
 
     private ResultClickListener resultClickListener;

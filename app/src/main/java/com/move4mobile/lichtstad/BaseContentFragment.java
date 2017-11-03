@@ -1,6 +1,6 @@
 package com.move4mobile.lichtstad;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

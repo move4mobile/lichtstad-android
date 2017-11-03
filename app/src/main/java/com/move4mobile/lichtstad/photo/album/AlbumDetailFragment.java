@@ -1,9 +1,9 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
@@ -20,6 +20,7 @@ import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.detail.PhotoViewActivity;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 public class AlbumDetailFragment extends Fragment implements PhotoClickListener {
@@ -58,7 +59,7 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.photo_spacing), false));
 
-        AlbumDetailAdapter adapter = new AlbumDetailAdapter(getQuery());
+        AlbumDetailAdapter adapter = new AlbumDetailAdapter(getAdapterOptions());
         adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
@@ -75,16 +76,19 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
-        }
         binding = null;
     }
 
     @Override
     public void onPhotoClick(Photo photo) {
         getActivity().startActivity(PhotoViewActivity.newInstanceIntent(getActivity(), album, photo));
+    }
+
+    private FirebaseRecyclerOptions<Photo> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Photo>()
+                .setQuery(getQuery(), new KeyedSnapshotParser<>(Photo.class))
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private Query getQuery() {

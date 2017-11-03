@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.Query;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemVideoBinding;
 import com.move4mobile.lichtstad.model.Video;
 
 public class VideosYearAdapter extends FirebaseRecyclerAdapter<Video, VideosYearAdapter.ViewHolder> implements VideoPresenter {
 
-    public VideosYearAdapter(Query ref) {
-        super(Video.class, 0, ViewHolder.class, ref);
+    public VideosYearAdapter(FirebaseRecyclerOptions<Video> options) {
+        super(options);
     }
 
     private VideoClickListener videoClickListener = null;
@@ -25,11 +25,11 @@ public class VideosYearAdapter extends FirebaseRecyclerAdapter<Video, VideosYear
     }
 
     @Override
-    protected void populateViewHolder(ViewHolder viewHolder, Video model, int position) {
-        viewHolder.binding.setVideo(model);
-        viewHolder.binding.setPresenter(this);
+    protected void onBindViewHolder(ViewHolder holder, int position, Video model) {
+        holder.binding.setVideo(model);
+        holder.binding.setPresenter(this);
         // Immediately execute the binding, or the StaggeredGridLayoutManager trips
-        viewHolder.binding.executePendingBindings();
+        holder.binding.executePendingBindings();
     }
 
     @Override

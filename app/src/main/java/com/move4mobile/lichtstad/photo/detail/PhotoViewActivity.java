@@ -61,12 +61,12 @@ public class PhotoViewActivity extends AppCompatActivity {
         Photo currentPhoto = intent.getParcelableExtra(EXTRA_CURRENT_PHOTO);
 
         if (album != null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, PhotoPagerFragment.newInstance(album, currentPhoto))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, null)
                     .commit();
         }

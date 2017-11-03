@@ -1,20 +1,21 @@
 package com.move4mobile.lichtstad.program;
 
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.model.Program;
 
 import java.util.Calendar;
 
@@ -28,7 +29,7 @@ public class ProgramDayFragment extends Fragment {
      * This should be used instead of the constructor.
      *
      * @param day The day for which to show the program
-     * @return an instance of this class to be used with a {@link android.app.FragmentManager}.
+     * @return an instance of this class to be used with a {@link android.support.v4.app.FragmentManager}.
      */
     public static ProgramDayFragment newInstance(@NonNull Calendar day) {
         Bundle arguments = new Bundle();
@@ -56,7 +57,7 @@ public class ProgramDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
-        ProgramDayAdapter adapter = new ProgramDayAdapter(getProgramReference());
+        ProgramDayAdapter adapter = new ProgramDayAdapter(getAdapterOptions());
         binding.recyclerView.setAdapter(adapter);
 
         ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
@@ -68,12 +69,18 @@ public class ProgramDayFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
+        if (binding != null) {
             binding.getItemCount().cleanup();
         }
         binding = null;
+    }
+
+
+    private FirebaseRecyclerOptions<Program> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Program>()
+                .setQuery(getProgramReference(), Program.class)
+                .setLifecycleOwner(this)
+                .build();
     }
 
     /**

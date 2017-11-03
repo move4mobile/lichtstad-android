@@ -1,19 +1,19 @@
 package com.move4mobile.lichtstad.video;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
@@ -59,7 +59,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_spacing), true));
 
-        VideosYearAdapter adapter = new VideosYearAdapter(getQuery());
+        VideosYearAdapter adapter = new VideosYearAdapter(getAdapterOptions());
         adapter.setVideoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
@@ -72,12 +72,15 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
-            binding.getItemCount().cleanup();
-        }
+        binding.getItemCount().cleanup();
         binding = null;
+    }
+
+    private FirebaseRecyclerOptions<Video> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Video>()
+                .setQuery(getQuery(), Video.class)
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private Query getQuery() {

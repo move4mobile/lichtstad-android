@@ -1,11 +1,11 @@
 package com.move4mobile.lichtstad.photo.detail;
 
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
@@ -22,8 +23,8 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentPhotoPagerBinding;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.util.ImageSharer;
-import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 
 /**
  * Created by wilcowolters on 16/05/2017.
@@ -73,7 +74,7 @@ public class PhotoPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
 
-        final PhotoPagerAdapter adapter = new PhotoPagerAdapter(getQuery());
+        final PhotoPagerAdapter adapter = new PhotoPagerAdapter(getAdapterOptions());
         adapter.setOnMatrixChangedListener(new PhotoPagerAdapter.OnMatrixChangedListener() {
             @Override
             public void onMatrixChanged(RectF matrix, PhotoView photoView) {
@@ -86,7 +87,7 @@ public class PhotoPagerFragment extends Fragment {
                 adapter.setOnDataChangedListener(null);
                 if (scrollToPhoto != null) {
                     for (int i = 0; i < adapter.getSnapshots().size(); i++) {
-                        DataSnapshot snapshot = adapter.getSnapshots().get(i);
+                        DataSnapshot snapshot = adapter.getSnapshots().getSnapshot(i);
                         if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
                             binding.viewPager.setCurrentItem(i, false);
                         }
@@ -140,13 +141,14 @@ public class PhotoPagerFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
-        if (binding.viewPager.getAdapter() instanceof FirebaseViewPagerAdapter) {
-            FirebaseViewPagerAdapter adapter = (FirebaseViewPagerAdapter) binding.viewPager.getAdapter();
-            adapter.cleanup();
-        }
-
         binding = null;
+    }
+
+    private FirebaseRecyclerOptions<Photo> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Photo>()
+                .setQuery(getQuery(), new KeyedSnapshotParser<>(Photo.class))
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private Query getQuery() {

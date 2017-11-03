@@ -1,7 +1,7 @@
 package com.move4mobile.lichtstad;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         );
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ProgramFragment())
                     .commit();
         }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void showFragment(Fragment fragment) {
         fragment.setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element));
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         View appBar = findViewById(R.id.appbar);
         if (appBar != null) {
