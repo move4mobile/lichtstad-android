@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
+apply plugin: 'io.fabric'
 
 ext.supportVersion = "27.0.2"
 ext.firebaseVersion = "11.8.0"
@@ -34,6 +34,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            ext.enableCrashlytics = false
+        }
         release {
             minifyEnabled true
             signingConfig signingConfigs.release
@@ -67,23 +70,17 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "com.google.firebase:firebase-core:$firebaseVersion"
     implementation "com.google.firebase:firebase-database:$firebaseVersion"
-    implementation "com.google.firebase:firebase-crash:$firebaseVersion"
     implementation "com.google.firebase:firebase-perf:$firebaseVersion"
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
 
     implementation "com.squareup.picasso:picasso:2.5.2"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
-}
 
-project.afterEvaluate {
-    if (project.tasks.findByName("publishApkRelease")) {
-        println("Task publishApkRelease found, setting dependency")
-        def publishApkRelease = project.tasks.findByName("publishApkRelease")
-        publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
-    } else {
-        println("No task publishApkRelease found, not setting dependency")
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true
     }
+
 }
 
 apply plugin: 'com.google.gms.google-services'
