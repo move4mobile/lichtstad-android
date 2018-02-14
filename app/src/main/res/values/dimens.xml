@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <dimen name="status_bar_height">24dp</dimen>
 
     <dimen name="list_start_padding">8dp</dimen>
     <dimen name="list_end_padding">8dp</dimen>
@@ -41,6 +40,7 @@
 
     <dimen name="bottom_nav_elevation">8dp</dimen>
     <!-- Yeah, maybe you should add an attr for this -->
-    <dimen name="design_tab_text_size_2line" tools:override="true">15sp</dimen>
+    <!-- This dimen is used by the support library tab bar when the tab contains 2 lines -->
+    <dimen name="design_tab_text_size_2line" tools:override="true" tools:ignore="UnusedResources">15sp</dimen>
 
 </resources>
