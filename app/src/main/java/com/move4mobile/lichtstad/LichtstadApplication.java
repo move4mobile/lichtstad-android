@@ -3,6 +3,8 @@ package com.move4mobile.lichtstad;
 import android.app.Application;
 import android.provider.Settings;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +24,10 @@ public class LichtstadApplication extends Application {
         if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
             FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
         }
+        Crashlytics crashlyticsKit = new Crashlytics.Builder()
+                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
+                .build();
+        Fabric.with(this, crashlyticsKit);
 
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
