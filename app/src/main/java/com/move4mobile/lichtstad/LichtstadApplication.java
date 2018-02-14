@@ -20,14 +20,15 @@ public class LichtstadApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
-        if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
-            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
-        }
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
                 .build();
         Fabric.with(this, crashlyticsKit);
+
+        String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
+        if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
+            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
+        }
 
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
