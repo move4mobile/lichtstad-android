@@ -3,19 +3,19 @@ apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 
-ext.supportVersion = "26.1.0"
-ext.firebaseVersion = "11.4.2"
-ext.firebaseUIVersion = "3.1.0"
+ext.supportVersion = "27.0.2"
+ext.firebaseVersion = "11.8.0"
+ext.firebaseUIVersion = "3.2.1"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode buildNumber
         versionName "1.0"
 
@@ -72,7 +72,7 @@ dependencies {
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
 
     implementation "com.squareup.picasso:picasso:2.5.2"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta3'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
