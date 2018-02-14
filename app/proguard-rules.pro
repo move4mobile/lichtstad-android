@@ -25,6 +25,10 @@
     *;
 }
 
+##Crashlytics
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+
 #BottomNavigationViewTinter
 -keep class android.support.design.internal.BottomNavigation* {
     *;
