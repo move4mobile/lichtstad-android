@@ -78,8 +78,8 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
     @Override
     public void onResultClick(Result result, ListItemResultBinding binding) {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                new Pair<View, String>(binding.card, getString(R.string.transition_name_card)),
-                new Pair<View, String>(binding.title, getString(R.string.transition_name_title))
+                new Pair<>(binding.card, getString(R.string.transition_name_card)),
+                new Pair<>(binding.title, getString(R.string.transition_name_title))
         );
         getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), result), options.toBundle());
     }
