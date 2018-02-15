@@ -62,6 +62,10 @@ android {
         untrackOld playTrack == 'beta'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -74,15 +78,12 @@ dependencies {
     implementation "com.google.firebase:firebase-database:$firebaseVersion"
     implementation "com.google.firebase:firebase-perf:$firebaseVersion"
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
-
-    implementation "com.squareup.picasso:picasso:2.5.2"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
-
     compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true
     }
-
 }
 
 apply plugin: 'com.google.gms.google-services'
