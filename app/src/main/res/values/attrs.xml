@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <declare-styleable name="Component">
         <attr name="componentTitle" format="string"/>
         <attr name="componentImage" format="reference"/>
     </declare-styleable>
 
-    <item name="match_parent" type="dimen">-1</item>
-    <item name="wrap_content" type="dimen">-2</item>
+    <item name="match_parent" type="dimen" tools:ignore="UnusedResources">-1</item>
+    <item name="wrap_content" type="dimen" tools:ignore="UnusedResources">-2</item>
 
 </resources>

@@ -16,6 +16,7 @@ import com.squareup.picasso.Target;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 public class ImageSharer {
 
@@ -35,7 +36,7 @@ public class ImageSharer {
                         String mimeType = null;
                         String extension = MimeTypeMap.getFileExtensionFromUrl(imageUrl);
                         if (extension != null) {
-                            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
+                            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase(Locale.ROOT));
                         }
                         if (mimeType == null) {
                             mimeType = "image/*";

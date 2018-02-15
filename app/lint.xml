@@ -2,5 +2,7 @@
     <issue id="UnusedResources">
         <ignore path="**/generated/**"/>
     </issue>
+    <!-- We ignore IconMissingDensityFolder because we use vector images -->
+    <issue id="IconMissingDensityFolder" severity="ignore"/>
     <issue id="GradleDependency" severity="informational"/>
 </lint>
