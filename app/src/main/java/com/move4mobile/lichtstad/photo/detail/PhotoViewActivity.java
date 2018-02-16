@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +52,7 @@ public class PhotoViewActivity extends AppCompatActivity {
     public Intent getParentActivityIntent() {
         Intent parentIntent = super.getParentActivityIntent();
         if (parentIntent != null) {
-            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().getParcelableExtra(EXTRA_ALBUM));
+            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().<Parcelable>getParcelableExtra(EXTRA_ALBUM));
         }
         return parentIntent;
     }

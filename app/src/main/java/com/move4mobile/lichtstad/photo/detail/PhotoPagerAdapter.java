@@ -27,12 +27,9 @@ public class PhotoPagerAdapter extends FirebaseViewPagerAdapter<Photo> {
         ListItemPhotoDetailBinding binding = ListItemPhotoDetailBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
         binding.setPhoto(object);
         final PhotoView photoView = binding.photoView;
-        binding.photoView.setOnMatrixChangeListener(new com.github.chrisbanes.photoview.OnMatrixChangedListener() {
-            @Override
-            public void onMatrixChanged(RectF rect) {
-                if (onMatrixChangedListener != null) {
-                    onMatrixChangedListener.onMatrixChanged(rect, photoView);
-                }
+        binding.photoView.setOnMatrixChangeListener(rect -> {
+            if (onMatrixChangedListener != null) {
+                onMatrixChangedListener.onMatrixChanged(rect, photoView);
             }
         });
         return binding.getRoot();
