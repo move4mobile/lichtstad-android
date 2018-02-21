@@ -4,6 +4,7 @@
     <string name="menu_results">Uitslagen</string>
     <string name="menu_photos">Foto\'s</string>
     <string name="menu_videos">Video\'s</string>
+    <string name="menu_map">Route</string>
     <string name="icon_location_description">Locatie-icoon</string>
     <string name="icon_more_data_description">Meer informatie-icoon</string>
     <string name="play_button_description">Afspeelknop</string>

@@ -30,4 +30,8 @@
     <color name="colorPrimaryVideo">#000000</color>
     <color name="colorPrimaryVideoDark">#1F1F1F</color>
     <color name="colorAccentVideo">@color/colorPrimary</color>
+
+    <color name="colorPrimaryMap">#000000</color>
+    <color name="colorPrimaryMapDark">#1F1F1F</color>
+    <color name="colorAccentMap">@color/colorPrimary</color>
 </resources>
