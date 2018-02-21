@@ -34,11 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
                 this,
-                R.color.bottom_navigation_tint_program,
-                R.color.bottom_navigation_tint_result,
-                R.color.bottom_navigation_tint_photo,
-                R.color.bottom_navigation_tint_video,
-                R.color.bottom_navigation_tint_map
+                R.array.bottom_navigation_tint_lists
         );
 
         if (savedInstanceState == null) {
