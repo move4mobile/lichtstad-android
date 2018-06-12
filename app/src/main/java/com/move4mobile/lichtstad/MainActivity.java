@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
+import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             case R.id.action_videos:
                 showFragment(new VideoFragment());
+                return true;
+            case R.id.action_map:
+                showFragment(new MapFragment());
                 return true;
             default:
                 return false;
