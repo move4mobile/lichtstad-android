@@ -7,8 +7,8 @@
 
     <dimen name="list_card_start_margin">0dp</dimen>
     <dimen name="list_card_end_margin">0dp</dimen>
-    <dimen name="list_card_top_margin">4dp</dimen>
-    <dimen name="list_card_bottom_margin">4dp</dimen>
+    <dimen name="list_card_top_margin">2dp</dimen>
+    <dimen name="list_card_bottom_margin">2dp</dimen>
 
     <dimen name="list_content_start_padding">16dp</dimen>
     <dimen name="list_content_end_padding">16dp</dimen>

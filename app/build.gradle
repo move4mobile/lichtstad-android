@@ -3,9 +3,9 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
-ext.supportVersion = "27.0.2"
-ext.firebaseVersion = "11.8.0"
-ext.firebaseUIVersion = "3.2.1"
+ext.supportVersion = "27.1.0"
+ext.firebaseVersion = "15.0.0"
+ext.firebaseUIVersion = "3.3.1"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
@@ -79,7 +79,7 @@ dependencies {
     implementation "com.google.firebase:firebase-perf:$firebaseVersion"
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true
