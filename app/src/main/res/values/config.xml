@@ -20,4 +20,6 @@
         <item>2017</item>
     </integer-array>
 
+    <string name="program_year" translatable="false">2017</string>
+
 </resources>

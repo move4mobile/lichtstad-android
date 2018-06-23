@@ -14,7 +14,7 @@ public final class FirebaseReferences {
     /**
      * The reference to the database holding the program.
      */
-    public static final DatabaseReference PROGRAM = FirebaseDatabase.getInstance().getReference("program");
+    public static final DatabaseReference PROGRAM = FirebaseDatabase.getInstance().getReference("program_v2");
 
     /**
      * The reference to the database holding the results.

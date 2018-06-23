@@ -1,6 +1,5 @@
 package com.move4mobile.lichtstad.program;
 
-import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,69 +9,116 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.common.ChangeEventType;
+import com.firebase.ui.database.ChangeEventListener;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.ObservableSnapshotArray;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.BuildConfig;
+import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
+import com.move4mobile.lichtstad.snapshotparser.DateSnapshotParser;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-public class ProgramFragment extends BaseContentFragment {
+public class ProgramFragment extends BaseContentFragment implements ChangeEventListener {
+
+    private static String STATE_SET_SELECTED_DAY = "setSelectedDay";
+
+    private boolean needsSetSelectedDay = true;
+    private ObservableSnapshotArray<Calendar> tabDays;
+
+    private FragmentProgramBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
-        List<Calendar> days = getDays();
-        int currentIndex = days.indexOf(getSelectedDay(days));
-
-        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getContext(), getChildFragmentManager(), days));
-        binding.component.viewPager.setCurrentItem(currentIndex);
+        FirebaseRecyclerOptions<Calendar> adapterOptions = getAdapterOptions();
+        tabDays = adapterOptions.getSnapshots();
+        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getContext(), getChildFragmentManager(), adapterOptions));
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);
+
+        if (savedInstanceState != null) {
+            needsSetSelectedDay = savedInstanceState.getBoolean(STATE_SET_SELECTED_DAY);
+        }
 
         return binding.getRoot();
     }
 
-    /**
-     * Creates a list of each day the programs should be shown for
-     * @return A list of calendars, one of each day of the event
-     */
-    private List<Calendar> getDays() {
-        @SuppressLint("SimpleDateFormat") DateFormat format = new SimpleDateFormat(getString(R.string.date_format));
-
-        String[] dateStrings = getResources().getStringArray(R.array.lichtstad_days);
-        List<Calendar> days = new ArrayList<>(dateStrings.length);
-        for (String dateString : dateStrings) {
-            Calendar day = Calendar.getInstance();
-            try {
-                day.setTime(format.parse(dateString));
-            } catch (ParseException e) {
-                // Since we specify the source string ourselves this should never happen anyway
-                throw new RuntimeException(e);
-            }
-            days.add(day);
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (needsSetSelectedDay) {
+            tabDays.addChangeEventListener(this);
         }
-        return days;
     }
 
-    private Calendar getSelectedDay(List<Calendar> days) {
+    @Override
+    public void onStop() {
+        tabDays.removeChangeEventListener(this);
+        super.onStop();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(STATE_SET_SELECTED_DAY, needsSetSelectedDay);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        binding = null;
+        super.onDestroyView();
+    }
+
+    /**
+     * Queries the database for the days in the last known year.
+     */
+    private FirebaseRecyclerOptions<Calendar> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Calendar>()
+                .setQuery(getDaysReference(), new DateSnapshotParser(getString(R.string.date_format)))
+                .setLifecycleOwner(this)
+                .build();
+    }
+
+    @NonNull
+    private Query getDaysReference() {
+        return FirebaseReferences.PROGRAM.child(getString(R.string.program_year));
+    }
+
+    private Calendar getToday() {
         Calendar today = Calendar.getInstance(BuildConfig.EVENT_TIMEZONE);
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         today.set(Calendar.MILLISECOND, 0);
-        for (Calendar day : days) {
-            if (today.equals(day)) {
-                return day;
+        return today;
+    }
+
+    @Override
+    public void onChildChanged(@NonNull ChangeEventType type, @NonNull DataSnapshot snapshot, int newIndex, int oldIndex) {
+        if (needsSetSelectedDay && type == ChangeEventType.ADDED || type == ChangeEventType.CHANGED) {
+            if (getToday().equals(tabDays.get(newIndex))) {
+                binding.component.viewPager.setCurrentItem(newIndex);
+                needsSetSelectedDay = false;
             }
         }
-        return days.get(0);
+    }
+
+    @Override
+    public void onDataChanged() {
+
+    }
+
+    @Override
+    public void onError(@NonNull DatabaseError error) {
+
     }
 }
