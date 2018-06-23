@@ -3,18 +3,6 @@
 
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
 
-    <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
-        <item>2017-08-25</item>
-        <item>2017-08-26</item>
-        <item>2017-08-27</item>
-        <item>2017-08-28</item>
-        <item>2017-08-29</item>
-        <item>2017-08-30</item>
-        <item>2017-08-31</item>
-        <item>2017-09-01</item>
-        <item>2017-09-02</item>
-    </string-array>
-
     <integer-array name="history_years">
         <item>2016</item>
         <item>2017</item>
