@@ -3,6 +3,7 @@ package com.move4mobile.lichtstad.program;
 import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -25,13 +26,13 @@ public class ProgramFragment extends BaseContentFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
 
         List<Calendar> days = getDays();
         int currentIndex = days.indexOf(getSelectedDay(days));
 
-        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getActivity(), getChildFragmentManager(), days));
+        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getContext(), getChildFragmentManager(), days));
         binding.component.viewPager.setCurrentItem(currentIndex);
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);
@@ -46,7 +47,7 @@ public class ProgramFragment extends BaseContentFragment {
     private List<Calendar> getDays() {
         @SuppressLint("SimpleDateFormat") DateFormat format = new SimpleDateFormat(getString(R.string.date_format));
 
-        String[] dateStrings = getActivity().getResources().getStringArray(R.array.lichtstad_days);
+        String[] dateStrings = getResources().getStringArray(R.array.lichtstad_days);
         List<Calendar> days = new ArrayList<>(dateStrings.length);
         for (String dateString : dateStrings) {
             Calendar day = Calendar.getInstance();
