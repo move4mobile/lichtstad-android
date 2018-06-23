@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.move4mobile.lichtstad.BuildConfig;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
+import com.move4mobile.lichtstad.databinding.ItemCountPagerAdapterDataObserver;
 import com.move4mobile.lichtstad.snapshotparser.DateSnapshotParser;
 
 import java.util.Calendar;
@@ -41,9 +43,13 @@ public class ProgramFragment extends BaseContentFragment implements ChangeEventL
 
         FirebaseRecyclerOptions<Calendar> adapterOptions = getAdapterOptions();
         tabDays = adapterOptions.getSnapshots();
-        binding.component.viewPager.setAdapter(new ProgramPagerAdapter(getContext(), getChildFragmentManager(), adapterOptions));
+        PagerAdapter adapter = new ProgramPagerAdapter(getContext(), getChildFragmentManager(), adapterOptions);
+        binding.component.viewPager.setAdapter(adapter);
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);
+
+        ItemCountPagerAdapterDataObserver adapterDataObserver = new ItemCountPagerAdapterDataObserver(adapter);
+        binding.setItemCount(adapterDataObserver);
 
         if (savedInstanceState != null) {
             needsSetSelectedDay = savedInstanceState.getBoolean(STATE_SET_SELECTED_DAY);
@@ -74,8 +80,9 @@ public class ProgramFragment extends BaseContentFragment implements ChangeEventL
 
     @Override
     public void onDestroyView() {
-        binding = null;
         super.onDestroyView();
+        binding.getItemCount().cleanup();
+        binding = null;
     }
 
     /**

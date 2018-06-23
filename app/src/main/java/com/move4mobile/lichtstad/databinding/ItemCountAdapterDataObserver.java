@@ -1,11 +1,12 @@
 package com.move4mobile.lichtstad.databinding;
 
 import android.databinding.ObservableInt;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
-public class ItemCountAdapterDataObserver extends RecyclerView.AdapterDataObserver {
+public class ItemCountAdapterDataObserver extends RecyclerView.AdapterDataObserver implements ItemCountDataObserver {
 
-    public final ObservableInt count = new ObservableInt();
+    private final ObservableInt count = new ObservableInt();
     public final RecyclerView.Adapter adapter;
 
     public ItemCountAdapterDataObserver(RecyclerView.Adapter adapter) {
@@ -14,6 +15,7 @@ public class ItemCountAdapterDataObserver extends RecyclerView.AdapterDataObserv
         this.count.set(adapter.getItemCount());
     }
 
+    @Override
     public void cleanup() {
         this.adapter.unregisterAdapterDataObserver(this);
     }
@@ -41,5 +43,11 @@ public class ItemCountAdapterDataObserver extends RecyclerView.AdapterDataObserv
     @Override
     public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
         count.set(adapter.getItemCount());
+    }
+
+    @NonNull
+    @Override
+    public ObservableInt getCount() {
+        return count;
     }
 }

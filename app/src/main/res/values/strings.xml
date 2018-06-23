@@ -17,7 +17,8 @@
     <string name="share">Delen</string>
     <string name="share_to">Aan</string>
 
-    <string name="no_content_program">Vandaag staat er niets op het programma.</string>
+    <string name="no_content_program">Het programma wordt geladen.</string>
+    <string name="no_content_program_day">Vandaag staat er niets op het programma.</string>
     <string name="no_content_results">Er zijn dit jaar nog geen uitslagen bekend.</string>
     <string name="no_content_albums">Er zijn nog geen foto\'s dit jaar.</string>
     <string name="no_content_videos">Er zijn nog geen video\'s dit jaar.</string>

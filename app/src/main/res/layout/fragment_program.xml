@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountDataObserver" />
+
     </data>
 
     <FrameLayout
@@ -12,7 +16,12 @@
         android:layout_height="match_parent"
         android:theme="@style/AppTheme.Program">
 
-        <include layout="@layout/layout_fragment_component" android:id="@+id/component"/>
+        <include
+            android:id="@+id/component"
+            layout="@layout/layout_fragment_component"
+            app:itemCount="@{itemCount}"
+            app:noContentText="@{@string/no_content_program}"
+            app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>
 

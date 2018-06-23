@@ -17,6 +17,7 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumDetailBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.databinding.ItemCountDataObserver;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.detail.PhotoViewActivity;
@@ -63,7 +64,7 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
         adapter.setPhotoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
-        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        ItemCountDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);

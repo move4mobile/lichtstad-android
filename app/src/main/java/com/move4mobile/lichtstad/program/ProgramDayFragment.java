@@ -16,6 +16,7 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.databinding.ItemCountDataObserver;
 import com.move4mobile.lichtstad.model.Program;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
@@ -64,7 +65,7 @@ public class ProgramDayFragment extends Fragment {
         ProgramDayAdapter adapter = new ProgramDayAdapter(getAdapterOptions());
         binding.recyclerView.setAdapter(adapter);
 
-        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        ItemCountDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
 
         return binding.getRoot();

@@ -6,7 +6,7 @@
 
         <variable
             name="itemCount"
-            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+            type="com.move4mobile.lichtstad.databinding.ItemCountDataObserver" />
 
         <import type="android.view.View" />
     </data>

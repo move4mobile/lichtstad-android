@@ -16,6 +16,7 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumsYearBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.databinding.ItemCountDataObserver;
 import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.snapshotparser.AlbumSnapshotParser;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
@@ -60,7 +61,7 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
         adapter.setAlbumClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
-        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        ItemCountDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
 
         return binding.getRoot();

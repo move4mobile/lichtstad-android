@@ -19,6 +19,7 @@ import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentVideosYearBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.databinding.ItemCountDataObserver;
 import com.move4mobile.lichtstad.model.Video;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
@@ -63,7 +64,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
         adapter.setVideoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
-        ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
+        ItemCountDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
 
         return binding.getRoot();

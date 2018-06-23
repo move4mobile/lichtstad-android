@@ -5,6 +5,18 @@
 
     <data>
 
+        <variable
+            name="itemCount"
+            type="com.move4mobile.lichtstad.databinding.ItemCountDataObserver" />
+
+        <variable
+            name="noContentText"
+            type="String" />
+
+        <variable
+            name="noInternetText"
+            type="String" />
+
     </data>
 
     <merge
@@ -37,11 +49,23 @@
 
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <include
+                    layout="@layout/component_text_no_content"
+                    app:itemCount="@{itemCount}"
+                    app:noContentText="@{noContentText}"
+                    app:noInternetText="@{noInternetText}" />
+
+            </FrameLayout>
 
         </android.support.design.widget.CoordinatorLayout>
 

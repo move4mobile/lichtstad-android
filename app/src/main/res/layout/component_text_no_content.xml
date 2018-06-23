@@ -5,7 +5,7 @@
 
         <variable
             name="itemCount"
-            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+            type="com.move4mobile.lichtstad.databinding.ItemCountDataObserver" />
 
         <variable
             name="noContentText"
@@ -38,6 +38,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@{(onlineObserver ?? OnlineObserver.INSTANCE).isOnline ? noContentText : noInternetText}"
-        android:visibility="@{((showWithContent &amp;&amp; !(onlineObserver ?? OnlineObserver.INSTANCE).isOnline) || itemCount.count == 0) ? View.VISIBLE : View.GONE, default=gone}" />
+        android:visibility="@{((showWithContent &amp;&amp; !(onlineObserver ?? OnlineObserver.INSTANCE).isOnline) || (itemCount != null &amp;&amp; itemCount.count == 0)) ? View.VISIBLE : View.GONE, default=gone}" />
 
 </layout>

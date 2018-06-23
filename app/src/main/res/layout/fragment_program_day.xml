@@ -6,7 +6,7 @@
 
         <variable
             name="itemCount"
-            type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
+            type="com.move4mobile.lichtstad.databinding.ItemCountDataObserver" />
 
         <import type="android.view.View" />
     </data>
@@ -31,7 +31,7 @@
         <include
             layout="@layout/component_text_no_content"
             app:itemCount="@{itemCount}"
-            app:noContentText="@{@string/no_content_program}"
+            app:noContentText="@{@string/no_content_program_day}"
             app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>
