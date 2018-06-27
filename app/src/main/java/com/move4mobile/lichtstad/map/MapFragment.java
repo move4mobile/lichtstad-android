@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentMapBinding;
@@ -55,12 +58,30 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         if (!success) {
             Log.e(TAG, "Style parsing failed");
         }
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(
-                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_center_lat),
-                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_center_lng)
-                ),
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_zoom)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(
+                getLatLngBounds(),
+                0
         ));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(
+                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lat),
+                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lng)
+        )));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(
+                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lat),
+                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lng)
+        )));
+    }
+
+    private LatLngBounds getLatLngBounds() {
+        return new LatLngBounds(
+                new LatLng(
+                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lat),
+                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lng)
+                ),
+                new LatLng(
+                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lat),
+                        ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lng)
+                )
+        );
     }
 }
