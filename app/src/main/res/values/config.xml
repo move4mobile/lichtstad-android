@@ -20,4 +20,8 @@
         <item>2017</item>
     </integer-array>
 
+    <item name="map_center_lat" type="dimen" format="float">52.607</item>
+    <item name="map_center_lng" type="dimen" format="float">6.670</item>
+    <item name="map_zoom" type="dimen" format="float">15</item>
+
 </resources>
