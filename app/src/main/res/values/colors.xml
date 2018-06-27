@@ -31,7 +31,7 @@
     <color name="colorPrimaryVideoDark">#1F1F1F</color>
     <color name="colorAccentVideo">@color/colorPrimary</color>
 
-    <color name="colorPrimaryMap">#000000</color>
-    <color name="colorPrimaryMapDark">#1F1F1F</color>
+    <color name="colorPrimaryMap">#009933</color>
+    <color name="colorPrimaryMapDark">#008627</color>
     <color name="colorAccentMap">@color/colorPrimary</color>
 </resources>
