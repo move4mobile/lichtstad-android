@@ -66,6 +66,14 @@
         <item name="componentImage">@drawable/ic_videos_large</item>
     </style>
 
+    <style name="AppTheme.Map" parent="AppTheme.Default">
+        <item name="colorPrimary">@color/colorPrimaryMap</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryMapDark</item>
+        <item name="colorAccent">@color/colorAccentMap</item>
+        <item name="componentTitle">@string/menu_map</item>
+        <item name="componentImage">@drawable/ic_map_large</item>
+    </style>
+
     <style name="Toolbar">
         <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryToolbar</item>

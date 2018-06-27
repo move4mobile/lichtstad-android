@@ -12,11 +12,14 @@ import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.maps.MapView;
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
+import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
+import com.move4mobile.lichtstad.util.GoogleMapLoader;
 import com.move4mobile.lichtstad.video.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -34,10 +37,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
                 this,
-                R.color.bottom_navigation_tint_program,
-                R.color.bottom_navigation_tint_result,
-                R.color.bottom_navigation_tint_photo,
-                R.color.bottom_navigation_tint_video
+                R.array.bottom_navigation_tint_lists
         );
 
         if (savedInstanceState == null) {
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .replace(R.id.fragment_container, new ProgramFragment())
                     .commit();
         }
+
+        GoogleMapLoader.preloadGoogleMap(this);
     }
 
     @Override
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             case R.id.action_videos:
                 showFragment(new VideoFragment());
+                return true;
+            case R.id.action_map:
+                showFragment(new MapFragment());
                 return true;
             default:
                 return false;

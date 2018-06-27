@@ -2,6 +2,8 @@ package com.move4mobile.lichtstad.util;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorRes;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
@@ -25,6 +27,25 @@ import java.lang.reflect.Method;
 public class BottomNavigationViewTinter {
 
     private static final String TAG = BottomNavigationViewTinter.class.getSimpleName();
+
+    /**
+     * Tints a {@link BottomNavigationView}'s buttons according to {@code colorIds}.
+     *
+     * @param navigationView The navigationView to tint
+     * @param context        The context to use to retrieve the colors
+     * @param colorIds       The ids of the array containing colors to use for tinting
+     * @see #tintBottomNavigationButtons(BottomNavigationView, ColorStateList...)
+     */
+    public static void tintBottomNavigationButtons(BottomNavigationView navigationView, Context context, @ArrayRes int colorIds) {
+        TypedArray array = context.getResources().obtainTypedArray(colorIds);
+        int length = array.length();
+        ColorStateList[] colorStateLists = new ColorStateList[length];
+        for (int i = 0; i < length; i++) {
+            colorStateLists[i] = array.getColorStateList(i);
+        }
+        array.recycle();
+        tintBottomNavigationButtons(navigationView, colorStateLists);
+    }
 
     /**
      * Tints a {@link BottomNavigationView}'s buttons according to {@code colorIds}.

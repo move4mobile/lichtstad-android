@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="bottom_navigation_tint_lists">
+        <item>@color/bottom_navigation_tint_program</item>
+        <item>@color/bottom_navigation_tint_result</item>
+        <item>@color/bottom_navigation_tint_photo</item>
+        <item>@color/bottom_navigation_tint_video</item>
+        <item>@color/bottom_navigation_tint_map</item>
+    </array>
+
+</resources>
