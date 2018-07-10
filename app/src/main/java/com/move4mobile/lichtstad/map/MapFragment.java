@@ -62,14 +62,6 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
                 getLatLngBounds(),
                 0
         ));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lat),
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lng)
-        )));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lat),
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lng)
-        )));
     }
 
     private LatLngBounds getLatLngBounds() {
