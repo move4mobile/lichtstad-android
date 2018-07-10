@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Lichtstad 2018</name>
+    <description>Lichtstad route en markers in 2018</description>
+    <Style id="icon-1603-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1603-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1603-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1603-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1603-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-DB4436-nodesc-normal">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-DB4436-nodesc-highlight">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-DB4436-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-DB4436-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-DB4436-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-1267FF-5000-nodesc-normal">
+      <LineStyle>
+        <color>ffff6712</color>
+        <width>5</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-1267FF-5000-nodesc-highlight">
+      <LineStyle>
+        <color>ffff6712</color>
+        <width>7.5</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-1267FF-5000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-1267FF-5000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-1267FF-5000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-E65100-12044-normal">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>12.044</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-E65100-12044-highlight">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>18.066</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-E65100-12044">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-E65100-12044-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-E65100-12044-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-87CEAC-5601-105-normal">
+      <LineStyle>
+        <color>ffacce87</color>
+        <width>5.601</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>69acce87</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-87CEAC-5601-105-highlight">
+      <LineStyle>
+        <color>ffacce87</color>
+        <width>8.4015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>69acce87</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-87CEAC-5601-105">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-87CEAC-5601-105-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-87CEAC-5601-105-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Test laag</name>
+      <Placemark>
+        <name>Polygoon 1</name>
+        <description>asDFAsdfasdf</description>
+        <styleUrl>#poly-87CEAC-5601-105</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                6.6730392,52.6135112,0
+                6.6701054,52.6118065,0
+                6.6711051,52.6111947,0
+                6.6726735,52.6108337,0
+                6.6730958,52.610128,0
+                6.6744495,52.6109802,0
+                6.6757506,52.6126495,0
+                6.6730392,52.6135112,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>sdfgsdfgsdafg</name>
+        <description><![CDATA[<img src="https://lh4.googleusercontent.com/7lrMIvX9ZOhzUBV7PQFWaSt18aCMtteZOH7PTrveE6QfjvjEOmwEyefQuhr4j1ESc3oVMLpoNnkCHCGxdjhMs3JHeqPuGkpgT79RDNW3xnNFr01oUCokhB-tpI-8QJ4zd9fW" height="200" width="auto" /><br><br>asdf asdf a<br><br><img src="https://lh4.googleusercontent.com/q3iuupA32kywiZ3fibRmlDtqEg7FP5r6123Qjrn5JnZE3xKBmtozmzdjT0m4LZ1nSLELaq82D3Pucv3qb-irNMzz2E0Gzpz6inJPKuryO1syrviLuPGJkyun7XyCys9h9WlzNJw" height="200" width="auto" /><br><br><img src="https://lh3.googleusercontent.com/-5RSEJs1mWB5SjScfEdkgAkz6NidpsrlmlHsYY1QPDkxMHZR-JtDavg-HojEstMHguubkJMGgkAIuE1Wwl8-0TP_BeN2FFxuY0eoOtKAj1dRAxqMfoAf5_S08xvLzF2XobQk" height="200" width="auto" /><br><br><a href="https://www.youtube.com/watch?v=PUvT95B8ztA"><img src="https://img.youtube.com/vi/PUvT95B8ztA/hqdefault.jpg" height="200" width="auto" /></a><br><br><a href="https://www.youtube.com/embed/PUvT95B8ztA">https://www.youtube.com/embed/PUvT95B8ztA</a>]]></description>
+        <styleUrl>#icon-1603-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://lh4.googleusercontent.com/7lrMIvX9ZOhzUBV7PQFWaSt18aCMtteZOH7PTrveE6QfjvjEOmwEyefQuhr4j1ESc3oVMLpoNnkCHCGxdjhMs3JHeqPuGkpgT79RDNW3xnNFr01oUCokhB-tpI-8QJ4zd9fW https://lh4.googleusercontent.com/q3iuupA32kywiZ3fibRmlDtqEg7FP5r6123Qjrn5JnZE3xKBmtozmzdjT0m4LZ1nSLELaq82D3Pucv3qb-irNMzz2E0Gzpz6inJPKuryO1syrviLuPGJkyun7XyCys9h9WlzNJw https://lh3.googleusercontent.com/-5RSEJs1mWB5SjScfEdkgAkz6NidpsrlmlHsYY1QPDkxMHZR-JtDavg-HojEstMHguubkJMGgkAIuE1Wwl8-0TP_BeN2FFxuY0eoOtKAj1dRAxqMfoAf5_S08xvLzF2XobQk https://www.youtube.com/embed/PUvT95B8ztA</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            6.6663952,52.6040522,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>sdaf sdf </name>
+        <description>asdf asdf asdf asdf</description>
+        <styleUrl>#line-E65100-12044</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            6.6746452,52.6052778,0
+            6.6713763,52.5994065,0
+            6.6593667,52.6017095,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Test marker</name>
+        <description><![CDATA[<img src="https://lh6.googleusercontent.com/iA3i0lgiwBuvB8Cn40zFdt8W4AzFFXcsv4M8no2fAirYT6TxEcXRhDikx-9u1BiWx1mQyXf6aJeHNvGgxjmwLB0KHORQ0R6VLp8NQzxnyV7ceuVLW6Pny9a3OVers2tEXefx" height="200" width="auto" /><br><br>sdfasdf asdfasdf asd<br>2e regel newline]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://lh6.googleusercontent.com/iA3i0lgiwBuvB8Cn40zFdt8W4AzFFXcsv4M8no2fAirYT6TxEcXRhDikx-9u1BiWx1mQyXf6aJeHNvGgxjmwLB0KHORQ0R6VLp8NQzxnyV7ceuVLW6Pny9a3OVers2tEXefx</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            6.6682398,52.6083773,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Routebeschrijving van De Hoge Esch 43, 7783 CB Gramsbergen, Nederland naar Het Spijk, 7783 Gramsbergen, Nederland</name>
+      <Placemark>
+        <name>Routebeschrijving van De Hoge Esch 43, 7783 CB Gramsbergen, Nederland naar Het Spijk, 7783 Gramsbergen, Nederland</name>
+        <styleUrl>#line-1267FF-5000-nodesc</styleUrl>
+        <description><![CDATA[<img src="https://lh6.googleusercontent.com/iA3i0lgiwBuvB8Cn40zFdt8W4AzFFXcsv4M8no2fAirYT6TxEcXRhDikx-9u1BiWx1mQyXf6aJeHNvGgxjmwLB0KHORQ0R6VLp8NQzxnyV7ceuVLW6Pny9a3OVers2tEXefx" height="200" width="auto" /><br><br>sdfasdf asdfasdf asd<br>2e regel newline]]></description>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            6.66759,52.6087,0
+            6.66756,52.6087,0
+            6.66751,52.60866,0
+            6.6675,52.60862,0
+            6.66753,52.6086,0
+            6.66771,52.60844,0
+            6.66756,52.60836,0
+            6.6674,52.60827,0
+            6.66711,52.60817,0
+            6.66682,52.60803,0
+            6.66671,52.60796,0
+            6.66668,52.6079,0
+            6.6667,52.60785,0
+            6.66687,52.60773,0
+            6.6669,52.60769,0
+            6.66686,52.60762,0
+            6.66655,52.6074,0
+            6.66619,52.60757,0
+            6.66584,52.60774,0
+            6.66555,52.60788,0
+            6.66525,52.60802,0
+            6.66499,52.60783,0
+            6.66367,52.60687,0
+            6.66353,52.60675,0
+            6.66341,52.60662,0
+            6.66327,52.60639,0
+            6.66315,52.60641,0
+            6.66299,52.60645,0
+            6.66288,52.60652,0
+            6.66241,52.60689,0
+            6.66209,52.60714,0
+            6.66196,52.6075,0
+            6.66237,52.60774,0
+            6.66315,52.60796,0
+            6.66328,52.60804,0
+            6.66338,52.60811,0
+            6.66366,52.60843,0
+            6.66374,52.6085,0
+            6.66385,52.60856,0
+            6.664,52.60863,0
+            6.66538,52.60907,0
+            6.66565,52.60919,0
+            6.66695,52.60995,0
+            6.66696,52.61018,0
+            6.66714,52.61035,0
+            6.66749,52.61027,0
+            6.66769,52.61019,0
+            6.66788,52.61009,0
+            6.66843,52.60972,0
+            6.66848,52.60967,0
+            6.66864,52.60952,0
+            6.6688,52.60936,0
+            6.66897,52.60917,0
+            6.66898,52.60915,0
+            6.66916,52.609,0
+            6.66939,52.60883,0
+            6.66969,52.60867,0
+            6.67006,52.60848,0
+            6.67044,52.60838,0
+            6.67061,52.60833,0
+            6.67052,52.60806,0
+            6.67043,52.60784,0
+            6.67078,52.60769,0
+            6.67091,52.60755,0
+            6.67096,52.60747,0
+            6.67109,52.60726,0
+            6.67113,52.60719,0
+            6.6712,52.60712,0
+            6.67168,52.60664,0
+            6.67208,52.60628,0
+            6.67242,52.60588,0
+            6.67343,52.60521,0
+            6.67333,52.60491,0
+            6.67331,52.60486,0
+            6.67328,52.60484,0
+            6.67322,52.60484,0
+            6.67308,52.60488,0
+            6.67296,52.6049,0
+            6.67285,52.60493,0
+            6.67284,52.60493,0
+            6.6726,52.60504,0
+            6.67258,52.60506,0
+            6.6725,52.60496,0
+            6.67221,52.60472,0
+            6.67211,52.60472,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>De Hoge Esch 43, 7783 CB Gramsbergen, Nederland</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            6.6675881,52.6087043,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Het Spijk, 7783 Gramsbergen, Nederland</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            6.6721082,52.6047246,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
