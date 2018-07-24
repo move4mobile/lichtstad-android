@@ -19,13 +19,25 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.data.Feature;
+import com.google.maps.android.data.Layer;
+import com.google.maps.android.data.kml.KmlContainer;
+import com.google.maps.android.data.kml.KmlLayer;
+import com.google.maps.android.data.kml.KmlPlacemark;
 import com.move4mobile.lichtstad.BaseContentFragment;
+import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentMapBinding;
+import com.move4mobile.lichtstad.util.GoogleMapLoader;
 import com.move4mobile.lichtstad.util.ResourceFloatUtil;
 
-public class MapFragment extends BaseContentFragment implements OnMapReadyCallback {
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
+public class MapFragment extends BaseContentFragment implements OnMapReadyCallback, Layer.OnFeatureClickListener, GoogleMap.OnMarkerClickListener {
 
     private static final String TAG = MapFragment.class.getSimpleName();
 
@@ -62,14 +74,18 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
                 getLatLngBounds(),
                 0
         ));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lat),
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_min_lng)
-        )));
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lat),
-                ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lng)
-        )));
+
+        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.ROUTE);
+        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.MARKERS);
+
+        // We have to handle marker clicks in this bodged way (not all data available) as it's not
+        // possible to get onFeatureClick to be called while blocking the default ugly marker popup
+        googleMap.setOnMarkerClickListener(this);
+    }
+
+    @Override
+    public void onFeatureClick(Feature feature) {
+        //TODO: Show popup
     }
 
     private LatLngBounds getLatLngBounds() {
@@ -83,5 +99,11 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
                         ResourceFloatUtil.getFloat(getResources(), R.dimen.map_max_lng)
                 )
         );
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        //TODO: Show popup
+        return false;
     }
 }

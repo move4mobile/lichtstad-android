@@ -22,6 +22,7 @@ android {
         resConfigs "nl"
 
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("Europe/Amsterdam")'
+        buildConfigField 'String', 'EVENT_YEAR', '"2018"'
     }
 
     signingConfigs {
@@ -77,6 +78,7 @@ dependencies {
     implementation "android.arch.core:runtime:$archVersion"
     implementation "android.arch.core:common:$archVersion"
     implementation "com.google.android.gms:play-services-maps:15.0.1"
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation "com.google.firebase:firebase-core:16.0.1"
     implementation "com.google.firebase:firebase-database:16.0.1"
     implementation "com.google.firebase:firebase-perf:16.0.0"
