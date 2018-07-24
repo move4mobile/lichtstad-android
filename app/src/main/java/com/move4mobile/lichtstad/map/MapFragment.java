@@ -27,8 +27,10 @@ import com.google.maps.android.data.kml.KmlContainer;
 import com.google.maps.android.data.kml.KmlLayer;
 import com.google.maps.android.data.kml.KmlPlacemark;
 import com.move4mobile.lichtstad.BaseContentFragment;
+import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentMapBinding;
+import com.move4mobile.lichtstad.util.GoogleMapLoader;
 import com.move4mobile.lichtstad.util.ResourceFloatUtil;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -73,13 +75,8 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
                 0
         ));
 
-        try {
-            KmlLayer layer = new KmlLayer(googleMap, R.raw.route, context);
-            layer.setOnFeatureClickListener(this);
-            layer.addLayerToMap();
-        } catch (XmlPullParserException | IOException e) {
-            e.printStackTrace();
-        }
+        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.ROUTE);
+        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.MARKERS);
 
         // We have to handle marker clicks in this bodged way (not all data available) as it's not
         // possible to get onFeatureClick to be called while blocking the default ugly marker popup
