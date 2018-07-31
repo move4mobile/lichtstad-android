@@ -18,7 +18,7 @@ public class MarkerContent implements Parcelable {
     @Json(name = "images")
     private List<String> imageUrls;
 
-    @Json(name = "video")
+    @Json(name = "youtube")
     private MarkerVideo video;
 
     public String getTitle() {

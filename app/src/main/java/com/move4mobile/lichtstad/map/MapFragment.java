@@ -97,14 +97,14 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        if (marker.getSnippet() == null) {
+            return true;
+        }
+
         try {
             MarkerContent markerContent = new Moshi.Builder().build().adapter(MarkerContent.class).fromJson(marker.getSnippet());
             MarkerDetailFragment fragment = MarkerDetailFragment.newInstance(markerContent);
             fragment.show(getChildFragmentManager(), null);
-            /*getChildFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .commit();*/
         } catch (IOException e) {
             Crashlytics.logException(e);
         }

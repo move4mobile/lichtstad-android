@@ -44,6 +44,5 @@
     <dimen name="design_tab_text_size_2line" tools:override="true" tools:ignore="UnusedResources">15sp</dimen>
 
     <dimen name="map_marker_popup_max_width">400dp</dimen>
-    <dimen name="map_marker_detail_image_size">96dp</dimen>
 
 </resources>

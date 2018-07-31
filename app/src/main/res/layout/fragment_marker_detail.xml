@@ -18,14 +18,8 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/list_content_bottom_padding"
-        android:layout_marginEnd="@dimen/list_content_end_padding"
-        android:layout_marginStart="@dimen/list_content_top_padding"
-        android:layout_marginTop="@dimen/list_content_start_padding"
-        android:minWidth="300dp"
         android:orientation="vertical"
         android:paddingBottom="@dimen/list_content_bottom_padding"
         android:paddingEnd="@dimen/list_content_end_padding"
@@ -34,14 +28,18 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="@dimen/map_marker_detail_image_size"
-            android:layout_height="@dimen/map_marker_detail_image_size"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="@dimen/list_start_text_end_padding"
             android:contentDescription="@{content.title}"
+            android:scaleType="centerCrop"
             android:src="@{content.imageUrls.size() > 0 ? content.imageUrls[0] : null}"
-            android:visibility="@{content.video == null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{content.video == null ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintDimensionRatio="h,4:3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.33"
             tools:background="@color/colorPrimary" />
 
         <ImageView
@@ -50,11 +48,15 @@
             android:layout_height="0dp"
             android:contentDescription="@string/video_thumbnail_description"
             android:onClick="@{(view) -> presenter.onVideoClick(content.video)}"
+            android:scaleType="centerCrop"
+            android:src="@{content.video != null ? content.video.thumbnails[`high`] : null}"
             android:visibility="@{content.video != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@+id/image"
-            app:layout_constraintEnd_toEndOf="@+id/image"
-            app:layout_constraintStart_toStartOf="@+id/image"
-            app:layout_constraintTop_toTopOf="@+id/image" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h,4:3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.33" />
 
         <ImageView
             android:id="@+id/playButton"
@@ -69,6 +71,13 @@
             app:layout_constraintRight_toRightOf="@+id/video_thumbnail"
             app:layout_constraintTop_toTopOf="@+id/video_thumbnail" />
 
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="video_thumbnail,playButton,image" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -78,19 +87,23 @@
             android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/list_item_title_text_size"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="@dimen/list_start_text_end_padding"
             android:text="@{content.description}"
             android:textColor="?android:textColorSecondary"
             android:textSize="@dimen/list_item_subtitle_text_size"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="Description here" />
 
