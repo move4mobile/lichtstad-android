@@ -5,35 +5,31 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
-import com.google.maps.android.data.kml.KmlContainer;
-import com.google.maps.android.data.kml.KmlLayer;
-import com.google.maps.android.data.kml.KmlPlacemark;
 import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentMapBinding;
-import com.move4mobile.lichtstad.util.GoogleMapLoader;
+import com.move4mobile.lichtstad.model.MarkerContent;
 import com.move4mobile.lichtstad.util.ResourceFloatUtil;
-
-import org.xmlpull.v1.XmlPullParserException;
+import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 
@@ -78,8 +74,6 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.ROUTE);
         FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.MARKERS);
 
-        // We have to handle marker clicks in this bodged way (not all data available) as it's not
-        // possible to get onFeatureClick to be called while blocking the default ugly marker popup
         googleMap.setOnMarkerClickListener(this);
     }
 
@@ -103,7 +97,18 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        //TODO: Show popup
-        return false;
+        try {
+            MarkerContent markerContent = new Moshi.Builder().build().adapter(MarkerContent.class).fromJson(marker.getSnippet());
+            MarkerDetailFragment fragment = MarkerDetailFragment.newInstance(markerContent);
+            fragment.show(getChildFragmentManager(), null);
+            /*getChildFragmentManager().beginTransaction()
+                    .add(R.id.container, fragment)
+                    .addToBackStack(null)
+                    .commit();*/
+        } catch (IOException e) {
+            Crashlytics.logException(e);
+        }
+
+        return true;
     }
 }
