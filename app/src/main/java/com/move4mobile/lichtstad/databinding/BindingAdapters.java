@@ -1,8 +1,8 @@
 package com.move4mobile.lichtstad.databinding;
 
 import android.annotation.SuppressLint;
-import android.databinding.BindingAdapter;
-import android.support.constraint.ConstraintLayout;
+import androidx.databinding.BindingAdapter;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;

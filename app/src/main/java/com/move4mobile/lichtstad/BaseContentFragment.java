@@ -1,10 +1,11 @@
 package com.move4mobile.lichtstad;
 
-import android.support.v4.app.Fragment;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class BaseContentFragment extends Fragment {
 

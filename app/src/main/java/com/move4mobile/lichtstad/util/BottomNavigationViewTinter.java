@@ -3,14 +3,16 @@ package com.move4mobile.lichtstad.util;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorRes;
-import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import androidx.annotation.ArrayRes;
+import androidx.annotation.ColorRes;
 
 /**
  * Allows tinting of the buttons of a BottomNavigationView.
@@ -75,14 +77,14 @@ public class BottomNavigationViewTinter {
      */
     public static void tintBottomNavigationButtons(BottomNavigationView navigationView, ColorStateList... tintLists) {
         try {
-            Field menuViewField = BottomNavigationView.class.getDeclaredField("mMenuView");
+            Field menuViewField = BottomNavigationView.class.getDeclaredField("menuView");
             menuViewField.setAccessible(true);
             Object menuView = menuViewField.get(navigationView);
             if (!menuView.getClass().getSimpleName().equals("BottomNavigationMenuView")) {
                 Log.e(TAG, "Menu view found, but not of correct class");
                 return;
             }
-            Field buttonsField = menuView.getClass().getDeclaredField("mButtons");
+            Field buttonsField = menuView.getClass().getDeclaredField("buttons");
             buttonsField.setAccessible(true);
             Object foundButtons = buttonsField.get(menuView);
             Class<?> buttonType = foundButtons.getClass().getComponentType();

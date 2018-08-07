@@ -1,6 +1,6 @@
 package com.move4mobile.lichtstad.util;
 
-import android.databinding.ObservableBoolean;
+import androidx.databinding.ObservableBoolean;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;

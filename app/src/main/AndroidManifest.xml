@@ -43,7 +43,7 @@
             android:theme="@style/AppTheme.Result" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

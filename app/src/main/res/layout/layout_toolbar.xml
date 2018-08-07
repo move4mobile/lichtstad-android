@@ -6,7 +6,7 @@
 
     </data>
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
@@ -14,7 +14,7 @@
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:titleTextColor="@android:color/transparent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -48,8 +48,8 @@
                 app:layout_constraintStart_toStartOf="@+id/toolbarTitle"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarTitle" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 </layout>
