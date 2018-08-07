@@ -37,7 +37,16 @@
     *;
 }
 
-#While we don't use architecture components, we probably shouldn't care about some classes missing
+#Moshi
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-keepclasseswithmembers,allowobfuscation class * {
+    @com.squareup.moshi.* <methods>;
+    @com.squareup.moshi.* <fields>;
+}
+-keep @com.squareup.moshi.JsonQualifier interface *
+
+#As long as we don't use architecture components, we probably shouldn't care about some classes missing
 -dontwarn android.arch.**
 
 #Android common
