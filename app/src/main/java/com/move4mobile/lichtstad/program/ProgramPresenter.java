@@ -1,6 +1,6 @@
 package com.move4mobile.lichtstad.program;
 
-import android.databinding.ObservableMap;
+import androidx.databinding.ObservableMap;
 import android.view.View;
 
 import com.move4mobile.lichtstad.model.Program;

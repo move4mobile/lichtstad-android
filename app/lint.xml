@@ -1,7 +1,10 @@
 <lint>
-    <issue id="UnusedResources">
+    <!-- Set to informational as lint doesn't understand jetpack -->
+    <issue id="UnusedResources" severity="informational">
         <ignore path="**/generated/**"/>
     </issue>
+    <!-- Set to informational as lint doesn't understand jetpack -->
+    <issue id="AppCompatResource" severity="informational"/>
     <!-- We ignore IconMissingDensityFolder because we use vector images -->
     <issue id="IconMissingDensityFolder" severity="ignore"/>
     <issue id="GradleDependency" severity="informational"/>

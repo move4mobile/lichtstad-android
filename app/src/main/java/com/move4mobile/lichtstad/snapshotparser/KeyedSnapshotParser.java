@@ -1,6 +1,6 @@
 package com.move4mobile.lichtstad.snapshotparser;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.firebase.ui.database.ClassSnapshotParser;
 import com.google.firebase.database.DataSnapshot;
