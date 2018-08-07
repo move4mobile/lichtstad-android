@@ -1,10 +1,10 @@
 package com.move4mobile.lichtstad.program;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +30,7 @@ public class ProgramDayFragment extends Fragment {
      * This should be used instead of the constructor.
      *
      * @param day The day for which to show the program
-     * @return an instance of this class to be used with a {@link android.support.v4.app.FragmentManager}.
+     * @return an instance of this class to be used with a {@link FragmentManager}.
      */
     public static ProgramDayFragment newInstance(@NonNull Calendar day) {
         Bundle arguments = new Bundle();

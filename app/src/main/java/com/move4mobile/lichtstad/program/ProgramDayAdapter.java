@@ -1,8 +1,8 @@
 package com.move4mobile.lichtstad.program;
 
-import android.databinding.ObservableArrayMap;
-import android.databinding.ObservableMap;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.ObservableArrayMap;
+import androidx.databinding.ObservableMap;
+import androidx.recyclerview.widget.RecyclerView;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
