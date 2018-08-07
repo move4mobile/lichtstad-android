@@ -75,14 +75,14 @@ public class BottomNavigationViewTinter {
      */
     public static void tintBottomNavigationButtons(BottomNavigationView navigationView, ColorStateList... tintLists) {
         try {
-            Field menuViewField = BottomNavigationView.class.getDeclaredField("mMenuView");
+            Field menuViewField = BottomNavigationView.class.getDeclaredField("menuView");
             menuViewField.setAccessible(true);
             Object menuView = menuViewField.get(navigationView);
             if (!menuView.getClass().getSimpleName().equals("BottomNavigationMenuView")) {
                 Log.e(TAG, "Menu view found, but not of correct class");
                 return;
             }
-            Field buttonsField = menuView.getClass().getDeclaredField("mButtons");
+            Field buttonsField = menuView.getClass().getDeclaredField("buttons");
             buttonsField.setAccessible(true);
             Object foundButtons = buttonsField.get(menuView);
             Class<?> buttonType = foundButtons.getClass().getComponentType();
