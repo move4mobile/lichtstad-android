@@ -36,8 +36,6 @@ android {
     buildTypes {
         debug {
             ext.enableCrashlytics = false
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled true
