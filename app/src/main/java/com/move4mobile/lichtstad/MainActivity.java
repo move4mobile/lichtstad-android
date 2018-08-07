@@ -1,18 +1,11 @@
 package com.move4mobile.lichtstad;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.maps.MapView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
 import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
@@ -21,6 +14,13 @@ import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
 import com.move4mobile.lichtstad.util.GoogleMapLoader;
 import com.move4mobile.lichtstad.video.VideoFragment;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

@@ -74,6 +74,15 @@
         <item name="componentImage">@drawable/ic_map_large</item>
     </style>
 
+    <style name="AppTheme.Map.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryMap</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryMapDark</item>
+        <item name="colorAccent">@color/colorAccentMap</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+    </style>
+
     <style name="Toolbar">
         <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryToolbar</item>

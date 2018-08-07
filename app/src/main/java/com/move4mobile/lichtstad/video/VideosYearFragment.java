@@ -1,9 +1,6 @@
 package com.move4mobile.lichtstad.video;
 
-import android.content.Context;
-import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +17,7 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentVideosYearBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.model.Video;
+import com.move4mobile.lichtstad.util.YoutubePresenter;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 import java.util.Calendar;
@@ -106,10 +104,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     @Override
     public void onVideoClick(Video video) {
-        watchYoutubeVideo(getActivity(), video.getId());
+        YoutubePresenter.watchYoutubeVideo(getActivity(), video.getId());
     }
 
-    private static void watchYoutubeVideo(Context context, String id){
-        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id)));
-    }
 }
