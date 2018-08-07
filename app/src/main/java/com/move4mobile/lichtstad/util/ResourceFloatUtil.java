@@ -1,8 +1,8 @@
 package com.move4mobile.lichtstad.util;
 
 import android.content.res.Resources;
-import android.support.annotation.DimenRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DimenRes;
+import androidx.annotation.NonNull;
 import android.util.TypedValue;
 
 public class ResourceFloatUtil {

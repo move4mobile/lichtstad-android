@@ -30,12 +30,19 @@
 -keepattributes SourceFile,LineNumberTable
 
 #BottomNavigationViewTinter
--keep class android.support.design.internal.BottomNavigation* {
+-keep class com.google.android.material.bottomnavigation.** {
     *;
 }
--keepclassmembernames class android.support.design.internal.BottomNavigation* {
+-keepclassmembernames class com.google.android.material.bottomnavigation.** {
     *;
 }
 
 #While we don't use architecture components, we probably shouldn't care about some classes missing
 -dontwarn android.arch.**
+
+#Android common
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider

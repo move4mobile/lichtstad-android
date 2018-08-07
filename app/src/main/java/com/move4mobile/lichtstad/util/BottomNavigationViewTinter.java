@@ -3,14 +3,16 @@ package com.move4mobile.lichtstad.util;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorRes;
-import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import androidx.annotation.ArrayRes;
+import androidx.annotation.ColorRes;
 
 /**
  * Allows tinting of the buttons of a BottomNavigationView.
