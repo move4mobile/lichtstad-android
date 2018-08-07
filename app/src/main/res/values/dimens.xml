@@ -43,6 +43,6 @@
     <!-- This dimen is used by the support library tab bar when the tab contains 2 lines -->
     <dimen name="design_tab_text_size_2line" tools:override="true" tools:ignore="UnusedResources">15sp</dimen>
 
-    <dimen name="map_marker_popup_max_width">400dp</dimen>
+    <dimen name="map_marker_popup_width">@dimen/match_parent</dimen>
 
 </resources>

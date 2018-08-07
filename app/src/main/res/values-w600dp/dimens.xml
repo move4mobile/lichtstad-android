@@ -7,4 +7,6 @@
     <integer name="album_span_count">3</integer>
     <integer name="photo_span_count">6</integer>
 
+    <dimen name="map_marker_popup_width">580dp</dimen>
+
 </resources>

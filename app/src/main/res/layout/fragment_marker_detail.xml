@@ -18,9 +18,8 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/map_marker_popup_width"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:paddingBottom="@dimen/list_content_bottom_padding"
         android:paddingEnd="@dimen/list_content_end_padding"
         android:paddingStart="@dimen/list_content_top_padding"

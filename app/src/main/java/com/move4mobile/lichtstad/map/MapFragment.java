@@ -5,8 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,12 +51,16 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         }
         supportMapFragment.getMapAsync(this);
 
+        Log.d("bla", "OnCreateView");
+
         return binding.getRoot();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Context context = getContext();
+        Log.d("bla", "onMapReady: " + context);
+
         if (context == null) {
             return;
         }

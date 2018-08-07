@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +45,6 @@ public class MarkerDetailFragment extends DialogFragment implements MarkerDetail
         binding.setContent(content);
         binding.setPresenter(this);
 
-        Window window = getDialog().getWindow();
-        window.setGravity(Gravity.TOP | Gravity.START);
-        WindowManager.LayoutParams params = window.getAttributes();
-        window.setAttributes(params);
-
         return binding.getRoot();
     }
 
@@ -61,7 +54,7 @@ public class MarkerDetailFragment extends DialogFragment implements MarkerDetail
 
         Window window = getDialog().getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = getResources().getDimensionPixelSize(R.dimen.map_marker_popup_width);
         window.setAttributes(params);
     }
 
