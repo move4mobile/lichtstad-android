@@ -6,7 +6,7 @@
         <attr name="componentImage" format="reference"/>
     </declare-styleable>
 
-    <item name="match_parent" type="dimen" tools:ignore="UnusedResources">-1</item>
-    <item name="wrap_content" type="dimen" tools:ignore="UnusedResources">-2</item>
+    <dimen name="match_parent" tools:ignore="UnusedResources">-1px</dimen>
+    <dimen name="wrap_content" tools:ignore="UnusedResources">-2px</dimen>
 
 </resources>
