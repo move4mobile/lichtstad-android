@@ -18,8 +18,8 @@
 
     <style name="AppTheme.Default">
         <item name="tabMode">fixed</item>
-        <item name="tabPaddingEnd">50dp</item>
-        <item name="tabPaddingStart">50dp</item>
+        <item name="tabPaddingEnd">25dp</item>
+        <item name="tabPaddingStart">25dp</item>
     </style>
 
     <style name="AppTheme.Program" parent="AppTheme.Default">
