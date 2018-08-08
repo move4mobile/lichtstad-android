@@ -95,7 +95,8 @@ public class ProgramDayFragment extends Fragment {
     private Query getProgramReference() {
         return FirebaseReferences.PROGRAM
                 .child(getDayString())
-                .child("programs");
+                .child("programs")
+                .orderByChild("time");
     }
 
     /**
