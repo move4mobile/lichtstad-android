@@ -18,7 +18,9 @@ import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.model.Program;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ProgramDayFragment extends Fragment {
 
@@ -87,40 +89,21 @@ public class ProgramDayFragment extends Fragment {
     /**
      * The reference with the programs to show, ordered by time ascending.
      *
-     * It only contains programs that happen on {@link #day}, that is, between {@link #getStartOfDay()}
-     * and {@link #getEndOfDay()}
+     * It only contains programs that happen on {@link #day}
      * @return the reference with the programs to show.
      */
     private Query getProgramReference() {
         return FirebaseReferences.PROGRAM
-                .orderByChild("time")
-                .startAt((double)getStartOfDay().getTimeInMillis(), "time")
-                .endAt((double)getEndOfDay().getTimeInMillis(), "time");
+                .child(getDayString())
+                .child("programs");
     }
 
     /**
-     * Calculates the start of {@link #day}
-     * @return A calendar with the hour, minute, second and millisecond set to the start of {@link #day}
+     * @return The selected day formatted as a string to be used in a firebase query
      */
-    private Calendar getStartOfDay() {
-        Calendar startOfDay = (Calendar) day.clone();
-        startOfDay.set(Calendar.HOUR_OF_DAY, 2);
-        startOfDay.set(Calendar.MINUTE, 0);
-        startOfDay.set(Calendar.SECOND, 0);
-        startOfDay.set(Calendar.MILLISECOND, 0);
-        return startOfDay;
-    }
-
-    /**
-     * Calculates the end of {@link #day}
-     *
-     * This is equal to the last millisecond still in {@link #day}
-     * @return A calendar with the hour, minute, second and millisecond set to the end of {@link #day}
-     */
-    private Calendar getEndOfDay() {
-        Calendar endOfDay = (Calendar) getStartOfDay().clone();
-        endOfDay.add(Calendar.DAY_OF_MONTH, 1);
-        endOfDay.add(Calendar.MILLISECOND, -1);
-        return endOfDay;
+    private String getDayString() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        format.setTimeZone(day.getTimeZone());
+        return format.format(day.getTime());
     }
 }
