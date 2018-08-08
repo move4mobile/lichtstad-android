@@ -51,15 +51,12 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         }
         supportMapFragment.getMapAsync(this);
 
-        Log.d("bla", "OnCreateView");
-
         return binding.getRoot();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Context context = getContext();
-        Log.d("bla", "onMapReady: " + context);
 
         if (context == null) {
             return;
