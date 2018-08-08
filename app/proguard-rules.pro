@@ -16,6 +16,10 @@
 #   public *;
 #}
 
+# The default of 5 is massive overkill
+# Hardly anything changes after the second optimization pass
+-optimizationpasses 2
+
 #Picasso
 -dontwarn com.squareup.okhttp.**
 
