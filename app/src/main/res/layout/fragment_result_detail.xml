@@ -21,7 +21,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground">
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -33,7 +34,7 @@
             android:navigationIcon="@drawable/ic_close"
             app:navigationOnClickListener="@{(view) -> presenter.onCloseClicked()}" />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
@@ -76,6 +77,6 @@
                 </LinearLayout>
 
             </ScrollView>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </FrameLayout>
 </layout>

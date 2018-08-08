@@ -1,13 +1,14 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityAlbumBinding;
@@ -36,6 +37,14 @@ public class AlbumActivity extends AppCompatActivity {
 
         ActivityAlbumBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_album);
 
+        //This doesn't work from xml :(
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
+
         if (savedInstanceState == null) {
             applyFragment(getIntent());
         }
@@ -54,16 +63,16 @@ public class AlbumActivity extends AppCompatActivity {
 
         if (album != null) {
             if (!Objects.equals(currentAlbumKey, album.getKey())) {
-                getFragmentManager().beginTransaction()
+                getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, AlbumDetailFragment.newInstance(album))
                         .commit();
             }
             currentAlbumKey = album.getKey();
         } else {
             Log.e(TAG, "No album passed as extra");
-            Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
             if (currentFragment != null) {
-                getFragmentManager().beginTransaction()
+                getSupportFragmentManager().beginTransaction()
                         .remove(currentFragment)
                         .commit();
             }

@@ -1,7 +1,7 @@
 package com.move4mobile.lichtstad.databinding;
 
-import android.databinding.ObservableInt;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.ObservableInt;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ItemCountAdapterDataObserver extends RecyclerView.AdapterDataObserver {
 

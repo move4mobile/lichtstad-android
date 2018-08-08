@@ -2,12 +2,13 @@ package com.move4mobile.lichtstad.result;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityResultDetailBinding;
@@ -31,6 +32,14 @@ public class ResultDetailActivity extends AppCompatActivity {
 
         ActivityResultDetailBinding resultDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_result_detail);
 
+        //This doesn't work from xml :(
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
+
         if (savedInstanceState == null) {
             applyIntent(getIntent());
         }
@@ -47,12 +56,12 @@ public class ResultDetailActivity extends AppCompatActivity {
         Result result = intent.getParcelableExtra(EXTRA_RESULT);
 
         if (result != null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, ResultDetailFragment.newInstance(result))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, null)
                     .commit();
         }

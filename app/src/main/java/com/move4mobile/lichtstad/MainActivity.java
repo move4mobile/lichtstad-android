@@ -1,23 +1,26 @@
 package com.move4mobile.lichtstad;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
+import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
+import com.move4mobile.lichtstad.util.GoogleMapLoader;
 import com.move4mobile.lichtstad.video.VideoFragment;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -34,17 +37,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
                 this,
-                R.color.bottom_navigation_tint_program,
-                R.color.bottom_navigation_tint_result,
-                R.color.bottom_navigation_tint_photo,
-                R.color.bottom_navigation_tint_video
+                R.array.bottom_navigation_tint_lists
         );
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ProgramFragment())
                     .commit();
         }
+
+        GoogleMapLoader.preloadGoogleMap(this);
     }
 
     @Override
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.action_videos:
                 showFragment(new VideoFragment());
                 return true;
+            case R.id.action_map:
+                showFragment(new MapFragment());
+                return true;
             default:
                 return false;
         }
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void showFragment(Fragment fragment) {
         fragment.setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element));
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         View appBar = findViewById(R.id.appbar);
         if (appBar != null) {

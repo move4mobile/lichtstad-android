@@ -1,23 +1,22 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.Query;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemAlbumBinding;
 import com.move4mobile.lichtstad.model.Album;
-import com.move4mobile.lichtstad.snapshotparser.AlbumSnapshotParser;
 
 public class AlbumsYearAdapter extends FirebaseRecyclerAdapter<Album, AlbumsYearAdapter.ViewHolder> implements AlbumPresenter {
 
-    public AlbumsYearAdapter(Query ref) {
-        super(new AlbumSnapshotParser(), 0, ViewHolder.class, ref);
-    }
-
     private AlbumClickListener albumClickListener;
+
+    public AlbumsYearAdapter(FirebaseRecyclerOptions<Album> options) {
+        super(options);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -26,11 +25,11 @@ public class AlbumsYearAdapter extends FirebaseRecyclerAdapter<Album, AlbumsYear
     }
 
     @Override
-    protected void populateViewHolder(ViewHolder viewHolder, Album model, int position) {
-        viewHolder.binding.setAlbum(model);
-        viewHolder.binding.setPresenter(this);
+    protected void onBindViewHolder(ViewHolder holder, int position, Album model) {
+        holder.binding.setAlbum(model);
+        holder.binding.setPresenter(this);
         // Immediately execute the binding, or the StaggeredGridLayoutManager trips
-        viewHolder.binding.executePendingBindings();
+        holder.binding.executePendingBindings();
     }
 
     @Override

@@ -1,18 +1,18 @@
 package com.move4mobile.lichtstad.result;
 
 import android.app.ActivityOptions;
-import android.app.Fragment;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
@@ -20,6 +20,7 @@ import com.move4mobile.lichtstad.databinding.FragmentResultsYearBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
+import com.move4mobile.lichtstad.snapshotparser.ResultSnapshotParser;
 
 public class ResultYearFragment extends Fragment implements ResultClickListener {
 
@@ -57,7 +58,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
 
-        ResultsYearAdapter adapter = new ResultsYearAdapter(getQuery());
+        ResultsYearAdapter adapter = new ResultsYearAdapter(getAdapterOptions());
         adapter.setResultClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
@@ -70,21 +71,24 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
-            binding.getItemCount().cleanup();
-        }
+        binding.getItemCount().cleanup();
         binding = null;
     }
 
     @Override
     public void onResultClick(Result result, ListItemResultBinding binding) {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                new Pair<View, String>(binding.card, getString(R.string.transition_name_card)),
-                new Pair<View, String>(binding.title, getString(R.string.transition_name_title))
+                new Pair<>(binding.card, getString(R.string.transition_name_card)),
+                new Pair<>(binding.title, getString(R.string.transition_name_title))
         );
         getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), result), options.toBundle());
+    }
+
+    private FirebaseRecyclerOptions<Result> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Result>()
+                .setQuery(getQuery(), new ResultSnapshotParser())
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private Query getQuery() {

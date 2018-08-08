@@ -16,6 +16,10 @@
 #   public *;
 #}
 
+# The default of 5 is massive overkill
+# Hardly anything changes after the second optimization pass
+-optimizationpasses 2
+
 #Picasso
 -dontwarn com.squareup.okhttp.**
 
@@ -25,10 +29,33 @@
     *;
 }
 
+##Crashlytics
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+
 #BottomNavigationViewTinter
--keep class android.support.design.internal.BottomNavigation* {
+-keep class com.google.android.material.bottomnavigation.** {
     *;
 }
--keepclassmembernames class android.support.design.internal.BottomNavigation* {
+-keepclassmembernames class com.google.android.material.bottomnavigation.** {
     *;
 }
+
+#Moshi
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-keepclasseswithmembers,allowobfuscation class * {
+    @com.squareup.moshi.* <methods>;
+    @com.squareup.moshi.* <fields>;
+}
+-keep @com.squareup.moshi.JsonQualifier interface *
+
+#As long as we don't use architecture components, we probably shouldn't care about some classes missing
+-dontwarn android.arch.**
+
+#Android common
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider

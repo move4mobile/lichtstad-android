@@ -3,10 +3,13 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/misc.xml
+/.idea/caches
+/.idea/codeStyles
+/.idea/kotlinc.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 keystore.jks
 play-keys.json
-crashreporting_private_key.json

@@ -31,7 +31,7 @@
             android:name=".photo.album.AlbumActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Photo" />
+            android:theme="@style/AppTheme.Photo.Album" />
         <activity
             android:name=".photo.detail.PhotoViewActivity"
             android:label="@string/menu_photos"
@@ -40,10 +40,10 @@
         <activity
             android:name=".result.ResultDetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Result" />
+            android:theme="@style/AppTheme.Result.Detail" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -52,7 +52,12 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
+        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key"/>
 
+        <!-- Fixes a crash in Google Maps on Pie -->
+        <!-- https://stackoverflow.com/questions/50782806/android-google-maps-java-lang-noclassdeffounderror-failed-resolution-of-lorg-a -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
 </manifest>

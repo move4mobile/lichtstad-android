@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.ObservableSnapshotArray;
-import com.github.chrisbanes.photoview.OnMatrixChangedListener;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.databinding.ListItemPhotoDetailBinding;
 import com.move4mobile.lichtstad.model.Photo;
-import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.widget.FirebaseViewPagerAdapter;
 
 
@@ -20,8 +18,8 @@ public class PhotoPagerAdapter extends FirebaseViewPagerAdapter<Photo> {
     private OnMatrixChangedListener onMatrixChangedListener;
     private OnDataChangedListener onDataChangedListener;
 
-    public PhotoPagerAdapter(Query query) {
-        super(new KeyedSnapshotParser<>(Photo.class), query);
+    public PhotoPagerAdapter(FirebaseRecyclerOptions<Photo> options) {
+        super(options);
     }
 
     @Override
@@ -29,12 +27,9 @@ public class PhotoPagerAdapter extends FirebaseViewPagerAdapter<Photo> {
         ListItemPhotoDetailBinding binding = ListItemPhotoDetailBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
         binding.setPhoto(object);
         final PhotoView photoView = binding.photoView;
-        binding.photoView.setOnMatrixChangeListener(new com.github.chrisbanes.photoview.OnMatrixChangedListener() {
-            @Override
-            public void onMatrixChanged(RectF rect) {
-                if (onMatrixChangedListener != null) {
-                    onMatrixChangedListener.onMatrixChanged(rect, photoView);
-                }
+        binding.photoView.setOnMatrixChangeListener(rect -> {
+            if (onMatrixChangedListener != null) {
+                onMatrixChangedListener.onMatrixChanged(rect, photoView);
             }
         });
         return binding.getRoot();

@@ -1,22 +1,26 @@
 package com.move4mobile.lichtstad.program;
 
-import android.app.Fragment;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ProgramDayFragment extends Fragment {
 
@@ -28,7 +32,7 @@ public class ProgramDayFragment extends Fragment {
      * This should be used instead of the constructor.
      *
      * @param day The day for which to show the program
-     * @return an instance of this class to be used with a {@link android.app.FragmentManager}.
+     * @return an instance of this class to be used with a {@link FragmentManager}.
      */
     public static ProgramDayFragment newInstance(@NonNull Calendar day) {
         Bundle arguments = new Bundle();
@@ -56,7 +60,7 @@ public class ProgramDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
 
-        ProgramDayAdapter adapter = new ProgramDayAdapter(getProgramReference());
+        ProgramDayAdapter adapter = new ProgramDayAdapter(getAdapterOptions());
         binding.recyclerView.setAdapter(adapter);
 
         ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
@@ -68,51 +72,39 @@ public class ProgramDayFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
+        if (binding != null) {
             binding.getItemCount().cleanup();
         }
         binding = null;
     }
 
+
+    private FirebaseRecyclerOptions<Program> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Program>()
+                .setQuery(getProgramReference(), new KeyedSnapshotParser<>(Program.class))
+                .setLifecycleOwner(this)
+                .build();
+    }
+
     /**
      * The reference with the programs to show, ordered by time ascending.
      *
-     * It only contains programs that happen on {@link #day}, that is, between {@link #getStartOfDay()}
-     * and {@link #getEndOfDay()}
+     * It only contains programs that happen on {@link #day}
      * @return the reference with the programs to show.
      */
     private Query getProgramReference() {
         return FirebaseReferences.PROGRAM
-                .orderByChild("time")
-                .startAt((double)getStartOfDay().getTimeInMillis(), "time")
-                .endAt((double)getEndOfDay().getTimeInMillis(), "time");
+                .child(getDayString())
+                .child("programs")
+                .orderByChild("time");
     }
 
     /**
-     * Calculates the start of {@link #day}
-     * @return A calendar with the hour, minute, second and millisecond set to the start of {@link #day}
+     * @return The selected day formatted as a string to be used in a firebase query
      */
-    private Calendar getStartOfDay() {
-        Calendar startOfDay = (Calendar) day.clone();
-        startOfDay.set(Calendar.HOUR_OF_DAY, 2);
-        startOfDay.set(Calendar.MINUTE, 0);
-        startOfDay.set(Calendar.SECOND, 0);
-        startOfDay.set(Calendar.MILLISECOND, 0);
-        return startOfDay;
-    }
-
-    /**
-     * Calculates the end of {@link #day}
-     *
-     * This is equal to the last millisecond still in {@link #day}
-     * @return A calendar with the hour, minute, second and millisecond set to the end of {@link #day}
-     */
-    private Calendar getEndOfDay() {
-        Calendar endOfDay = (Calendar) getStartOfDay().clone();
-        endOfDay.add(Calendar.DAY_OF_MONTH, 1);
-        endOfDay.add(Calendar.MILLISECOND, -1);
-        return endOfDay;
+    private String getDayString() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        format.setTimeZone(day.getTimeZone());
+        return format.format(day.getTime());
     }
 }

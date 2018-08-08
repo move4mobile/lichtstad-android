@@ -1,7 +1,5 @@
 language: android
 jdk: oraclejdk8
-env:
-  - BUILD_TOOLS_VERSION=26.0.1
 android:
   components:
   - tools
@@ -9,18 +7,20 @@ android:
 before_install:
 - openssl aes-256-cbc -K $encrypted_3b9733f1f5a9_key -iv $encrypted_3b9733f1f5a9_iv
   -in app/secrets.tar.enc -out app/secrets.tar -d
-- openssl aes-256-cbc -d -a -k $crashreporting_key -in crashreporting_private_key.json.enc -out crashreporting_private_key.json
 - tar xvf app/secrets.tar -C app
 - mkdir "$ANDROID_HOME/licenses" || true
-- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+- echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 before_script:
-- chmod +x setup.sh travis-build.sh
-- ./setup.sh
+- chmod +x travis-build.sh
 - "./gradlew tasks :app:tasks"
 script:
+- set -e
+- ./gradlew lintRelease
 - ./travis-build.sh
+- set +e
 notifications:
   email: false
+  webhooks: https://travis.webhooks.m4m.io
   slack:
     secure: etZCydhfzyqvEzMxPW0NqpEXAONJXQk4lSxuwuOiDxRpYOSzZBNOibzIpHdn3GyTbf/DWoy67RG5hpCdJc/jG9xJBVKv/jCo8Adt/lJAblXPu7C9FBOriJXva0CgBS7HSiWxr5sjteGAz5/Qmohjdf0u/CNFoZMpBlpEk80doqbFj/HfEfbF0EGDZegpYeskIs6A82rAuWQoSAPq7JW3/D1ykFtAVIl8YOYBpmQshmzyQyBrEExIg+ZmVbHmYerbkWSXkRW2UwcglFURWFmbg6EGNb5WeewvY/tuLVNm2KdvvUjy+mjjXwk2f/hbrGbc/dTOZ63F7D9CdWb4/1Ombjrh7p9Jry1KZlIeQXhYbBBdEIMdHhR1aYBJB63v9v8lpy4nqzK5TUPb6stisA2p80UZxhNmreON+lcun65pl2disc+mc+If5HZXmoayltULelTiVNvVosKu7N0gE2aoPYCbscsZ7sPtvqB1OjgIHYegwnjAsGEyakOp8PXvpZbTbIebfRbSmT+gzGV9ROJihj+rQ7uVgT6edG+wodNWNvx2jcvLwQbx58SwP4b3v69+zdIw2uEofzxxccc7rBvguaIqg7DzcG5OKnWJDxgBeyTmBagZJXd3UqPhV0ziuCB7cdIyw4HIbWHOiMCLZJ1KhlpN0jAU4oc1SmDcnXzlm9g=

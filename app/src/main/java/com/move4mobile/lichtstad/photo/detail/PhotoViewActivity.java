@@ -2,12 +2,14 @@ package com.move4mobile.lichtstad.photo.detail;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
@@ -35,6 +37,11 @@ public class PhotoViewActivity extends AppCompatActivity {
 
         ActivityViewPhotoBinding viewPhotoBinding = DataBindingUtil.setContentView(this, R.layout.activity_view_photo);
 
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
+
         if (savedInstanceState == null) {
             applyIntent(getIntent());
         }
@@ -51,7 +58,7 @@ public class PhotoViewActivity extends AppCompatActivity {
     public Intent getParentActivityIntent() {
         Intent parentIntent = super.getParentActivityIntent();
         if (parentIntent != null) {
-            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().getParcelableExtra(EXTRA_ALBUM));
+            parentIntent.putExtra(AlbumActivity.EXTRA_ALBUM, getIntent().<Parcelable>getParcelableExtra(EXTRA_ALBUM));
         }
         return parentIntent;
     }
@@ -61,12 +68,12 @@ public class PhotoViewActivity extends AppCompatActivity {
         Photo currentPhoto = intent.getParcelableExtra(EXTRA_CURRENT_PHOTO);
 
         if (album != null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, PhotoPagerFragment.newInstance(album, currentPhoto))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, null)
                     .commit();
         }

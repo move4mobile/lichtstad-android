@@ -1,25 +1,23 @@
 package com.move4mobile.lichtstad.video;
 
-import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.net.Uri;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentVideosYearBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.model.Video;
+import com.move4mobile.lichtstad.util.YoutubePresenter;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 import java.util.Calendar;
@@ -59,7 +57,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_spacing), true));
 
-        VideosYearAdapter adapter = new VideosYearAdapter(getQuery());
+        VideosYearAdapter adapter = new VideosYearAdapter(getAdapterOptions());
         adapter.setVideoClickListener(this);
         binding.recyclerView.setAdapter(adapter);
 
@@ -72,12 +70,15 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (binding.recyclerView.getAdapter() instanceof FirebaseRecyclerAdapter) {
-            FirebaseRecyclerAdapter adapter = (FirebaseRecyclerAdapter) binding.recyclerView.getAdapter();
-            adapter.cleanup();
-            binding.getItemCount().cleanup();
-        }
+        binding.getItemCount().cleanup();
         binding = null;
+    }
+
+    private FirebaseRecyclerOptions<Video> getAdapterOptions() {
+        return new FirebaseRecyclerOptions.Builder<Video>()
+                .setQuery(getQuery(), Video.class)
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private Query getQuery() {
@@ -103,10 +104,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     @Override
     public void onVideoClick(Video video) {
-        watchYoutubeVideo(getActivity(), video.getId());
+        YoutubePresenter.watchYoutubeVideo(getActivity(), video.getId());
     }
 
-    private static void watchYoutubeVideo(Context context, String id){
-        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id)));
-    }
 }

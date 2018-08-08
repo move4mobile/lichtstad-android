@@ -1,28 +1,27 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-crash'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
+apply plugin: 'io.fabric'
 
-ext.supportVersion = "26.0.1"
-ext.firebaseVersion = "11.2.0"
-ext.firebaseUIVersion = "2.2.0"
+ext.firebaseUIVersion = "4.0.1"
+ext.archVersion = "1.1.1"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1" //Don't forget to update travis.yml
+    compileSdkVersion 28
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode buildNumber
-        versionName "1.0"
+        versionName "2018.1"
 
         resConfigs "nl"
 
         buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("Europe/Amsterdam")'
+        buildConfigField 'String', 'EVENT_YEAR', '"2018"'
     }
 
     signingConfigs {
@@ -35,6 +34,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            ext.enableCrashlytics = false
+        }
         release {
             minifyEnabled true
             signingConfig signingConfigs.release
@@ -50,6 +52,8 @@ android {
     lintOptions {
         lintConfig file("lint.xml")
         warningsAsErrors true
+        textReport true
+        textOutput "stdout"
     }
 
     play {
@@ -58,32 +62,32 @@ android {
         untrackOld playTrack == 'beta'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:cardview-v7:$supportVersion"
-    compile "com.android.support:support-v13:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.google.firebase:firebase-core:$firebaseVersion"
-    compile "com.google.firebase:firebase-database:$firebaseVersion"
-    compile "com.google.firebase:firebase-crash:$firebaseVersion"
-    compile "com.google.firebase:firebase-perf:$firebaseVersion"
-    compile "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
-
-    compile "com.squareup.picasso:picasso:2.5.2"
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
-    compile 'com.github.chrisbanes:PhotoView:2.0.0'
-}
-
-project.afterEvaluate {
-    if (project.tasks.findByName("publishApkRelease")) {
-        println("Task publishApkRelease found, setting dependency")
-        def publishApkRelease = project.tasks.findByName("publishApkRelease")
-        publishApkRelease.dependsOn firebaseUploadReleaseProguardMapping
-    } else {
-        println("No task publishApkRelease found, not setting dependency")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+    implementation 'androidx.cardview:cardview:1.0.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0-rc01'
+    implementation 'androidx.arch.core:core-runtime:2.0.0-rc01'
+    implementation 'androidx.arch.core:core-common:2.0.0-rc01'
+    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation "com.google.android.gms:play-services-maps:15.0.1"
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+    implementation "com.google.firebase:firebase-core:16.0.1"
+    implementation "com.google.firebase:firebase-database:16.0.1"
+    implementation "com.google.firebase:firebase-perf:16.0.0"
+    implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation 'com.squareup.moshi:moshi:1.6.0'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true
     }
 }
 

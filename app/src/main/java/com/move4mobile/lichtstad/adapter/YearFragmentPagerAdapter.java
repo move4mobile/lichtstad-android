@@ -1,9 +1,9 @@
 package com.move4mobile.lichtstad.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.graphics.Typeface;
-import android.support.v13.app.FragmentStatePagerAdapter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
