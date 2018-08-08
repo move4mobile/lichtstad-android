@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityViewPhotoBinding;
@@ -35,6 +36,11 @@ public class PhotoViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityViewPhotoBinding viewPhotoBinding = DataBindingUtil.setContentView(this, R.layout.activity_view_photo);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
 
         if (savedInstanceState == null) {
             applyIntent(getIntent());
