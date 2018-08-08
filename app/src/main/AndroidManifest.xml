@@ -31,7 +31,7 @@
             android:name=".photo.album.AlbumActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Photo" />
+            android:theme="@style/AppTheme.Photo.Album" />
         <activity
             android:name=".photo.detail.PhotoViewActivity"
             android:label="@string/menu_photos"
@@ -40,7 +40,7 @@
         <activity
             android:name=".result.ResultDetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Result" />
+            android:theme="@style/AppTheme.Result.Detail" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

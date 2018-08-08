@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityResultDetailBinding;
@@ -30,6 +31,11 @@ public class ResultDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityResultDetailBinding resultDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_result_detail);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
 
         if (savedInstanceState == null) {
             applyIntent(getIntent());

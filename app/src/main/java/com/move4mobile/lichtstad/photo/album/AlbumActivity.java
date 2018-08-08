@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityAlbumBinding;
@@ -35,6 +36,14 @@ public class AlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityAlbumBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_album);
+
+        //This doesn't work from xml :(
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        this.getWindow().setAttributes(params);
 
         if (savedInstanceState == null) {
             applyFragment(getIntent());
