@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- It's 2018, but gramsbergen.nl does not run https -->
+        <domain includeSubdomains="true">gramsbergen.nl</domain>
+    </domain-config>
+</network-security-config>
