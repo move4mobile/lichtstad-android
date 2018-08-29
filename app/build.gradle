@@ -16,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode buildNumber
-        versionName "2018.1"
+        versionName "2018.2"
 
         resConfigs "nl"
 
