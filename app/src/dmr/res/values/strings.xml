@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">
+    <string name="app_name">Dirty Monkey Run</string>
+    <string name="menu_program">Home</string>
+    <string name="menu_results">Programma</string>
+    <string name="menu_photos">Kaart</string>
+    <string name="menu_videos">Foto\'s</string>
+    <string name="menu_map">Info</string>
+</resources>

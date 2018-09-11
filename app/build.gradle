@@ -45,6 +45,21 @@ android {
         }
     }
 
+    flavorDimensions "app"
+    productFlavors {
+        lichtstad {
+            applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
+            versionCode buildNumber
+            versionName "2018.2"
+        }
+
+        dmr {
+            applicationId "nl.combibaangramsbergen.dmr"
+            versionCode buildNumber
+            versionName "2018.3"
+        }
+    }
+
     dataBinding {
         enabled true
     }
