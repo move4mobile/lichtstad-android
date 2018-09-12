@@ -2,27 +2,21 @@ package com.move4mobile.lichtstad;
 
 import android.os.Bundle;
 import android.transition.TransitionInflater;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
-import com.move4mobile.lichtstad.map.MapFragment;
-import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
+import com.move4mobile.lichtstad.menu.MenuNavigationItemSelectedListener;
 import com.move4mobile.lichtstad.program.ProgramFragment;
-import com.move4mobile.lichtstad.result.ResultsFragment;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
 import com.move4mobile.lichtstad.util.GoogleMapLoader;
-import com.move4mobile.lichtstad.video.VideoFragment;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
@@ -34,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(new MenuNavigationItemSelectedListener(this));
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
                 this,
                 R.array.bottom_navigation_tint_lists
@@ -55,34 +49,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onDestroy();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_program:
-                showFragment(new ProgramFragment());
-                return true;
-            case R.id.action_results:
-                showFragment(new ResultsFragment());
-                return true;
-            case R.id.action_photos:
-                showFragment(new AlbumsFragment());
-                return true;
-            case R.id.action_videos:
-                showFragment(new VideoFragment());
-                return true;
-            case R.id.action_map:
-                showFragment(new MapFragment());
-                return true;
-            default:
-                return false;
-        }
-    }
-
     public void setStatusBarColor(@ColorInt int color) {
         binding.drawerLayout.setStatusBarBackgroundColor(color);
     }
 
-    private void showFragment(Fragment fragment) {
+    public void showFragment(Fragment fragment) {
         fragment.setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
