@@ -16,7 +16,7 @@ before_script:
 - "./gradlew tasks :app:tasks"
 script:
 - set -e
-- ./gradlew lintRelease
+- ./gradlew lintLichtstadRelease
 - ./travis-build.sh
 - set +e
 notifications:
