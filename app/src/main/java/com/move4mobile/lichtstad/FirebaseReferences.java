@@ -74,7 +74,8 @@ public final class FirebaseReferences {
             RESULT_CONTENT,
             YOUTUBE,
             ALBUM,
-            ROUTE
+            ROUTE,
+            MARKERS
     ));
 
 }
