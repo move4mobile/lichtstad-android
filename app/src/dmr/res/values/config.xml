@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
+        <item>2018-09-23</item>
+    </string-array>
+
+    <integer-array name="history_years">
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.604</item>
     <item name="map_min_lng" type="dimen" format="float">6.6763</item>
