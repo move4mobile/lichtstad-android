@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
     </data>
 
     <merge

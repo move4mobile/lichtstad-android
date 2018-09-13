@@ -25,7 +25,7 @@ public class MarkerDetailFragment extends DialogFragment implements MarkerDetail
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.AppTheme_Map_Dialog);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.WhiteLabel_Map_Dialog);
     }
 
     @Nullable

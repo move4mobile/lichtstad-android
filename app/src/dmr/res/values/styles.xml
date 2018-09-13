@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WhiteLabel.Program" parent="AppTheme.Program">
+    </style>
+
+    <style name="WhiteLabel.Result" parent="AppTheme.Result">
+        <item name="componentTitle">@string/menu_info</item>
+        <item name="componentImage">@drawable/ic_info_large</item>
+    </style>
+
+    <style name="WhiteLabel.Photo" parent="AppTheme.Photo">
+    </style>
+
+    <style name="WhiteLabel.Map" parent="AppTheme.Map">
+    </style>
+
+</resources>

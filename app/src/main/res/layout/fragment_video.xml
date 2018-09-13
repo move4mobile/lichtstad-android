@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/AppTheme.Video">
+        android:theme="@style/WhiteLabel.Video">
 
         <include layout="@layout/layout_fragment_component" android:id="@+id/component"/>
 
