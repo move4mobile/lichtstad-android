@@ -21,9 +21,9 @@
         <item>2018</item>
     </integer-array>
 
-    <item name="map_min_lat" type="dimen" format="float">52.604</item>
-    <item name="map_min_lng" type="dimen" format="float">6.6763</item>
-    <item name="map_max_lat" type="dimen" format="float">52.615</item>
-    <item name="map_max_lng" type="dimen" format="float">6.6915</item>
+    <item name="map_min_lat" type="dimen" format="float">52.5995</item>
+    <item name="map_min_lng" type="dimen" format="float">6.660952</item>
+    <item name="map_max_lat" type="dimen" format="float">52.6144</item>
+    <item name="map_max_lng" type="dimen" format="float">6.682</item>
 
 </resources>

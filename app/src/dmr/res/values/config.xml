@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="map_min_lat" type="dimen" format="float">52.604</item>
+    <item name="map_min_lng" type="dimen" format="float">6.6763</item>
+    <item name="map_max_lat" type="dimen" format="float">52.615</item>
+    <item name="map_max_lng" type="dimen" format="float">6.6915</item>
+
+</resources>
