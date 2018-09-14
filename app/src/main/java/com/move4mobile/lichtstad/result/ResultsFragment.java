@@ -59,7 +59,7 @@ public class ResultsFragment extends BaseContentFragment implements YearFragment
 
     @NonNull
     private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.history_years);
+        return getActivity().getResources().getIntArray(R.array.result_years);
     }
 
     @Override

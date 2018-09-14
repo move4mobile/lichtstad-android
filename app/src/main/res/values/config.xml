@@ -15,7 +15,19 @@
         <item>2018-09-01</item>
     </string-array>
 
-    <integer-array name="history_years">
+    <integer-array name="result_years">
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
+
+    <integer-array name="photo_years">
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
+
+    <integer-array name="video_years">
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
