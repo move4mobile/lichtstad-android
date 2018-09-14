@@ -2,11 +2,7 @@ package com.move4mobile.lichtstad.result;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -14,15 +10,22 @@ import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.ActivityResultDetailBinding;
 import com.move4mobile.lichtstad.model.Result;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 public class ResultDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_RESULT = "RESULT";
+    public static final String EXTRA_DETAIL_KEY = "DETAIL";
 
     private static final String TAG = ResultDetailActivity.class.getSimpleName();
 
-    public static Intent newInstanceIntent(Context context, @NonNull Result result) {
+    public static Intent newInstanceIntent(Context context, @NonNull String detailKey, @NonNull Result result) {
         Intent intent = new Intent(context, ResultDetailActivity.class);
         intent.putExtra(EXTRA_RESULT, result);
+        intent.putExtra(EXTRA_DETAIL_KEY, detailKey);
         return intent;
     }
 
@@ -57,7 +60,7 @@ public class ResultDetailActivity extends AppCompatActivity {
 
         if (result != null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, ResultDetailFragment.newInstance(result))
+                    .replace(R.id.fragment_container, ResultDetailFragment.newInstance(getIntent().getStringExtra(EXTRA_DETAIL_KEY), result))
                     .commit();
         } else {
             Log.e(TAG, "No album passed as extra");

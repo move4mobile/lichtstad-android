@@ -1,12 +1,7 @@
 package com.move4mobile.lichtstad.photo.detail;
 
-import androidx.databinding.DataBindingUtil;
 import android.graphics.RectF;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +20,12 @@ import com.move4mobile.lichtstad.model.Album;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.util.ImageSharer;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by wilcowolters on 16/05/2017.
@@ -152,7 +153,7 @@ public class PhotoPagerFragment extends Fragment {
     }
 
     private Query getQuery() {
-        return FirebaseReferences.ALBUM_CONTENT
+        return FirebaseReferences.instance().get("album_content")
                 .child(album.getYear())
                 .child(album.getKey())
                 .orderByChild("order");

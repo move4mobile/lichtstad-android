@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application>
+
+        <provider
+            android:name="com.move4mobile.lichtstad.initprovider.DatabaseReferencesInitProvider"
+            android:exported="false"
+            android:authorities="${applicationId}.databasereferencesinitprovider"
+            android:initOrder="50" />
+
+    </application>
+
+</manifest>

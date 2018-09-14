@@ -45,7 +45,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities=".ShareFileProvider"
+            android:authorities="${applicationId}.ShareFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

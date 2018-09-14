@@ -31,13 +31,13 @@ public class MenuNavigationItemSelectedListener implements BottomNavigationView.
                 mainActivity.showFragment(new ProgramFragment());
                 return true;
             case R.id.action_info:
-                mainActivity.showFragment(new ResultsFragment());
+                mainActivity.showFragment(ResultsFragment.newInstance("info", "info_content"));
                 return true;
             case R.id.action_photos:
                 mainActivity.showFragment(new AlbumsFragment());
                 return true;
             case R.id.action_map:
-                mainActivity.showFragment(new MapFragment());
+                mainActivity.showFragment(MapFragment.newInstance("route"));
                 return true;
             default:
                 return false;
