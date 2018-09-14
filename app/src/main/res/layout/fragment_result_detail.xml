@@ -47,34 +47,16 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                tools:ignore="WebViewLayout">
+                <!-- The 'subtle bugs' with WebView only occur when the content of the WebView gets smaller.
+                 Since we use the WebView to display static content, this is not a problem. -->
 
-                <LinearLayout
+                <WebView
+                    android:id="@+id/webview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    tools:ignore="WebViewLayout">
-                    <!-- The 'subtle bugs' with WebView only occur when the content of the WebView gets smaller.
-                     Since we use the WebView to display static content, this is not a problem. -->
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_line_bottom"
-                        android:paddingBottom="12dp"
-                        android:paddingEnd="16dp"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:text="@{result.title}"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                        android:transitionName="@string/transition_name_title" />
-
-                    <WebView
-                        android:id="@+id/webview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:content="@{content.html}" />
-                </LinearLayout>
+                    app:content="@{content.html}" />
 
             </ScrollView>
         </androidx.cardview.widget.CardView>
