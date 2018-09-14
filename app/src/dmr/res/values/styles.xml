@@ -15,4 +15,8 @@
     <style name="WhiteLabel.Map" parent="AppTheme.Map">
     </style>
 
+    <style name="WhiteLabel.Web" parent="AppTheme.Web">
+        <item name="componentTitle">@string/menu_home</item>
+    </style>
+
 </resources>

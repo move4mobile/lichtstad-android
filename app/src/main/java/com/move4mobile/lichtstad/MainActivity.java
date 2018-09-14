@@ -5,8 +5,7 @@ import android.transition.TransitionInflater;
 import android.view.View;
 
 import com.move4mobile.lichtstad.databinding.ActivityMainBinding;
-import com.move4mobile.lichtstad.menu.MenuNavigationItemSelectedListener;
-import com.move4mobile.lichtstad.program.ProgramFragment;
+import com.move4mobile.lichtstad.menu.NavigationHandler;
 import com.move4mobile.lichtstad.util.BottomNavigationViewTinter;
 import com.move4mobile.lichtstad.util.GoogleMapLoader;
 
@@ -28,16 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(new MenuNavigationItemSelectedListener(this));
+        NavigationHandler navigationHandler = new NavigationHandler(this);
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(navigationHandler);
         BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
                 this,
                 R.array.bottom_navigation_tint_lists
         );
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new ProgramFragment())
-                    .commit();
+            navigationHandler.showInitialFragment();
         }
 
         GoogleMapLoader.preloadGoogleMap(this);

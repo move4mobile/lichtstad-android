@@ -95,16 +95,6 @@
 
     <style name="WhiteLabel.Map" parent="AppTheme.Map" />
 
-    <style name="AppTheme.Web" parent="AppTheme.Default">
-        <item name="colorPrimary">@color/colorPrimaryHome</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryHomeDark</item>
-        <item name="colorAccent">@color/colorAccentMap</item>
-        <item name="componentTitle">@string/menu_home</item>
-        <item name="componentImage">@drawable/ic_home_large</item>
-    </style>
-
-    <style name="WhiteLabel.Web" parent="AppTheme.Web" />
-
     <style name="AppTheme.Map.Dialog" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/colorPrimaryMap</item>
         <item name="colorPrimaryDark">@color/colorPrimaryMapDark</item>
@@ -115,6 +105,16 @@
     </style>
 
     <style name="WhiteLabel.Map.Dialog" parent="AppTheme.Map.Dialog" />
+
+    <style name="AppTheme.Web" parent="AppTheme.Default">
+        <item name="colorPrimary">@color/colorPrimaryHome</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryHomeDark</item>
+        <item name="colorAccent">@color/colorAccentMap</item>
+        <item name="componentTitle">@string/menu_map</item>
+        <item name="componentImage">@drawable/ic_home_large</item>
+    </style>
+
+    <style name="WhiteLabel.Web" parent="AppTheme.Web" />
 
     <style name="Toolbar">
         <item name="android:textColorPrimary">@color/textColorPrimaryToolbar</item>
