@@ -9,7 +9,7 @@ import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
-import com.move4mobile.lichtstad.video.VideoFragment;
+import com.move4mobile.lichtstad.web.WebPageFragment;
 
 import androidx.annotation.NonNull;
 
@@ -25,7 +25,7 @@ public class MenuNavigationItemSelectedListener implements BottomNavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
-                mainActivity.showFragment(new VideoFragment());
+                mainActivity.showFragment(WebPageFragment.newInstance("home"));
                 return true;
             case R.id.action_program:
                 mainActivity.showFragment(new ProgramFragment());

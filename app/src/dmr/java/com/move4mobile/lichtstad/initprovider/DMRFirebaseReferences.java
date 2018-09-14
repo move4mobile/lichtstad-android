@@ -15,6 +15,7 @@ public class DMRFirebaseReferences extends FirebaseReferences {
 
     private static Map<String, DatabaseReference> references = new HashMap<>();
     static {
+        references.put("home", FirebaseDatabase.getInstance().getReference("pages").child("home"));
         references.put("program", FirebaseDatabase.getInstance().getReference("program").child(BuildConfig.EVENT_YEAR));
         references.put("info", FirebaseDatabase.getInstance().getReference("info"));
         references.put("info_content", FirebaseDatabase.getInstance().getReference("info_content"));
