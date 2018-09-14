@@ -1,5 +1,6 @@
 package com.move4mobile.lichtstad.result;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,7 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
         this.query = getQuery();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
 
         binding.setPresenter(this);
         binding.setResult(result);
+        binding.webview.getSettings().setJavaScriptEnabled(true);
 
         query.addValueEventListener(this);
 
