@@ -9,9 +9,11 @@ import com.move4mobile.lichtstad.map.MapFragment;
 import com.move4mobile.lichtstad.photo.album.AlbumsFragment;
 import com.move4mobile.lichtstad.program.ProgramFragment;
 import com.move4mobile.lichtstad.result.ResultsFragment;
+import com.move4mobile.lichtstad.util.InputStreamReader;
 import com.move4mobile.lichtstad.web.WebPageFragment;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class NavigationHandler implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -22,14 +24,14 @@ public class NavigationHandler implements BottomNavigationView.OnNavigationItemS
     }
 
     public void showInitialFragment() {
-        mainActivity.showFragment(WebPageFragment.newInstance("home"));
+        mainActivity.showFragment(getHomeFragment());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
-                mainActivity.showFragment(WebPageFragment.newInstance("home"));
+                mainActivity.showFragment(getHomeFragment());
                 return true;
             case R.id.action_program:
                 mainActivity.showFragment(new ProgramFragment());
@@ -46,6 +48,11 @@ public class NavigationHandler implements BottomNavigationView.OnNavigationItemS
             default:
                 return false;
         }
+    }
+
+    private Fragment getHomeFragment() {
+        String defaultString = InputStreamReader.readString(mainActivity.getResources().openRawResource(R.raw.home_default_text));
+        return WebPageFragment.newInstance("home", defaultString);
     }
 
 }

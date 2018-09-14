@@ -18,10 +18,12 @@ import androidx.databinding.DataBindingUtil;
 public class WebPageFragment extends BaseContentFragment {
 
     private static final String ARG_REFERENCE_KEY = "reference_key";
+    private static final String ARG_DEFAULT_CONTENT = "default_content";
 
-    public static WebPageFragment newInstance(String referenceKey) {
+    public static WebPageFragment newInstance(String referenceKey, String defaultContent) {
         Bundle arguments = new Bundle();
         arguments.putString(ARG_REFERENCE_KEY, referenceKey);
+        arguments.putString(ARG_DEFAULT_CONTENT, defaultContent);
 
         WebPageFragment fragment = new WebPageFragment();
         fragment.setArguments(arguments);
@@ -35,6 +37,7 @@ public class WebPageFragment extends BaseContentFragment {
         binding.setLifecycleOwner(this);
 
         binding.setContent(new FirebaseQueryStringLiveData(FirebaseReferences.instance().get(getArguments().getString(ARG_REFERENCE_KEY))));
+        binding.setDefaultContent(getArguments().getString(ARG_DEFAULT_CONTENT));
 
         return binding.getRoot();
     }

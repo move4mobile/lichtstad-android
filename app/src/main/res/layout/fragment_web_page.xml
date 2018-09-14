@@ -9,6 +9,10 @@
             name="content"
             type="androidx.lifecycle.LiveData&lt;String>" />
 
+        <variable
+            name="defaultContent"
+            type="String" />
+
     </data>
 
     <LinearLayout
@@ -35,7 +39,7 @@
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:content="@{content}" />
+            app:content="@{content ?? defaultContent}" />
 
     </LinearLayout>
 </layout>
