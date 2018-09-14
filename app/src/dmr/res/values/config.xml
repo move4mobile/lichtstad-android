@@ -18,4 +18,6 @@
     <item name="map_max_lat" type="dimen" format="float">52.615</item>
     <item name="map_max_lng" type="dimen" format="float">6.6915</item>
 
+    <bool name="open_result_url_in_browser">true</bool>
+
 </resources>

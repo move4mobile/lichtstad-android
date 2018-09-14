@@ -1,6 +1,8 @@
 package com.move4mobile.lichtstad.result;
 
 import android.app.ActivityOptions;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -87,11 +89,16 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
     @Override
     public void onResultClick(Result result, ListItemResultBinding binding) {
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                new Pair<>(binding.card, getString(R.string.transition_name_card)),
-                new Pair<>(binding.title, getString(R.string.transition_name_title))
-        );
-        getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), contentKey, result), options.toBundle());
+        if (result.getUrl() != null && getResources().getBoolean(R.bool.open_result_url_in_browser)) {
+            Intent openBrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.getUrl()));
+            startActivity(openBrowserIntent);
+        } else {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                    new Pair<>(binding.card, getString(R.string.transition_name_card)),
+                    new Pair<>(binding.title, getString(R.string.transition_name_title))
+            );
+            getActivity().startActivity(ResultDetailActivity.newInstanceIntent(getActivity(), contentKey, result), options.toBundle());
+        }
     }
 
     private FirebaseRecyclerOptions<Result> getAdapterOptions() {
