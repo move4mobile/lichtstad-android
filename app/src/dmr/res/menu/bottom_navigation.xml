@@ -12,9 +12,9 @@
         android:icon="@drawable/ic_program"/>
 
     <item
-        android:id="@+id/action_info"
-        android:title="@string/menu_info"
-        android:icon="@drawable/ic_info"/>
+        android:id="@+id/action_map"
+        android:title="@string/menu_map"
+        android:icon="@drawable/ic_map"/>
 
     <item
         android:id="@+id/action_photos"
@@ -22,8 +22,8 @@
         android:icon="@drawable/ic_photos"/>
 
     <item
-        android:id="@+id/action_map"
-        android:title="@string/menu_map"
-        android:icon="@drawable/ic_map"/>
+        android:id="@+id/action_info"
+        android:title="@string/menu_info"
+        android:icon="@drawable/ic_info"/>
 
 </menu>
