@@ -13,7 +13,7 @@
     <color name="bottomNavBackground">#FFFFFF</color>
     <color name="windowBackground">#F2F2F2</color>
 
-    <color name="ic_launcher_background">@color/colorAccent</color>
+    <color name="ic_launcher_background">#231F20</color>
 
     <color name="colorPrimaryProgram">@color/colorPrimary</color>
     <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
