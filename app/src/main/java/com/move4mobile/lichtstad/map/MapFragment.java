@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -112,7 +111,7 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
             MarkerDetailFragment fragment = MarkerDetailFragment.newInstance(markerContent);
             fragment.show(getChildFragmentManager(), null);
         } catch (IOException e) {
-            Crashlytics.logException(e);
+            //Crashlytics.logException(e);
         }
 
         return true;

@@ -1,13 +1,7 @@
 package com.move4mobile.lichtstad.map;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import android.content.Context;
-import androidx.annotation.NonNull;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +15,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.OnLifecycleEvent;
 
 public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener {
 
@@ -69,7 +69,7 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
                 layer = new KmlLayer(map, stream, context);
                 layer.addLayerToMap();
             } catch (XmlPullParserException | IOException e) {
-                Crashlytics.logException(e);
+                //Crashlytics.logException(e);
             }
         }
     }
