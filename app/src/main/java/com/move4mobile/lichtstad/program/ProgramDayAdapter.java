@@ -18,6 +18,7 @@ import com.move4mobile.lichtstad.model.Program;
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
 
     private ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
+    private ObservableMap<String, Boolean> favoriteMap = new ObservableArrayMap<>();
 
     ProgramDayAdapter(FirebaseRecyclerOptions<Program> options) {
         super(options);
@@ -41,6 +42,11 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         return expandedMap;
     }
 
+    @Override
+    public ObservableMap<String, Boolean> getFavoriteMap() {
+        return favoriteMap;
+    }
+
     public void onProgramClick(View view, Program program) {
         Boolean wasExpanded = expandedMap.get(program.getKey());
         wasExpanded = wasExpanded == null ? false : wasExpanded;
@@ -55,6 +61,13 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         if (animatedParent != null) {
             TransitionManager.beginDelayedTransition((ViewGroup) animatedParent);
         }
+    }
+
+    @Override
+    public void onFavoriteClick(Program program) {
+        Boolean wasFavorite = favoriteMap.get(program.getKey());
+        wasFavorite = wasFavorite == null ? false : wasFavorite;
+        favoriteMap.put(program.getKey(), !wasFavorite);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
