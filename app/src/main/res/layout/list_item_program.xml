@@ -44,6 +44,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="vertical">
 
                     <TextView
@@ -82,7 +83,8 @@
                         android:contentDescription="@string/favorite_description"
                         android:focusable="true"
                         android:src="@drawable/ic_favorite"
-                        android:tint="@color/toggle_favorite" />
+                        android:tint="@color/toggle_favorite"
+                        app:layout_minimumClickSize="@{@dimen/minimum_click_size}" />
 
                     <ImageView
                         android:id="@+id/location_icon"
