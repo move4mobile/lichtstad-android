@@ -1,11 +1,6 @@
 package com.move4mobile.lichtstad.video;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +16,12 @@ import com.move4mobile.lichtstad.util.YoutubePresenter;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
 
 import java.util.Calendar;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class VideosYearFragment extends Fragment implements VideoClickListener {
 
@@ -92,7 +93,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
         long endOfYear = calendar.getTimeInMillis();
 
-        return FirebaseReferences.YOUTUBE
+        return FirebaseReferences.instance().get("youtube")
                 .orderByChild("date")
                 .startAt((double)startOfYear, "date")
                 .endAt((double)endOfYear, "date");

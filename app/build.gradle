@@ -16,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode buildNumber
-        versionName "2018.1"
+        versionName "2018.2"
 
         resConfigs "nl"
 
@@ -42,6 +42,18 @@ android {
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable false
+        }
+    }
+
+    flavorDimensions "app"
+    productFlavors {
+        lichtstad {
+            dimension "app"
+            applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
+        }
+        dmr {
+            dimension "app"
+            applicationId "nl.combibaangramsbergen.dmr"
         }
     }
 

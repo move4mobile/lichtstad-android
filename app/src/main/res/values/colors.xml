@@ -34,4 +34,8 @@
     <color name="colorPrimaryMap">#009933</color>
     <color name="colorPrimaryMapDark">#008627</color>
     <color name="colorAccentMap">@color/colorPrimary</color>
+
+    <color name="colorPrimaryHome">#009933</color>
+    <color name="colorPrimaryHomeDark">#008627</color>
+    <color name="colorAccentHome">@color/colorPrimary</color>
 </resources>

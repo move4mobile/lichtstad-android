@@ -1,12 +1,6 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +16,13 @@ import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.detail.PhotoViewActivity;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.widget.GridSpacingItemDecoration;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AlbumDetailFragment extends Fragment implements PhotoClickListener {
 
@@ -92,7 +93,7 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
     }
 
     private Query getQuery() {
-        return FirebaseReferences.ALBUM_CONTENT
+        return FirebaseReferences.instance().get("album_content")
                 .child(album.getYear())
                 .child(album.getKey())
                 .orderByChild("order");

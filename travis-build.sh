@@ -2,18 +2,18 @@
 if [ $TRAVIS_PULL_REQUEST != false ]
 then
     echo "Pull request, not deploying"
-    bash ./gradlew assembleRelease
+    bash ./gradlew assembleLichtstadRelease
 elif [ "$TRAVIS_BRANCH" = 'master' ]
 then
     echo "Push to master, deploying to beta"
     export PLAY_TRACK='beta'
-    bash ./gradlew publishApkRelease
+    bash ./gradlew publishApkLichtstadRelease
 elif [ "$TRAVIS_BRANCH" = 'develop' ]
 then
     echo "Push to develop, deploying to alpha"
     export PLAY_TRACK='alpha'
-    bash ./gradlew publishApkRelease
+    bash ./gradlew publishApkLichtstadRelease
 else
     echo "Push to $TRAVIS_BRANCH, not deploying"
-    bash ./gradlew assembleRelease
+    bash ./gradlew assembleLichtstadRelease
 fi

@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
     </data>
 
     <merge
@@ -29,6 +31,7 @@
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="?android:actionBarSize"
+                    android:visibility="@{tabLayout.getTabCount() > 1 ? View.VISIBLE : View.GONE}"
                     app:tabMaxWidth="200dp"
                     app:tabMode="?attr/tabMode"
                     app:tabPaddingEnd="?attr/tabPaddingEnd"

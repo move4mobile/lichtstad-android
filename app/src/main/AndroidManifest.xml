@@ -32,20 +32,20 @@
             android:name=".photo.album.AlbumActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Photo.Album" />
+            android:theme="@style/WhiteLabel.Photo.Album" />
         <activity
             android:name=".photo.detail.PhotoViewActivity"
             android:label="@string/menu_photos"
             android:parentActivityName=".photo.album.AlbumActivity"
-            android:theme="@style/AppTheme.Photo.Detail" />
+            android:theme="@style/WhiteLabel.Photo.Detail" />
         <activity
             android:name=".result.ResultDetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Result.Detail" />
+            android:theme="@style/WhiteLabel.Result.Detail" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="nl.gramsbergen.oranjevereniging.lichtstad.ShareFileProvider"
+            android:authorities="${applicationId}.ShareFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

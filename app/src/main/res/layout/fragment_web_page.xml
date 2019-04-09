@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="content"
+            type="androidx.lifecycle.LiveData&lt;String>" />
+
+        <variable
+            name="defaultContent"
+            type="String" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:theme="@style/WhiteLabel.Web">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:colorPrimary"
+            android:theme="@style/Toolbar"
+            android:transitionName="@string/transition_name_appbar">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/layout_toolbar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:content="@{content ?? defaultContent}" />
+
+    </LinearLayout>
+</layout>

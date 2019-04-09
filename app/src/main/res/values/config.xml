@@ -15,7 +15,19 @@
         <item>2018-09-01</item>
     </string-array>
 
-    <integer-array name="history_years">
+    <integer-array name="result_years">
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
+
+    <integer-array name="photo_years">
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
+
+    <integer-array name="video_years">
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
@@ -25,5 +37,7 @@
     <item name="map_min_lng" type="dimen" format="float">6.660952</item>
     <item name="map_max_lat" type="dimen" format="float">52.6144</item>
     <item name="map_max_lng" type="dimen" format="float">6.682</item>
+
+    <bool name="open_result_url_in_browser">false</bool>
 
 </resources>

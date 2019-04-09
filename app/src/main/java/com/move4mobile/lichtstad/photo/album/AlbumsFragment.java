@@ -1,12 +1,6 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import androidx.fragment.app.Fragment;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +9,13 @@ import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.adapter.YearFragmentPagerAdapter;
 import com.move4mobile.lichtstad.databinding.FragmentAlbumsBinding;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
 
 public class AlbumsFragment extends BaseContentFragment implements YearFragmentPagerAdapter.FragmentSupplier {
 
@@ -35,7 +36,7 @@ public class AlbumsFragment extends BaseContentFragment implements YearFragmentP
 
     @NonNull
     private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.history_years);
+        return getActivity().getResources().getIntArray(R.array.photo_years);
     }
 
     @Override

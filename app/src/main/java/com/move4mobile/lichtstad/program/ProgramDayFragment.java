@@ -1,10 +1,6 @@
 package com.move4mobile.lichtstad.program;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +17,12 @@ import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class ProgramDayFragment extends Fragment {
 
@@ -93,7 +95,7 @@ public class ProgramDayFragment extends Fragment {
      * @return the reference with the programs to show.
      */
     private Query getProgramReference() {
-        return FirebaseReferences.PROGRAM
+        return FirebaseReferences.instance().get("program")
                 .child(getDayString())
                 .child("programs")
                 .orderByChild("time");

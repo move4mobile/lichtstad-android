@@ -1,10 +1,7 @@
 package com.move4mobile.lichtstad.map;
 
 import android.content.Context;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +28,23 @@ import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 public class MapFragment extends BaseContentFragment implements OnMapReadyCallback, Layer.OnFeatureClickListener, GoogleMap.OnMarkerClickListener {
 
     private static final String TAG = MapFragment.class.getSimpleName();
+    private static final String ARG_OVERLAYS = "overlays";
+
+    private String[] overlayKeys = new String[0];
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentMapBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_map, container, false);
+
+        overlayKeys = getArguments().getStringArray(ARG_OVERLAYS);
 
         SupportMapFragment supportMapFragment;
         if (savedInstanceState == null) {
@@ -70,8 +76,9 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
                 0
         ));
 
-        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.ROUTE);
-        FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.MARKERS);
+        for (String key : overlayKeys) {
+            FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.instance().get(key));
+        }
 
         googleMap.setOnMarkerClickListener(this);
     }
@@ -109,5 +116,14 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         }
 
         return true;
+    }
+
+    public static MapFragment newInstance(@NonNull String... overlayReferenceKeys) {
+        Bundle args = new Bundle();
+        args.putStringArray(ARG_OVERLAYS, overlayReferenceKeys);
+
+        MapFragment fragment = new MapFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

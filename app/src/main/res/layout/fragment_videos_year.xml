@@ -14,7 +14,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/AppTheme.Video">
+        android:theme="@style/WhiteLabel.Video">
         <!-- The theme gets lost in the view pager, so readd it here -->
 
         <com.move4mobile.lichtstad.widget.HackedRecyclerView

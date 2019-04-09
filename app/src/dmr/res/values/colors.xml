@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#CFAC4A</color>
+    <color name="colorPrimaryDark">#CF9C0A</color>
+    <color name="colorAccent">#CFAC4A</color>
+    <color name="textColorPrimary">#DE000000</color>
+    <color name="textColorSecondary">#8A000000</color>
+    <color name="textColorPrimaryToolbar">#FFFFFFFF</color>
+    <color name="textColorSecondaryToolbar">#B3FFFFFF</color>
+    <color name="colorAccentToolbar">#FFFFFFFF</color>
+    <color name="itemInactive">#73000000</color>
+    <color name="translucentWindowBar">#B4000000</color>
+    <color name="bottomNavBackground">#FFFFFF</color>
+    <color name="windowBackground">#F2F2F2</color>
+
+    <color name="ic_launcher_background">#231F20</color>
+
+    <color name="colorPrimaryProgram">@color/colorPrimary</color>
+    <color name="colorPrimaryProgramDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentProgram">@color/colorPrimary</color>
+
+    <color name="colorPrimaryResult">@color/colorPrimary</color>
+    <color name="colorPrimaryResultDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentResult">@color/colorPrimary</color>
+
+    <color name="colorPrimaryPhoto">@color/colorPrimary</color>
+    <color name="colorPrimaryPhotoDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentPhoto">@color/colorAccent</color>
+
+    <color name="colorPrimaryVideo">@color/colorPrimary</color>
+    <color name="colorPrimaryVideoDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentVideo">@color/colorPrimary</color>
+
+    <color name="colorPrimaryMap">@color/colorPrimary</color>
+    <color name="colorPrimaryMapDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentMap">@color/colorPrimary</color>
+
+    <color name="colorPrimaryHome">@color/colorPrimary</color>
+    <color name="colorPrimaryHomeDark">@color/colorPrimaryDark</color>
+    <color name="colorAccentHome">@color/colorPrimary</color>
+</resources>

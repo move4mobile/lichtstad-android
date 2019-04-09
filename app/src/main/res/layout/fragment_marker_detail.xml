@@ -33,7 +33,7 @@
             android:contentDescription="@{content.title}"
             android:scaleType="centerCrop"
             android:src="@{content.imageUrls.size() > 0 ? content.imageUrls[0] : null}"
-            android:visibility="@{content.video == null ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{content.video == null &amp;&amp; content.imageUrls.size() > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintDimensionRatio="h,4:3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
