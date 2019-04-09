@@ -7,6 +7,7 @@
     <string name="menu_map">Route</string>
     <string name="icon_location_description">Locatie-icoon</string>
     <string name="icon_more_data_description">Meer informatie-icoon</string>
+    <string name="favorite_description">Favoriet</string>
     <string name="play_button_description">Afspeelknop</string>
     <string name="dashed_line_description">Stippellijn</string>
     <string name="photo_description">Foto</string>

@@ -23,10 +23,10 @@
             android:layout_width="@dimen/list_item_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/list_card_bottom_margin"
-            android:layout_marginEnd="@dimen/list_card_end_margin"
             android:layout_marginStart="@dimen/list_card_start_margin"
             android:layout_marginTop="@dimen/list_card_top_margin"
+            android:layout_marginEnd="@dimen/list_card_end_margin"
+            android:layout_marginBottom="@dimen/list_card_bottom_margin"
             android:clickable="@{program.description.length > 0}"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -64,8 +64,8 @@
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
+                        android:layout_toStartOf="@+id/favorite_icon"
                         android:layout_toEndOf="@+id/time"
                         android:text="@{program.title}"
                         android:textColor="?android:textColorPrimary"
@@ -73,12 +73,24 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/favorite_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:clickable="true"
+                        android:contentDescription="@string/favorite_description"
+                        android:focusable="true"
+                        android:src="@drawable/ic_favorite"
+                        android:tint="@color/toggle_favorite" />
+
+                    <ImageView
                         android:id="@+id/location_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/location"
                         android:layout_alignStart="@+id/title"
                         android:layout_alignTop="@+id/location"
+                        android:layout_alignBottom="@+id/location"
                         android:contentDescription="@string/icon_location_description"
                         android:src="@drawable/ic_location"
                         android:tint="?android:textColorSecondary" />
@@ -87,8 +99,8 @@
                         android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_below="@+id/title"
+                        android:layout_alignParentEnd="true"
                         android:layout_toEndOf="@+id/location_icon"
                         android:text="@{program.location.name}"
                         android:textColor="?android:textColorSecondary"

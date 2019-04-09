@@ -1,5 +1,6 @@
 package com.move4mobile.lichtstad.program;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayMap;
 import androidx.databinding.ObservableMap;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,20 +17,21 @@ import com.move4mobile.lichtstad.model.Program;
 
 public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
 
-    public ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
+    private ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
 
-    public ProgramDayAdapter(FirebaseRecyclerOptions<Program> options) {
+    ProgramDayAdapter(FirebaseRecyclerOptions<Program> options) {
         super(options);
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ListItemProgramBinding binding = ListItemProgramBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Program model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Program model) {
         holder.binding.setProgram(model);
         holder.binding.setPresenter(this);
     }
@@ -42,8 +44,8 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
     public void onProgramClick(View view, Program program) {
         Boolean wasExpanded = expandedMap.get(program.getKey());
         wasExpanded = wasExpanded == null ? false : wasExpanded;
-        //We can't remove the key from the map, as we can not receive which objects were deleted
-        //Since the memory leaked is so small, this should not be a problem
+        // We can't remove the key from the map when the object is removed, as we do not receive these events
+        // Since the memory leaked is so small, this should not be a problem
         expandedMap.put(program.getKey(), !wasExpanded);
 
         View animatedParent = view;
@@ -59,7 +61,7 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
 
         public final ListItemProgramBinding binding;
 
-        public ViewHolder(ListItemProgramBinding binding) {
+        ViewHolder(ListItemProgramBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
