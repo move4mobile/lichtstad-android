@@ -65,16 +65,16 @@ public class BindingAdapters {
         parent.post(() -> {
             Rect hitArea = new Rect();
             view.getHitRect(hitArea);
+            int extraWidth = 0;
+            int extraHeight = 0;
+
             if (hitArea.width() < size) {
-                int extraWidth = (int)(size - hitArea.width()) / 2;
-                hitArea.left = hitArea.left - extraWidth;
-                hitArea.right = hitArea.right + extraWidth;
+                extraWidth = (int)(size - hitArea.width());
             }
             if (hitArea.height() < size) {
-                int extraHeight = (int)(size - hitArea.height()) / 2;
-                hitArea.top = hitArea.top - extraHeight;
-                hitArea.bottom = hitArea.bottom + extraHeight;
+                extraHeight = (int)(size - hitArea.height());
             }
+            hitArea.inset(-extraWidth / 2, -extraHeight / 2);
             parent.setTouchDelegate(new TouchDelegate(hitArea, view));
         });
     }
