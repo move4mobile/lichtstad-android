@@ -3,7 +3,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
-ext.firebaseUIVersion = "4.0.1"
+ext.firebaseUIVersion = "4.3.1"
 ext.archVersion = "1.1.1"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
@@ -82,18 +82,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
-    implementation 'androidx.cardview:cardview:1.0.0-rc01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0-rc01'
-    implementation 'androidx.arch.core:core-runtime:2.0.0-rc01'
-    implementation 'androidx.arch.core:core-common:2.0.0-rc01'
-    implementation 'com.google.android.material:material:1.0.0-rc01'
-    implementation "com.google.android.gms:play-services-maps:15.0.1"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    implementation 'androidx.arch.core:core-runtime:2.0.1'
+    implementation 'androidx.arch.core:core-common:2.0.1'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation "com.google.android.gms:play-services-maps:16.1.0"
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation "com.google.firebase:firebase-core:16.0.1"
-    implementation "com.google.firebase:firebase-database:16.0.1"
-    implementation "com.google.firebase:firebase-perf:16.0.0"
+    implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.firebase:firebase-database:17.0.0"
+    implementation "com.google.firebase:firebase-perf:17.0.0"
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
