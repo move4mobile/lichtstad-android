@@ -18,7 +18,7 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
     private final ObservableSnapshotArray<T> backingArray;
     /**
      * The map of backing index to our index.
-     * Null if not in this array.
+     * Null if filtered out.
      */
     private final List<Integer> internalIndices = new ArrayList<>();
 
@@ -41,6 +41,7 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
     @Override
     protected void onDestroy() {
         backingArray.removeChangeEventListener(backingChangeEventListener);
+        internalIndices.clear();
         super.onDestroy();
     }
 
@@ -70,7 +71,7 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
     @NonNull
     @Override
     public DataSnapshot getSnapshot(int index) {
-        return super.getSnapshot(index);
+        return backingArray.getSnapshot(internalIndices.indexOf(index));
     }
 
     @NonNull
