@@ -23,6 +23,7 @@ public class VideoFragment extends BaseContentFragment implements YearFragmentPa
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         FragmentVideoBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_video, container, false);
+        binding.setLifecycleOwner(this);
 
         PagerAdapter adapter = new YearFragmentPagerAdapter(getChildFragmentManager(), getYears(), this);
         binding.component.viewPager.setAdapter(adapter);

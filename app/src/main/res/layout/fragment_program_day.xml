@@ -30,7 +30,6 @@
             android:paddingEnd="@dimen/list_end_padding"
             android:paddingStart="@dimen/list_start_padding"
             android:paddingTop="@dimen/list_top_padding"
-            android:background="@{viewModel.showFavorites ? @color/colorPrimary : @color/colorPrimaryDark}"
             app:layoutManager="LinearLayoutManager" />
 
         <include

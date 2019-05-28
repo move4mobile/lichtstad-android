@@ -67,6 +67,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_results_year, container, false);
+        binding.setLifecycleOwner(this);
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
 

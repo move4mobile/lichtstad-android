@@ -41,6 +41,7 @@ public class ProgramFragment extends BaseContentFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProgramBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program, container, false);
+        binding.setLifecycleOwner(this);
 
         List<Calendar> days = getDays();
         int currentIndex = days.indexOf(getSelectedDay(days));

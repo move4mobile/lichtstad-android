@@ -40,6 +40,7 @@ public class MarkerDetailFragment extends DialogFragment implements MarkerDetail
         }
 
         FragmentMarkerDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_marker_detail, container, false);
+        binding.setLifecycleOwner(this);
 
         content.setDescription(content.getDescription().trim());
 

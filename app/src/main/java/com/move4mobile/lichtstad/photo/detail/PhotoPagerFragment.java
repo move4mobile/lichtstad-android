@@ -74,28 +74,21 @@ public class PhotoPagerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
+        binding.setLifecycleOwner(this);
 
         final PhotoPagerAdapter adapter = new PhotoPagerAdapter(getAdapterOptions());
-        adapter.setOnMatrixChangedListener(new PhotoPagerAdapter.OnMatrixChangedListener() {
-            @Override
-            public void onMatrixChanged(RectF matrix, PhotoView photoView) {
-                photoView.setAllowParentInterceptOnEdge(photoView.getScale() <= 1);
-            }
-        });
-        adapter.setOnDataChangedListener(new PhotoPagerAdapter.OnDataChangedListener() {
-            @Override
-            public void onDataChanged() {
-                adapter.setOnDataChangedListener(null);
-                if (scrollToPhoto != null) {
-                    for (int i = 0; i < adapter.getSnapshots().size(); i++) {
-                        DataSnapshot snapshot = adapter.getSnapshots().getSnapshot(i);
-                        if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
-                            binding.viewPager.setCurrentItem(i, false);
-                        }
+        adapter.setOnMatrixChangedListener((matrix, photoView) -> photoView.setAllowParentInterceptOnEdge(photoView.getScale() <= 1));
+        adapter.setOnDataChangedListener(() -> {
+            adapter.setOnDataChangedListener(null);
+            if (scrollToPhoto != null) {
+                for (int i = 0; i < adapter.getSnapshots().size(); i++) {
+                    DataSnapshot snapshot = adapter.getSnapshots().getSnapshot(i);
+                    if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
+                        binding.viewPager.setCurrentItem(i, false);
                     }
                 }
-                scrollToPhoto = null;
             }
+            scrollToPhoto = null;
         });
         binding.viewPager.setAdapter(adapter);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);

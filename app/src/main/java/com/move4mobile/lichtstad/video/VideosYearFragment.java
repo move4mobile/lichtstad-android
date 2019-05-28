@@ -54,6 +54,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_videos_year, container, false);
+        binding.setLifecycleOwner(this);
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_spacing), true));
