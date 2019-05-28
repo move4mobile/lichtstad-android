@@ -83,7 +83,7 @@
                         android:clickable="true"
                         android:contentDescription="@string/favorite_description"
                         android:focusable="true"
-                        android:onCheckedChanged="@{() -> presenter.onFavoriteClick(program)}"
+                        android:onClick="@{() -> presenter.onFavoriteClick(program)}"
                         android:button="@drawable/ic_favorite"
                         android:buttonTint="@color/toggle_favorite"
                         app:layout_minimumClickSize="@{@dimen/minimum_click_size}" />

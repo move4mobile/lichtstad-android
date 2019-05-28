@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.move4mobile.lichtstad.viewmodel.ProgramViewModel" />
+
+        <variable
             name="itemCount"
             type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
 
@@ -26,12 +30,13 @@
             android:paddingEnd="@dimen/list_end_padding"
             android:paddingStart="@dimen/list_start_padding"
             android:paddingTop="@dimen/list_top_padding"
+            android:background="@{viewModel.showFavorites ? @color/colorPrimary : @color/colorPrimaryDark}"
             app:layoutManager="LinearLayoutManager" />
 
         <include
             layout="@layout/component_text_no_content"
             app:itemCount="@{itemCount}"
-            app:noContentText="@{@string/no_content_program}"
+            app:noContentText="@{viewModel.showFavorites ? @string/no_content_program_favorites : @string/no_content_program}"
             app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>

@@ -3,8 +3,8 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
-ext.firebaseUIVersion = "4.3.1"
-ext.archVersion = "1.1.1"
+ext.firebaseUIVersion = "5.0.0"
+ext.lifecycleVersion = "2.0.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
@@ -98,6 +98,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     implementation 'com.squareup.moshi:moshi:1.6.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }

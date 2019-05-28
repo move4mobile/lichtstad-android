@@ -98,7 +98,7 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
                     Integer internalIndex = shouldInclude ? findInsertIndex(newIndex) : null;
                     addIndex(newIndex, internalIndex);
                     if (shouldInclude) {
-                        notifyOnChildChanged(ChangeEventType.ADDED, snapshot, internalIndex, oldIndex);
+                        notifyOnChildChanged(ChangeEventType.ADDED, snapshot, internalIndex, -1);
                     }
                 }
                     break;
@@ -107,7 +107,7 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
                     boolean shouldInclude = predicate.test(backingArray.get(newIndex));
                     if (thisIndex != null) {
                         if (shouldInclude) {
-                            notifyOnChildChanged(ChangeEventType.CHANGED, snapshot, thisIndex, -1);
+                            notifyOnChildChanged(ChangeEventType.CHANGED, snapshot, thisIndex, thisIndex);
                         } else {
                             internalIndices.set(newIndex, null);
                             updateAfterIndexChanged(newIndex, false);
@@ -160,13 +160,13 @@ public class FilterableSnapshotArray<T> extends ObservableSnapshotArray<T> {
      * Find the index at which an item at backingIndex should be inserted
      */
     private int findInsertIndex(int backingIndex) {
-        int insertIndex = 0;
+        int insertIndex = -1;
         for (int i = 0; i < backingIndex; i++) {
             if (internalIndices.get(i) != null) {
                 insertIndex = internalIndices.get(i);
             }
         }
-        return insertIndex;
+        return insertIndex + 1;
     }
 
     private void addIndex(int backingIndex, Integer internalIndex) {

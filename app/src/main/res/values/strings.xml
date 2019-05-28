@@ -8,6 +8,7 @@
     <string name="icon_location_description">Locatie-icoon</string>
     <string name="icon_more_data_description">Meer informatie-icoon</string>
     <string name="favorite_description">Favoriet</string>
+    <string name="show_favorites">Toon favorieten</string>
     <string name="play_button_description">Afspeelknop</string>
     <string name="dashed_line_description">Stippellijn</string>
     <string name="photo_description">Foto</string>
@@ -21,6 +22,7 @@
     <string name="share_to">Aan</string>
 
     <string name="no_content_program">Vandaag staat er niets op het programma.</string>
+    <string name="no_content_program_favorites">Vandaag heb je niets als favoriet gemarkeerd.\nTik rechtsbovenin op het hartje om het volledige programma te zien.</string>
     <string name="no_content_results">Er zijn dit jaar nog geen uitslagen bekend.</string>
     <string name="no_content_albums">Er zijn nog geen foto\'s dit jaar.</string>
     <string name="no_content_videos">Er zijn nog geen video\'s dit jaar.</string>
