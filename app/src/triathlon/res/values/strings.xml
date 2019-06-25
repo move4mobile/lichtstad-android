@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">
+    <string name="app_name">Triathlon Hardenberg</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_program">Programma</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_videos">Media</string>
+    <string name="menu_map">Parcours</string>
+
+    <string name="no_content_program">Het programma is nog niet bekend.</string>
+    <string name="no_content_results">Informatie wordt geladen…</string>
+    <string name="no_internet">Welkom bij de app voor de Triathlon Hardenberg!\nZorg dat je minimaal één keer verbinding hebt met internet om de benodigde gegevens te kunnen downloaden. Het programma kun je daarna altijd en overal bekijken.\nVoor het bekijken van foto\'s heb je wel internet nodig.</string>
+</resources>

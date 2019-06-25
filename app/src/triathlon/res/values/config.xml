@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
+        <item>2019-07-06</item>
+    </string-array>
+
+    <integer-array name="result_years">
+        <item>2019</item>
+    </integer-array>
+
+    <integer-array name="photo_years">
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+    </integer-array>
+
+    <integer-array name="video_years">
+        <item>2017</item>
+        <item>2018</item>
+    </integer-array>
+
+    <item name="map_min_lat" type="dimen" format="float">52.575347</item>
+    <item name="map_min_lng" type="dimen" format="float">6.573500</item>
+    <item name="map_max_lat" type="dimen" format="float">52.609189</item>
+    <item name="map_max_lng" type="dimen" format="float">6.624000</item>
+
+    <bool name="open_result_url_in_browser">true</bool>
+
+</resources>

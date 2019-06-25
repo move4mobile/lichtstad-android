@@ -10,13 +10,13 @@ def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode buildNumber
-        versionName "2018.2"
+        versionName "2019.1"
 
         resConfigs "nl"
 
@@ -54,6 +54,11 @@ android {
         dmr {
             dimension "app"
             applicationId "nl.combibaangramsbergen.dmr"
+        }
+        triathlon {
+            dimension "app"
+            applicationId "nl.triathlonhardenberg.app"
+            buildConfigField 'String', 'EVENT_YEAR', '"2019"'
         }
     }
 
