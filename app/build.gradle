@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
@@ -93,7 +92,6 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation "com.google.firebase:firebase-core:16.0.9"
     implementation "com.google.firebase:firebase-database:17.0.0"
-    implementation "com.google.firebase:firebase-perf:17.0.0"
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
