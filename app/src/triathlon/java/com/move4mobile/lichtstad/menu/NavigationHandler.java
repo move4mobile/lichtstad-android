@@ -44,7 +44,7 @@ public class NavigationHandler implements BottomNavigationView.OnNavigationItemS
                 mainActivity.showFragment(new VideoFragment());
                 return true;
             case R.id.action_map:
-                mainActivity.showFragment(MapFragment.newInstance("route", "markers"));
+                mainActivity.showFragment(MapFragment.newInstance("route"));
                 return true;
             default:
                 return false;

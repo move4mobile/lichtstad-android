@@ -21,7 +21,6 @@ public class TriathlonFirebaseReferences extends FirebaseReferences {
         references.put("info_content", FirebaseDatabase.getInstance().getReference("info_content"));
         references.put("youtube", FirebaseDatabase.getInstance().getReference("youtube"));
         references.put("route", FirebaseDatabase.getInstance().getReference("map").child(BuildConfig.EVENT_YEAR).child("route"));
-        references.put("markers", FirebaseDatabase.getInstance().getReference("map").child(BuildConfig.EVENT_YEAR).child("markers"));
     }
 
     @NonNull
