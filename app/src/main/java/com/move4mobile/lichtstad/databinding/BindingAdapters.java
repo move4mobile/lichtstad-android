@@ -3,7 +3,10 @@ package com.move4mobile.lichtstad.databinding;
 import android.annotation.SuppressLint;
 import androidx.databinding.BindingAdapter;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.graphics.Rect;
 import android.util.Log;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -54,6 +57,26 @@ public class BindingAdapters {
     @BindingAdapter("content")
     public static void setContent(WebView webView, String content) {
         webView.loadData(content, "text/html; charset=UTF-8", null);
+    }
+
+    @BindingAdapter("layout_minimumClickSize")
+    public static void setMinimumClickSize(View view, float size) {
+        View parent = ((View)view.getParent());
+        parent.post(() -> {
+            Rect hitArea = new Rect();
+            view.getHitRect(hitArea);
+            int extraWidth = 0;
+            int extraHeight = 0;
+
+            if (hitArea.width() < size) {
+                extraWidth = (int)(size - hitArea.width());
+            }
+            if (hitArea.height() < size) {
+                extraHeight = (int)(size - hitArea.height());
+            }
+            hitArea.inset(-extraWidth / 2, -extraHeight / 2);
+            parent.setTouchDelegate(new TouchDelegate(hitArea, view));
+        });
     }
 
 }

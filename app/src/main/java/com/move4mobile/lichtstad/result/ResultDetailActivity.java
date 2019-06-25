@@ -34,6 +34,7 @@ public class ResultDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityResultDetailBinding resultDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_result_detail);
+        resultDetailBinding.setLifecycleOwner(this);
 
         //This doesn't work from xml :(
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

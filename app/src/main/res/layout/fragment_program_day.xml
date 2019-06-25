@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.move4mobile.lichtstad.viewmodel.ProgramViewModel" />
+
+        <variable
             name="itemCount"
             type="com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver" />
 
@@ -31,7 +35,7 @@
         <include
             layout="@layout/component_text_no_content"
             app:itemCount="@{itemCount}"
-            app:noContentText="@{@string/no_content_program}"
+            app:noContentText="@{viewModel.showFavorites ? @string/no_content_program_favorites : @string/no_content_program}"
             app:noInternetText="@{@string/no_internet}" />
 
     </FrameLayout>

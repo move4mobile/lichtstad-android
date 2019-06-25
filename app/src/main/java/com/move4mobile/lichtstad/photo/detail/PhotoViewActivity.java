@@ -36,6 +36,7 @@ public class PhotoViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityViewPhotoBinding viewPhotoBinding = DataBindingUtil.setContentView(this, R.layout.activity_view_photo);
+        viewPhotoBinding.setLifecycleOwner(this);
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.height = WindowManager.LayoutParams.MATCH_PARENT;

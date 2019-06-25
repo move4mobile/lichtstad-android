@@ -36,6 +36,7 @@ public class AlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityAlbumBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_album);
+        binding.setLifecycleOwner(this);
 
         //This doesn't work from xml :(
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

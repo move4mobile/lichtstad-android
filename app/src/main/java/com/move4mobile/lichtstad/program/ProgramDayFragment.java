@@ -1,33 +1,50 @@
 package com.move4mobile.lichtstad.program;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseArray;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.ObservableSnapshotArray;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.database.Query;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
+import com.move4mobile.lichtstad.datasource.FilterableSnapshotArray;
 import com.move4mobile.lichtstad.model.Program;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
+import com.move4mobile.lichtstad.viewmodel.ProgramViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableMap;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class ProgramDayFragment extends Fragment {
 
     private static final String ARG_DAY = "day";
+    private static final String PREFERENCE_FAVORITES = "favorites";
     private FragmentProgramDayBinding binding;
+    private ProgramDayAdapter adapter;
+    private FilterableSnapshotArray<Program> filteredArray;
 
     /**
      * Create a new instance of this class.
@@ -61,12 +78,24 @@ public class ProgramDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
+        binding.setLifecycleOwner(this);
 
-        ProgramDayAdapter adapter = new ProgramDayAdapter(getAdapterOptions());
+        adapter = new ProgramDayAdapter(getAdapterOptions());
+        // Mark the favorites
+        // Note that we do not listen for changes to the favorites,
+        // so users can remove favorites and undo their change while still only showing favorites
+        for (String favorite : getFavorites()) {
+            adapter.getFavoriteMap().put(favorite, true);
+        }
+        adapter.getFavoriteMap().addOnMapChangedCallback(onFavoriteChangedCallback);
         binding.recyclerView.setAdapter(adapter);
 
         ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
+
+        ProgramViewModel viewModel = ViewModelProviders.of(getParentFragment()).get(ProgramViewModel.class);
+        viewModel.showFavorites.observe(this, showFavoritesObserver);
+        binding.setViewModel(viewModel);
 
         return binding.getRoot();
     }
@@ -77,13 +106,21 @@ public class ProgramDayFragment extends Fragment {
         if (binding != null) {
             binding.getItemCount().cleanup();
         }
+        if (adapter != null) {
+            adapter.getFavoriteMap().removeOnMapChangedCallback(onFavoriteChangedCallback);
+        }
         binding = null;
+        adapter = null;
+        filteredArray = null;
     }
 
 
     private FirebaseRecyclerOptions<Program> getAdapterOptions() {
+        SnapshotParser<Program> programSnapshotParser = new KeyedSnapshotParser<>(Program.class);
+        ObservableSnapshotArray<Program> backingArray = new FirebaseArray<>(getProgramReference(), programSnapshotParser);
+        filteredArray = new FilterableSnapshotArray<>(backingArray, programSnapshotParser);
         return new FirebaseRecyclerOptions.Builder<Program>()
-                .setQuery(getProgramReference(), new KeyedSnapshotParser<>(Program.class))
+                .setSnapshotArray(filteredArray)
                 .setLifecycleOwner(this)
                 .build();
     }
@@ -109,4 +146,39 @@ public class ProgramDayFragment extends Fragment {
         format.setTimeZone(day.getTimeZone());
         return format.format(day.getTime());
     }
+
+    private String getFavoritesKey() {
+        return PREFERENCE_FAVORITES + "_" + getDayString();
+    }
+
+    private Set<String> favorites = null;
+    private Set<String> getFavorites() {
+        if (favorites == null) {
+            favorites = PreferenceManager.getDefaultSharedPreferences(getContext()).getStringSet(getFavoritesKey(), Collections.emptySet());
+        }
+        return favorites;
+    }
+
+    private ObservableMap.OnMapChangedCallback<ObservableMap<String, Boolean>, String, Boolean> onFavoriteChangedCallback = new ObservableMap.OnMapChangedCallback<ObservableMap<String, Boolean>, String, Boolean>() {
+        @Override
+        public void onMapChanged(ObservableMap<String, Boolean> sender, String key) {
+            favorites = extractFavorites(sender);
+            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putStringSet(getFavoritesKey(), favorites).apply();
+        }
+
+        private Set<String> extractFavorites(Map<String, Boolean> map) {
+            Set<String> favoriteKeys = new HashSet<>();
+            for (Map.Entry<String, Boolean> favorites : map.entrySet()) {
+                if (favorites.getValue()) {
+                    String key = favorites.getKey();
+                    favoriteKeys.add(key);
+                }
+            }
+            return favoriteKeys;
+        }
+    };
+
+    private FilterableSnapshotArray.Predicate<Program> showFavoritesPredicate = program -> getFavorites().contains(program.getKey());
+
+    private Observer<Boolean> showFavoritesObserver = showFavorites -> filteredArray.setPredicate(showFavorites ? showFavoritesPredicate : null);
 }

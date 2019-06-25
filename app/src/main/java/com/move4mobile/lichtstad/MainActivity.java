@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setLifecycleOwner(this);
 
         NavigationHandler navigationHandler = new NavigationHandler(this);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(navigationHandler);
