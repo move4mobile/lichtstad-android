@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Rect;
+import android.text.Html;
 import android.util.Log;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.move4mobile.lichtstad.model.Size;
 import com.squareup.picasso.Picasso;
 
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,7 +58,10 @@ public class BindingAdapters {
 
     @BindingAdapter("content")
     public static void setContent(WebView webView, String content) {
-        webView.loadData(content, "text/html; charset=UTF-8", null);
+        // Applications targeting Build.VERSION_CODES.Q or later must either use base64 or encode any # characters in the content as %23
+        // https://developer.android.com/reference/android/webkit/WebView.html#loadData(java.lang.String,%20java.lang.String,%20java.lang.String)
+        String escapedContent = content == null ? null : content.replace("#", "%23");
+        webView.loadData(escapedContent, "text/html; charset=UTF-8", null);
     }
 
     @BindingAdapter("layout_minimumClickSize")

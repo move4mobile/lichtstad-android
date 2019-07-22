@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/action_program"
+        android:title="@string/menu_program"
+        android:icon="@drawable/ic_program"/>
+
+    <item
+        android:id="@+id/action_map"
+        android:title="@string/menu_map"
+        android:icon="@drawable/ic_map"/>
+
+    <item
+        android:id="@+id/action_videos"
+        android:title="@string/menu_videos"
+        android:icon="@drawable/ic_videos"/>
+
+    <item
+        android:id="@+id/action_info"
+        android:title="@string/menu_info"
+        android:icon="@drawable/ic_info"/>
+
+</menu>

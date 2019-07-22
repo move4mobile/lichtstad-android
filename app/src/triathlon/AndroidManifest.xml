@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <application tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
-        android:networkSecurityConfig="@xml/network_security_config">
+    <application tools:ignore="GoogleAppIndexingWarning">
 
         <provider
             android:name="com.move4mobile.lichtstad.initprovider.DatabaseReferencesInitProvider"
