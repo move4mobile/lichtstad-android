@@ -4,15 +4,15 @@
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
 
     <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
-        <item>2018-08-24</item>
-        <item>2018-08-25</item>
-        <item>2018-08-26</item>
-        <item>2018-08-27</item>
-        <item>2018-08-28</item>
-        <item>2018-08-29</item>
-        <item>2018-08-30</item>
-        <item>2018-08-31</item>
-        <item>2018-09-01</item>
+        <item>2019-08-30</item>
+        <item>2019-08-31</item>
+        <item>2019-09-01</item>
+        <item>2019-09-02</item>
+        <item>2019-09-03</item>
+        <item>2019-09-04</item>
+        <item>2019-09-05</item>
+        <item>2019-09-06</item>
+        <item>2019-09-07</item>
     </string-array>
 
     <string-array name="result_years">
