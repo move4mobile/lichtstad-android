@@ -59,12 +59,12 @@ public class ResultsFragment extends BaseContentFragment implements YearFragment
     }
 
     @NonNull
-    private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.result_years);
+    private String[] getYears() {
+        return getActivity().getResources().getStringArray(R.array.result_years);
     }
 
     @Override
-    public Fragment supplyFragment(int year) {
+    public Fragment supplyFragment(String year) {
         return ResultYearFragment.newInstance(overviewKey, contentKey, year);
     }
 }

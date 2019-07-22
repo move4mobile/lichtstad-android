@@ -15,23 +15,26 @@
         <item>2018-09-01</item>
     </string-array>
 
-    <integer-array name="result_years">
+    <string-array name="result_years">
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
-    </integer-array>
+        <item>2019</item>
+    </string-array>
 
-    <integer-array name="photo_years">
+    <string-array name="photo_years">
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
-    </integer-array>
+        <item>2019</item>
+    </string-array>
 
-    <integer-array name="video_years">
+    <string-array name="video_years">
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
-    </integer-array>
+        <item>2019</item>
+    </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.5995</item>
     <item name="map_min_lng" type="dimen" format="float">6.660952</item>

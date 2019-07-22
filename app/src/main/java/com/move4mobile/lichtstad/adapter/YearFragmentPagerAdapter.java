@@ -10,10 +10,10 @@ import android.text.style.StyleSpan;
 
 
 public class YearFragmentPagerAdapter extends FragmentStatePagerAdapter {
-    private final int[] years;
+    private final String[] years;
     private final FragmentSupplier fragmentSupplier;
 
-    public YearFragmentPagerAdapter(FragmentManager fm, int[] years, FragmentSupplier fragmentSupplier) {
+    public YearFragmentPagerAdapter(FragmentManager fm, String[] years, FragmentSupplier fragmentSupplier) {
         super(fm);
         this.years = years;
         this.fragmentSupplier = fragmentSupplier;
@@ -37,6 +37,6 @@ public class YearFragmentPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public interface FragmentSupplier {
-        Fragment supplyFragment(int year);
+        Fragment supplyFragment(String year);
     }
 }

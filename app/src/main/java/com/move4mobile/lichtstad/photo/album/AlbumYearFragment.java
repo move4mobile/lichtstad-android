@@ -25,9 +25,9 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
 
     private static final String ARG_YEAR = "year";
 
-    public static AlbumYearFragment newInstance(int year) {
+    public static AlbumYearFragment newInstance(String year) {
         Bundle arguments = new Bundle();
-        arguments.putInt(ARG_YEAR, year);
+        arguments.putString(ARG_YEAR, year);
 
         AlbumYearFragment fragment = new AlbumYearFragment();
         fragment.setArguments(arguments);
@@ -36,7 +36,7 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
 
     private FragmentAlbumsYearBinding binding;
 
-    private int year;
+    private String year;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
             throw new IllegalStateException("No year");
         }
 
-        this.year = getArguments().getInt(ARG_YEAR);
+        this.year = getArguments().getString(ARG_YEAR);
     }
 
     @Nullable
@@ -89,7 +89,7 @@ public class AlbumYearFragment extends Fragment implements AlbumClickListener {
 
     private Query getQuery() {
         return FirebaseReferences.instance().get("album")
-                .child("" + year);
+                .child(year);
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {

@@ -4,14 +4,14 @@
         <item>2018-09-23</item>
     </string-array>
 
-    <integer-array name="result_years">
+    <string-array name="result_years">
         <item>2018</item>
-    </integer-array>
+    </string-array>
 
-    <integer-array name="photo_years">
+    <string-array name="photo_years">
         <item>2017</item>
         <item>2018</item>
-    </integer-array>
+    </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.604</item>
     <item name="map_min_lng" type="dimen" format="float">6.6763</item>
