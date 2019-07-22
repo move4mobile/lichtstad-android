@@ -36,12 +36,12 @@ public class VideoFragment extends BaseContentFragment implements YearFragmentPa
     }
 
     @NonNull
-    private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.video_years);
+    private String[] getYears() {
+        return getActivity().getResources().getStringArray(R.array.video_years);
     }
 
     @Override
-    public Fragment supplyFragment(int year) {
+    public Fragment supplyFragment(String year) {
         return VideosYearFragment.newInstance(year);
     }
 }

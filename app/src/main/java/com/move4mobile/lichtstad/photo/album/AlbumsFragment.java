@@ -36,12 +36,12 @@ public class AlbumsFragment extends BaseContentFragment implements YearFragmentP
     }
 
     @NonNull
-    private int[] getYears() {
-        return getActivity().getResources().getIntArray(R.array.photo_years);
+    private String[] getYears() {
+        return getActivity().getResources().getStringArray(R.array.photo_years);
     }
 
     @Override
-    public Fragment supplyFragment(int year) {
+    public Fragment supplyFragment(String year) {
         return AlbumYearFragment.newInstance(year);
     }
 

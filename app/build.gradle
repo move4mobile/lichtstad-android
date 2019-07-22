@@ -20,9 +20,6 @@ android {
         versionName "2019.1"
 
         resConfigs "nl"
-
-        buildConfigField 'java.util.TimeZone', 'EVENT_TIMEZONE', 'java.util.TimeZone.getTimeZone("Europe/Amsterdam")'
-        buildConfigField 'String', 'EVENT_YEAR', '"2018"'
     }
 
     signingConfigs {

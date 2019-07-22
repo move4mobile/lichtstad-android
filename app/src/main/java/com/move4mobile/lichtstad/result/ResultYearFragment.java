@@ -34,9 +34,9 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
     private static final String ARG_OVERVIEW_KEY = "overview";
     private static final String ARG_CONTENT_KEY = "content";
 
-    public static ResultYearFragment newInstance(@NonNull String overviewReferenceKey, @NonNull String contentReferenceKey, int year) {
+    public static ResultYearFragment newInstance(@NonNull String overviewReferenceKey, @NonNull String contentReferenceKey, String year) {
         Bundle arguments = new Bundle();
-        arguments.putInt(ARG_YEAR, year);
+        arguments.putString(ARG_YEAR, year);
         arguments.putString(ARG_OVERVIEW_KEY, overviewReferenceKey);
         arguments.putString(ARG_CONTENT_KEY, contentReferenceKey);
 
@@ -47,7 +47,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
     private FragmentResultsYearBinding binding;
 
-    private int year;
+    private String year;
     private String overviewKey;
     private String contentKey;
 
@@ -58,7 +58,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
         if (!getArguments().containsKey(ARG_YEAR)) {
             throw new IllegalStateException("No year");
         }
-        this.year = getArguments().getInt(ARG_YEAR);
+        year = getArguments().getString(ARG_YEAR);
         overviewKey = getArguments().getString(ARG_OVERVIEW_KEY);
         contentKey = getArguments().getString(ARG_CONTENT_KEY);
     }
@@ -111,7 +111,7 @@ public class ResultYearFragment extends Fragment implements ResultClickListener 
 
     private Query getQuery() {
         return FirebaseReferences.instance().get(overviewKey)
-                .child("" + year);
+                .child(year);
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {

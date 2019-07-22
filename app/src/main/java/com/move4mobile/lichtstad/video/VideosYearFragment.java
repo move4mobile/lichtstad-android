@@ -26,9 +26,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     private static final String ARG_YEAR = "year";
-    public static VideosYearFragment newInstance(int year) {
+    public static VideosYearFragment newInstance(String year) {
         Bundle arguments = new Bundle();
-        arguments.putInt(ARG_YEAR, year);
+        arguments.putString(ARG_YEAR, year);
 
         VideosYearFragment fragment = new VideosYearFragment();
         fragment.setArguments(arguments);
@@ -37,7 +37,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     private FragmentVideosYearBinding binding;
 
-    private int year;
+    private String year;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
             throw new IllegalStateException("No year");
         }
 
-        this.year = getArguments().getInt(ARG_YEAR);
+        year = getArguments().getString(ARG_YEAR);
     }
 
     @Nullable
@@ -85,7 +85,7 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
 
     private Query getQuery() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, 0, 1, 0, 0, 0);
+        calendar.set(Integer.parseInt(year), 0, 1, 0, 0, 0);
 
         long startOfYear = calendar.getTimeInMillis();
 

@@ -4,20 +4,20 @@
         <item>2019-07-06</item>
     </string-array>
 
-    <integer-array name="result_years">
+    <string-array name="result_years">
         <item>2019</item>
-    </integer-array>
+    </string-array>
 
-    <integer-array name="photo_years">
+    <string-array name="photo_years">
         <item>2017</item>
         <item>2018</item>
         <item>2019</item>
-    </integer-array>
+    </string-array>
 
-    <integer-array name="video_years">
+    <string-array name="video_years">
         <item>2017</item>
         <item>2018</item>
-    </integer-array>
+    </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.575347</item>
     <item name="map_min_lng" type="dimen" format="float">6.573500</item>

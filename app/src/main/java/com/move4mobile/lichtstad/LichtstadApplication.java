@@ -7,6 +7,7 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.move4mobile.context.ContextFixer;
+import com.move4mobile.lichtstad.util.ConfigUtil;
 
 import java.util.TimeZone;
 
@@ -30,6 +31,6 @@ public class LichtstadApplication extends Application {
 
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
-        TimeZone.setDefault(BuildConfig.EVENT_TIMEZONE);
+        TimeZone.setDefault(ConfigUtil.getEventTimeZone(this));
     }
 }

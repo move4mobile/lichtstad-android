@@ -16,7 +16,7 @@ public class DatabaseReferencesInitProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        LichtstadFirebaseReferences references = new LichtstadFirebaseReferences();
+        LichtstadFirebaseReferences references = new LichtstadFirebaseReferences(getContext());
         for (DatabaseReference databaseReference : references.allSyncedReferences()) {
             databaseReference.keepSynced(true);
         }
