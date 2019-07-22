@@ -3,7 +3,6 @@ package com.move4mobile.lichtstad.program;
 import android.annotation.SuppressLint;
 import androidx.databinding.DataBindingUtil;
 
-import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.move4mobile.lichtstad.BaseContentFragment;
-import com.move4mobile.lichtstad.BuildConfig;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.databinding.FragmentProgramBinding;
+import com.move4mobile.lichtstad.util.ConfigUtil;
 import com.move4mobile.lichtstad.viewmodel.ProgramViewModel;
 
 import java.text.DateFormat;
@@ -101,7 +100,7 @@ public class ProgramFragment extends BaseContentFragment {
     }
 
     private Calendar getSelectedDay(List<Calendar> days) {
-        Calendar today = Calendar.getInstance(BuildConfig.EVENT_TIMEZONE);
+        Calendar today = Calendar.getInstance(ConfigUtil.getEventTimeZone(getContext()));
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <string name="event_year" translatable="false">2019</string>
+    <string name="event_timezone" translatable="false">Europe/Amsterdam</string>
+
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
 
     <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
