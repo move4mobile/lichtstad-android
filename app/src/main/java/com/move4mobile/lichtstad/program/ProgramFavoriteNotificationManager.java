@@ -10,14 +10,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import com.move4mobile.lichtstad.MainActivity;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.util.ParcelableUtil;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -60,25 +63,28 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
     }
 
     private long getAlarmTriggerMillis(Program program) {
-        return program.getTime() - ALARM_TRIGGER_ADVANCE;
+        return System.currentTimeMillis() + 5000;
+        //return program.getTime() - ALARM_TRIGGER_ADVANCE;
     }
 
     private PendingIntent getNotificationPendingIntent(Program program) {
         Intent intent = new Intent(context, ProgramFavoriteNotificationBroadcastReceiver.class);
-        intent.putExtra(EXTRA_PROGRAM, program);
-        return PendingIntent.getBroadcast(context, (int)(program.getTime() / 1000L), intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT);
+        //PLEASE GOOGLE WHY DO I NEED TO WRITE A BYTE ARRAY
+        //https://stackoverflow.com/a/41429570
+        intent.putExtra(EXTRA_PROGRAM, ParcelableUtil.marshall(program));
+        return PendingIntent.getBroadcast(context, (int)(program.getTime() / 1000L), intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT | Intent.FILL_IN_DATA);
     }
 
     public static class ProgramFavoriteNotificationBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Program program = intent.getParcelableExtra(EXTRA_PROGRAM);
+            Program program = ParcelableUtil.unmarshall(intent.getByteArrayExtra(EXTRA_PROGRAM), Program.CREATOR);
             publishProgramNotification(context, program);
         }
 
         private void publishProgramNotification(Context context, Program program) {
-            if (program.getTimeAsDate().after(new Date())) {
+            if (program.getTimeAsDate().before(new Date())) {
                 Log.w(TAG, "Ignoring late notification broadcast");
                 return;
             }
@@ -96,7 +102,8 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
                     .setContentText(getContentText(context, program))
                     .setAutoCancel(true)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_foreground));
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_foreground))
+                    .setContentIntent(PendingIntent.getActivity(context, program.getKey().hashCode(), new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
             return builder.build();
         }
 
