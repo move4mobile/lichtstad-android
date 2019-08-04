@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.Log;
@@ -16,20 +17,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.MainActivity;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.model.Program;
-import com.move4mobile.lichtstad.program.FavoriteChangedListener;
-import com.move4mobile.lichtstad.util.ParcelableUtil;
+import com.move4mobile.lichtstad.program.favorite.FavoriteManager;
+import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 
 import java.text.DateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
-public class ProgramFavoriteNotificationManager implements FavoriteChangedListener {
+public class ProgramFavoriteNotificationManager implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = ProgramFavoriteNotificationManager.class.getSimpleName();
 
-    private static final String EXTRA_PROGRAM = "program";
+    private static final String EXTRA_PROGRAM_DATEKEY = "program";
     private static final long ALARM_TRIGGER_ADVANCE = 15 * 60 * 1000L;
     private static final String CHANNEL_ID = "program_notifications";
 
@@ -37,57 +44,105 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
 
     /* package */ ProgramFavoriteNotificationManager(@NonNull Context context) {
         this.context = context;
+        FavoriteManager.registerFavoriteChangeListener(context, this);
     }
 
     /* package */ void reregisterNotifications() {
-
-    }
-
-    @Override
-    public void onFavoriteChanged(Program program, boolean isFavorite) {
-        if (isFavorite) {
-            addScheduledNotification(program);
-        } else {
-            removeScheduledNotification(program);
+        for (Map.Entry<String, Collection<String>> dayFavorites : FavoriteManager.getAllFavorites(context).entrySet()) {
+            for (String key : dayFavorites.getValue()) {
+                addScheduledNotification(FavoriteManager.getPreferenceKey(dayFavorites.getKey(), key), true);
+            }
         }
     }
 
-    private void removeScheduledNotification(Program program) {
+    private void removeScheduledNotification(String dateAndKey) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(getNotificationPendingIntent(program));
+        alarmManager.cancel(getNotificationPendingIntent(dateAndKey));
     }
 
-    private void addScheduledNotification(Program program) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(program));
-        } else {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(program));
-        }
+    private void addScheduledNotification(String dateAndKey, boolean reschedule) {
+        getProgram(context, dateAndKey, program -> {
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            if (alarmManager == null || !shouldSchedule(program, reschedule) || !FavoriteManager.isFavorite(context, dateAndKey)) return;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
+            } else {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
+            }
+        });
     }
 
     private long getAlarmTriggerMillis(Program program) {
         return program.getTime() - ALARM_TRIGGER_ADVANCE;
     }
 
-    private PendingIntent getNotificationPendingIntent(Program program) {
+    private boolean shouldSchedule(Program program, boolean reschedule) {
+        // Rescheduled notifications can be scheduled until the program starts
+        // User scheduled notifications can only be scheduled if it's still before the alarm schedule time
+        if (reschedule) {
+            return new Date().before(program.getTimeAsDate());
+        }
+
+        return new Date().before(new Date(getAlarmTriggerMillis(program)));
+    }
+
+    private PendingIntent getNotificationPendingIntent(String dateAndKey) {
         Intent intent = new Intent(context, ProgramFavoriteNotificationBroadcastReceiver.class);
-        //PLEASE GOOGLE WHY DO I NEED TO WRITE A BYTE ARRAY
-        //https://stackoverflow.com/a/41429570
-        intent.putExtra(EXTRA_PROGRAM, ParcelableUtil.marshall(program));
-        return PendingIntent.getBroadcast(context, (int)(program.getTime() / 1000L), intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT | Intent.FILL_IN_DATA);
+        intent.putExtra(EXTRA_PROGRAM_DATEKEY, dateAndKey);
+        return PendingIntent.getBroadcast(context, dateAndKey.hashCode(), intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT | Intent.FILL_IN_DATA);
+    }
+
+    private static void getProgram(Context context, String dateAndKey, ProgramUser programUser) {
+        FirebaseReferences.instance().get("program").child(dateAndKey)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            Log.w(TAG, dateAndKey + " seems to have been deleted");
+                            return;
+                        }
+
+                        Program program = new KeyedSnapshotParser<>(Program.class).parseSnapshot(dataSnapshot);
+                        programUser.use(program);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.w(TAG, "Error while trying to get program for " + dateAndKey + ": " + databaseError);
+                    }
+                });
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String preferenceKey) {
+        if (sharedPreferences.getBoolean(preferenceKey, false)) {
+            addScheduledNotification(preferenceKey, false);
+        } else {
+            removeScheduledNotification(preferenceKey);
+        }
+    }
+
+    private interface ProgramUser {
+
+        void use(Program program);
+
     }
 
     public static class ProgramFavoriteNotificationBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Program program = ParcelableUtil.unmarshall(intent.getByteArrayExtra(EXTRA_PROGRAM), Program.CREATOR);
-            publishProgramNotification(context, program);
+            String dateAndKey = intent.getStringExtra(EXTRA_PROGRAM_DATEKEY);
+            getProgram(context, dateAndKey, program -> {
+                // The user could have deselected the favorite while we were loading it
+                if (FavoriteManager.isFavorite(context, dateAndKey)) {
+                    publishProgramNotification(context, program);
+                }
+            });
         }
 
         private void publishProgramNotification(Context context, Program program) {
-            if (program.getTimeAsDate().before(new Date())) {
+            if (program == null || program.getTimeAsDate().before(new Date())) {
                 Log.w(TAG, "Ignoring late notification broadcast");
                 return;
             }

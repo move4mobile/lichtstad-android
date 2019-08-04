@@ -48,7 +48,7 @@
             android:authorities="${applicationId}.ProgramFavoriteNotificationManagerInitProvider"
             android:name=".program.favoritenotificationmanager.ProgramFavoriteNotificationManagerInitProvider"
             android:exported="false"
-            android:initOrder="100" />
+            android:initOrder="0" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

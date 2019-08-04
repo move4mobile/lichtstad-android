@@ -17,6 +17,7 @@ import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.datasource.FilterableSnapshotArray;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.program.favorite.FavoriteManager;
 import com.move4mobile.lichtstad.program.favoritenotificationmanager.ProgramFavoriteNotificationManager;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
 import com.move4mobile.lichtstad.util.ApplicationContext;
@@ -25,6 +26,7 @@ import com.move4mobile.lichtstad.viewmodel.ProgramViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
@@ -82,7 +84,6 @@ public class ProgramDayFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         adapter = new ProgramDayAdapter(getAdapterOptions());
-        adapter.setFavoriteChangedListener(ApplicationContext.getApplication(getContext()).getApplicationService(ProgramFavoriteNotificationManager.class));
         // Mark the favorites
         // Note that we do not display changes to the favorites immediately,
         // so users can remove favorites and undo their change while still only showing favorites
@@ -149,34 +150,19 @@ public class ProgramDayFragment extends Fragment {
         return format.format(day.getTime());
     }
 
-    private String getFavoritesKey() {
-        return ConfigUtil.getFavoritesPreferenceKey(day);
-    }
-
-    private Set<String> favorites = null;
-    private Set<String> getFavorites() {
-        if (favorites == null) {
-            favorites = PreferenceManager.getDefaultSharedPreferences(getContext()).getStringSet(getFavoritesKey(), Collections.emptySet());
-        }
-        return favorites;
+    private Collection<String> getFavorites() {
+        return FavoriteManager.getAllFavoritesOnDate(getContext(), getDayString());
     }
 
     private ObservableMap.OnMapChangedCallback<ObservableMap<String, Boolean>, String, Boolean> onFavoriteChangedCallback = new ObservableMap.OnMapChangedCallback<ObservableMap<String, Boolean>, String, Boolean>() {
         @Override
         public void onMapChanged(ObservableMap<String, Boolean> sender, String key) {
-            favorites = extractFavorites(sender);
-            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putStringSet(getFavoritesKey(), favorites).apply();
-        }
-
-        private Set<String> extractFavorites(Map<String, Boolean> map) {
-            Set<String> favoriteKeys = new HashSet<>();
-            for (Map.Entry<String, Boolean> favorites : map.entrySet()) {
-                if (favorites.getValue()) {
-                    String key = favorites.getKey();
-                    favoriteKeys.add(key);
-                }
+            boolean isFavorite = sender.get(key) != null && sender.get(key);
+            if (isFavorite) {
+                FavoriteManager.registerFavorite(getContext(), getDayString(), key);
+            } else {
+                FavoriteManager.unregisterFavorite(getContext(), getDayString(), key);
             }
-            return favoriteKeys;
         }
     };
 

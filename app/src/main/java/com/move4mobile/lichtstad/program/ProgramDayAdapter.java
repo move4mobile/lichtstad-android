@@ -19,7 +19,6 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
 
     private ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
     private ObservableMap<String, Boolean> favoriteMap = new ObservableArrayMap<>();
-    private FavoriteChangedListener favoriteChangedListener;
 
     ProgramDayAdapter(FirebaseRecyclerOptions<Program> options) {
         super(options);
@@ -69,17 +68,6 @@ public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramD
         Boolean wasFavorite = favoriteMap.get(program.getKey());
         wasFavorite = wasFavorite == null ? false : wasFavorite;
         favoriteMap.put(program.getKey(), !wasFavorite);
-        if (favoriteChangedListener != null) {
-            favoriteChangedListener.onFavoriteChanged(program, !wasFavorite);
-        }
-    }
-
-    public FavoriteChangedListener getFavoriteChangedListener() {
-        return favoriteChangedListener;
-    }
-
-    public void setFavoriteChangedListener(FavoriteChangedListener favoriteChangedListener) {
-        this.favoriteChangedListener = favoriteChangedListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
