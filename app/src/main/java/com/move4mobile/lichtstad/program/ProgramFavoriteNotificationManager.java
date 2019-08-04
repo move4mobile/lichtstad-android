@@ -63,8 +63,7 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
     }
 
     private long getAlarmTriggerMillis(Program program) {
-        return System.currentTimeMillis() + 5000;
-        //return program.getTime() - ALARM_TRIGGER_ADVANCE;
+        return program.getTime() - ALARM_TRIGGER_ADVANCE;
     }
 
     private PendingIntent getNotificationPendingIntent(Program program) {
@@ -101,8 +100,8 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
                     .setContentTitle(program.getTitle())
                     .setContentText(getContentText(context, program))
                     .setAutoCancel(true)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_foreground))
+                    .setSmallIcon(R.drawable.ic_notification_small)
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_notification_small))
                     .setContentIntent(PendingIntent.getActivity(context, program.getKey().hashCode(), new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
             return builder.build();
         }
