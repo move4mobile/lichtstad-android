@@ -18,6 +18,7 @@ import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.datasource.FilterableSnapshotArray;
 import com.move4mobile.lichtstad.model.Program;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
+import com.move4mobile.lichtstad.util.ConfigUtil;
 import com.move4mobile.lichtstad.viewmodel.ProgramViewModel;
 
 import java.text.SimpleDateFormat;
@@ -27,7 +28,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,7 +41,6 @@ import androidx.lifecycle.ViewModelProviders;
 public class ProgramDayFragment extends Fragment {
 
     private static final String ARG_DAY = "day";
-    private static final String PREFERENCE_FAVORITES = "favorites";
     private FragmentProgramDayBinding binding;
     private ProgramDayAdapter adapter;
     private FilterableSnapshotArray<Program> filteredArray;
@@ -81,8 +80,9 @@ public class ProgramDayFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         adapter = new ProgramDayAdapter(getAdapterOptions());
+        adapter.setFavoriteChangedListener(new ProgramFavoriteNotificationManager(getContext()));
         // Mark the favorites
-        // Note that we do not listen for changes to the favorites,
+        // Note that we do not display changes to the favorites immediately,
         // so users can remove favorites and undo their change while still only showing favorites
         for (String favorite : getFavorites()) {
             adapter.getFavoriteMap().put(favorite, true);
@@ -148,7 +148,7 @@ public class ProgramDayFragment extends Fragment {
     }
 
     private String getFavoritesKey() {
-        return PREFERENCE_FAVORITES + "_" + getDayString();
+        return ConfigUtil.getFavoritesPreferenceKey(day);
     }
 
     private Set<String> favorites = null;
