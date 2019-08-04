@@ -17,7 +17,9 @@ import com.move4mobile.lichtstad.databinding.FragmentProgramDayBinding;
 import com.move4mobile.lichtstad.databinding.ItemCountAdapterDataObserver;
 import com.move4mobile.lichtstad.datasource.FilterableSnapshotArray;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.program.favoritenotificationmanager.ProgramFavoriteNotificationManager;
 import com.move4mobile.lichtstad.snapshotparser.KeyedSnapshotParser;
+import com.move4mobile.lichtstad.util.ApplicationContext;
 import com.move4mobile.lichtstad.util.ConfigUtil;
 import com.move4mobile.lichtstad.viewmodel.ProgramViewModel;
 
@@ -80,7 +82,7 @@ public class ProgramDayFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         adapter = new ProgramDayAdapter(getAdapterOptions());
-        adapter.setFavoriteChangedListener(new ProgramFavoriteNotificationManager(getContext()));
+        adapter.setFavoriteChangedListener(ApplicationContext.getApplication(getContext()).getApplicationService(ProgramFavoriteNotificationManager.class));
         // Mark the favorites
         // Note that we do not display changes to the favorites immediately,
         // so users can remove favorites and undo their change while still only showing favorites

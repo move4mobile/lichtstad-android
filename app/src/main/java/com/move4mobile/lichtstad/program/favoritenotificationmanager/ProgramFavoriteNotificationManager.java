@@ -1,4 +1,4 @@
-package com.move4mobile.lichtstad.program;
+package com.move4mobile.lichtstad.program.favoritenotificationmanager;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -20,6 +19,7 @@ import androidx.core.app.NotificationCompat;
 import com.move4mobile.lichtstad.MainActivity;
 import com.move4mobile.lichtstad.R;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.program.FavoriteChangedListener;
 import com.move4mobile.lichtstad.util.ParcelableUtil;
 
 import java.text.DateFormat;
@@ -35,8 +35,12 @@ public class ProgramFavoriteNotificationManager implements FavoriteChangedListen
 
     private final Context context;
 
-    public ProgramFavoriteNotificationManager(@NonNull Context context) {
+    /* package */ ProgramFavoriteNotificationManager(@NonNull Context context) {
         this.context = context;
+    }
+
+    /* package */ void reregisterNotifications() {
+
     }
 
     @Override

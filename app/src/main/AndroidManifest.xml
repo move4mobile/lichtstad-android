@@ -42,7 +42,13 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/WhiteLabel.Result.Detail" />
 
-        <receiver android:name=".program.ProgramFavoriteNotificationManager$ProgramFavoriteNotificationBroadcastReceiver" android:exported="false" />
+        <receiver android:name=".program.favoritenotificationmanager.ProgramFavoriteNotificationManager$ProgramFavoriteNotificationBroadcastReceiver" android:exported="false" />
+
+        <provider
+            android:authorities="${applicationId}.ProgramFavoriteNotificationManagerInitProvider"
+            android:name=".program.favoritenotificationmanager.ProgramFavoriteNotificationManagerInitProvider"
+            android:exported="false"
+            android:initOrder="100" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

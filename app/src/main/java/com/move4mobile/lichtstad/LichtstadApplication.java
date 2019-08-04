@@ -9,12 +9,16 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.move4mobile.context.ContextFixer;
 import com.move4mobile.lichtstad.util.ConfigUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 import io.fabric.sdk.android.Fabric;
 
 
 public class LichtstadApplication extends Application {
+
+    private final Map<Class<?>, Object> appServices = new HashMap<>();
 
     @Override
     public void onCreate() {
@@ -32,5 +36,14 @@ public class LichtstadApplication extends Application {
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
         TimeZone.setDefault(ConfigUtil.getEventTimeZone(this));
+    }
+
+    public <T> void registerApplicationService(Class<T> clazz, T service) {
+        appServices.put(clazz, service);
+    }
+
+    public <T> T getApplicationService(Class<T> clazz) {
+        //noinspection unchecked
+        return (T) appServices.get(clazz);
     }
 }
