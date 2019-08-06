@@ -42,6 +42,33 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/WhiteLabel.Result.Detail" />
 
+        <receiver android:name=".boot.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <!--For HTC devices-->
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".program.favoritenotificationmanager.ProgramFavoriteNotificationManager$ProgramFavoriteNotificationBroadcastReceiver"
+            android:exported="false" />
+
+        <provider
+            android:authorities="@{applicationId}.DefaultNotificationChannelInitProvider"
+            android:name=".notifications.DefaultNotificationChannelInitProvider"
+            android:exported="false"
+            android:initOrder="10" />
+
+        <provider
+            android:authorities="${applicationId}.ProgramFavoriteNotificationManagerInitProvider"
+            android:name=".program.favoritenotificationmanager.ProgramFavoriteNotificationManagerInitProvider"
+            android:exported="false"
+            android:initOrder="0" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.ShareFileProvider"
@@ -52,12 +79,26 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
+        <service
+            android:name=".remotenotifications.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification_small" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id_default" />
 
         <!-- Fixes a crash in Google Maps on Pie -->
         <!-- https://stackoverflow.com/questions/50782806/android-google-maps-java-lang-noclassdeffounderror-failed-resolution-of-lorg-a -->
