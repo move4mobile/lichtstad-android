@@ -16,6 +16,7 @@ public class ProgramFavoriteNotificationManagerInitProvider extends ContentProvi
         Context context = getContext();
 
         ProgramFavoriteNotificationManager favoriteNotificationManager = new ProgramFavoriteNotificationManager(context);
+        favoriteNotificationManager.createNotificationChannel();
         favoriteNotificationManager.reregisterNotifications();
         ApplicationContext.getApplication(context).registerApplicationService(ProgramFavoriteNotificationManager.class, favoriteNotificationManager);
 

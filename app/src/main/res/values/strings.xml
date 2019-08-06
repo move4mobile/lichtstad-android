@@ -30,8 +30,9 @@
     <string name="no_internet">Welkom bij de vernieuwde Lichtstad app!\nZorg dat je minimaal één keer verbinding hebt met internet om de benodigde gegevens te kunnen downloaden. Het programma en de uitslagen kun je daarna altijd en overal bekijken.\nVoor het bekijken van foto\'s en video\'s heb je wel internet nodig.</string>
     <string name="no_internet_album_detail">Je hebt een internetverbinding nodig om foto\'s te kunnen bekijken.</string>
 
-    <string name="notification_favorite_body">%1$s begint om %2$s</string>
-    <string name="notification_favorite_channel_name">Favoriet begint</string>
+    <string name="notification_channel_name_default">Diversen</string>
+    <string name="notification_channel_name_favorite">Favoriet begint</string>
+    <string name="notification_body_favorite">%1$s begint om %2$s</string>
 
     <!-- By default, Dutch abbreviated months contain a trailing dot, which is hideous -->
     <string-array name="abbreviated_months">

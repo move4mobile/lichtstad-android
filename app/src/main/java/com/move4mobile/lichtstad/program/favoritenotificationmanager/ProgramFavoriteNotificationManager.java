@@ -38,13 +38,19 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
 
     private static final String EXTRA_PROGRAM_DATEKEY = "program";
     private static final long ALARM_TRIGGER_ADVANCE = 15 * 60 * 1000L;
-    private static final String CHANNEL_ID = "program_notifications";
 
     private final Context context;
 
     /* package */ ProgramFavoriteNotificationManager(@NonNull Context context) {
         this.context = context;
         FavoriteManager.registerFavoriteChangeListener(context, this);
+    }
+
+    /* package */ void createNotificationChannel() {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(getChannel(context));
+        }
     }
 
     /* package */ void reregisterNotifications() {
@@ -122,6 +128,15 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private NotificationChannel getChannel(Context context) {
+        return new NotificationChannel(
+                context.getString(R.string.notification_channel_id_program),
+                context.getString(R.string.notification_channel_name_favorite),
+                NotificationManager.IMPORTANCE_DEFAULT
+        );
+    }
+
     private interface ProgramUser {
 
         void use(Program program);
@@ -148,14 +163,11 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
             }
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notificationManager.createNotificationChannel(getChannel(context));
-            }
             notificationManager.notify(program.getKey().hashCode(), getNotification(context, program));
         }
 
         private Notification getNotification(Context context, Program program) {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.notification_channel_id_program))
                     .setContentTitle(program.getTitle())
                     .setContentText(getContentText(context, program))
                     .setAutoCancel(true)
@@ -166,12 +178,7 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
         }
 
         private String getContentText(Context context, Program program) {
-            return context.getString(R.string.notification_favorite_body, program.getTitle(), DateFormat.getTimeInstance(DateFormat.SHORT).format(program.getTimeAsDate()));
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        private NotificationChannel getChannel(Context context) {
-            return new NotificationChannel(CHANNEL_ID, context.getString(R.string.notification_favorite_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+            return context.getString(R.string.notification_body_favorite, program.getTitle(), DateFormat.getTimeInstance(DateFormat.SHORT).format(program.getTimeAsDate()));
         }
     }
 
