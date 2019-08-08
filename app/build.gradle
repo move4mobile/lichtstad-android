@@ -2,6 +2,7 @@ plugins {
     id('com.android.application')
     id('com.github.triplet.play') version '2.2.0'
     id('io.fabric')
+    id('com.google.firebase.firebase-perf')
 }
 
 ext.firebaseUIVersion = "5.0.0"
