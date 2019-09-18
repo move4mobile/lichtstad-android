@@ -58,7 +58,7 @@
             android:exported="false" />
 
         <provider
-            android:authorities="@{applicationId}.DefaultNotificationChannelInitProvider"
+            android:authorities="${applicationId}.DefaultNotificationChannelInitProvider"
             android:name=".notifications.DefaultNotificationChannelInitProvider"
             android:exported="false"
             android:initOrder="10" />
