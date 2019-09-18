@@ -88,13 +88,7 @@
         </service>
 
         <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="google_analytics_adid_collection_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="google_analytics_ssaid_collection_enabled"
+            android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
