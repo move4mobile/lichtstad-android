@@ -16,7 +16,7 @@ public class DatabaseReferencesInitProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        DMRFirebaseReferences references = new DMRFirebaseReferences();
+        DMRFirebaseReferences references = new DMRFirebaseReferences(getContext());
         for (DatabaseReference databaseReference : references.allReferences()) {
             databaseReference.keepSynced(true);
         }
