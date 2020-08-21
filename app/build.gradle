@@ -4,8 +4,8 @@ plugins {
     id('io.fabric')
 }
 
-ext.firebaseUIVersion = "5.0.0"
-ext.lifecycleVersion = "2.0.0"
+ext.firebaseUIVersion = "6.3.0"
+ext.lifecycleVersion = "2.2.0"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
@@ -84,25 +84,25 @@ play {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
-    implementation 'androidx.arch.core:core-runtime:2.0.1'
-    implementation 'androidx.arch.core:core-common:2.0.1'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation "com.google.android.gms:play-services-maps:16.1.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-rc1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'androidx.arch.core:core-runtime:2.1.0'
+    implementation 'androidx.arch.core:core-common:2.1.0'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation 'com.google.firebase:firebase-core:17.0.1'
-    implementation 'com.google.firebase:firebase-database:18.0.1'
-    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     implementation 'com.squareup.moshi:moshi:1.6.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }
 }
