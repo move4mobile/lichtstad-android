@@ -35,7 +35,7 @@
                     app:tabMaxWidth="200dp"
                     app:tabMode="?attr/tabMode"
                     app:tabPaddingEnd="?attr/tabPaddingEnd"
-                    app:tabPaddingStart="?attr/tabPaddingEnd"
+                    app:tabPaddingStart="?attr/tabPaddingStart"
                     app:tabTextAppearance="@style/Toolbar.TabTextAppearance" />
 
             </com.google.android.material.appbar.AppBarLayout>
