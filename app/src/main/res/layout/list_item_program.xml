@@ -97,7 +97,7 @@
                         android:layout_alignBottom="@+id/location"
                         android:contentDescription="@string/icon_location_description"
                         android:src="@drawable/ic_location"
-                        android:tint="?android:textColorSecondary" />
+                        app:tint="?android:textColorSecondary" />
 
                     <TextView
                         android:id="@+id/location"
