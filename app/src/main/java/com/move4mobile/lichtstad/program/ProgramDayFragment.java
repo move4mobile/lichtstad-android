@@ -40,6 +40,7 @@ import androidx.databinding.ObservableMap;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 public class ProgramDayFragment extends Fragment {
@@ -96,8 +97,8 @@ public class ProgramDayFragment extends Fragment {
         ItemCountAdapterDataObserver adapterDataObserver = new ItemCountAdapterDataObserver(adapter);
         binding.setItemCount(adapterDataObserver);
 
-        ProgramViewModel viewModel = ViewModelProviders.of(getParentFragment()).get(ProgramViewModel.class);
-        viewModel.showFavorites.observe(this, showFavoritesObserver);
+        ProgramViewModel viewModel = new ViewModelProvider(getParentFragment()).get(ProgramViewModel.class);
+        viewModel.showFavorites.observe(getViewLifecycleOwner(), showFavoritesObserver);
         binding.setViewModel(viewModel);
 
         return binding.getRoot();
