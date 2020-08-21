@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.ColorRes;
+import androidx.appcompat.content.res.AppCompatResources;
 
 /**
  * Allows tinting of the buttons of a BottomNavigationView.
@@ -61,7 +62,7 @@ public class BottomNavigationViewTinter {
         ColorStateList[] colorStateLists = new ColorStateList[colorIds.length];
         for (int i = 0; i < colorIds.length; i++) {
             int id = colorIds[i];
-            colorStateLists[i] = context.getResources().getColorStateList(id);
+            colorStateLists[i] = AppCompatResources.getColorStateList(context, id);
         }
         tintBottomNavigationButtons(navigationView, colorStateLists);
     }
