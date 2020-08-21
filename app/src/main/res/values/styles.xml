@@ -109,7 +109,7 @@
     <style name="AppTheme.Web" parent="AppTheme.Default">
         <item name="colorPrimary">@color/colorPrimaryHome</item>
         <item name="colorPrimaryDark">@color/colorPrimaryHomeDark</item>
-        <item name="colorAccent">@color/colorAccentMap</item>
+        <item name="colorAccent">@color/colorAccentHome</item>
         <item name="componentTitle">@string/menu_map</item>
         <item name="componentImage">@drawable/ic_home_large</item>
     </style>
