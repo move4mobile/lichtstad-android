@@ -43,6 +43,10 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding true
+    }
+
     flavorDimensions "app"
     productFlavors {
         lichtstad {
@@ -58,10 +62,6 @@ android {
             applicationId "nl.triathlonhardenberg.app"
             buildConfigField 'String', 'EVENT_YEAR', '"2019"'
         }
-    }
-
-    dataBinding {
-        enabled true
     }
 
     lintOptions {
