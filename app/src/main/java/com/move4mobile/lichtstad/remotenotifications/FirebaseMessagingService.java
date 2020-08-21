@@ -8,6 +8,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
@@ -25,6 +26,12 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(remoteMessage.getMessageId().hashCode(), getLocalNotification(remoteMessage.getNotification()));
+    }
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        Log.d(TAG, "Firebase token: " + token);
     }
 
     private Notification getLocalNotification(RemoteMessage.Notification notification) {

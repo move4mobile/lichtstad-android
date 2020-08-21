@@ -40,17 +40,6 @@ public class LichtstadApplication extends Application {
         ContextFixer.startFixing(this, R.string.default_locale_language);
 
         TimeZone.setDefault(ConfigUtil.getEventTimeZone(this));
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "getInstanceId failed", task.getException());
-                        return;
-                    }
-
-                    String token = task.getResult().getToken();
-                    Log.d(TAG, "Firebase token: " + token);
-                });
     }
 
     public <T> void registerApplicationService(Class<T> clazz, T service) {
