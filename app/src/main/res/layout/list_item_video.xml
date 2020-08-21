@@ -35,7 +35,6 @@
                 android:contentDescription="@{video.title}"
                 android:scaleType="centerCrop"
                 android:src="@{video.thumbnails[`high`]}"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="h,17:9"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"

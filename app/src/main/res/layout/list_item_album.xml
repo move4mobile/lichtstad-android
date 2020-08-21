@@ -35,7 +35,6 @@
                 android:contentDescription="@{album.title}"
                 android:scaleType="centerCrop"
                 android:src="@{album.thumbnailUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="@{album.thumbnailSize}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
