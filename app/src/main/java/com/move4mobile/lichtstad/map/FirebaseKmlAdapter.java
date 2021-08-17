@@ -7,8 +7,8 @@ import androidx.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,7 +69,7 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
                 layer = new KmlLayer(map, stream, context);
                 layer.addLayerToMap();
             } catch (XmlPullParserException | IOException e) {
-                Crashlytics.logException(e);
+                FirebaseCrashlytics.getInstance().recordException(e);
             }
         }
     }

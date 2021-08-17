@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="lichtstad-android/app" />
-      <module fileurl="file://$PROJECT_DIR$/lichtstad-android.iml" filepath="$PROJECT_DIR$/lichtstad-android.iml" group="lichtstad-android" />
+      <module fileurl="file://$PROJECT_DIR$/lichtstad-android.iml" filepath="$PROJECT_DIR$/lichtstad-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/lichtstad-android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/lichtstad-android.app.iml" />
     </modules>
   </component>
 </project>

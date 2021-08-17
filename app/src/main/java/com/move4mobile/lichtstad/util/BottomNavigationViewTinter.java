@@ -6,6 +6,8 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -78,18 +80,18 @@ public class BottomNavigationViewTinter {
      */
     public static void tintBottomNavigationButtons(BottomNavigationView navigationView, ColorStateList... tintLists) {
         try {
-            Field menuViewField = BottomNavigationView.class.getDeclaredField("menuView");
+            Field menuViewField = NavigationBarView.class.getDeclaredField("menuView");
             menuViewField.setAccessible(true);
             Object menuView = menuViewField.get(navigationView);
             if (!menuView.getClass().getSimpleName().equals("BottomNavigationMenuView")) {
                 Log.e(TAG, "Menu view found, but not of correct class");
                 return;
             }
-            Field buttonsField = menuView.getClass().getDeclaredField("buttons");
+            Field buttonsField = menuView.getClass().getSuperclass().getDeclaredField("buttons");
             buttonsField.setAccessible(true);
             Object foundButtons = buttonsField.get(menuView);
             Class<?> buttonType = foundButtons.getClass().getComponentType();
-            if (!foundButtons.getClass().isArray() || !buttonType.getSimpleName().equals("BottomNavigationItemView")) {
+            if (!foundButtons.getClass().isArray() || !buttonType.getSimpleName().equals("NavigationBarItemView")) {
                 Log.e(TAG, "Buttons found, but not of correct class");
                 return;
             }
@@ -108,7 +110,9 @@ public class BottomNavigationViewTinter {
                 textTinter.invoke(button, tintLists[i]);
             }
         } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            FirebaseCrashlytics.getInstance().recordException(e);
+            Log.e(TAG, "Failed to tint bottom menu: " + e);
         }
 
     }

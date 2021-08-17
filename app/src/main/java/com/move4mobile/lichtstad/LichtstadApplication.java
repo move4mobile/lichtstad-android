@@ -4,18 +4,16 @@ import android.app.Application;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.google.firebase.crashlytics.internal.common.CrashlyticsCore;
 import com.move4mobile.context.ContextFixer;
 import com.move4mobile.lichtstad.util.ConfigUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-
-import io.fabric.sdk.android.Fabric;
 
 
 public class LichtstadApplication extends Application {
@@ -27,10 +25,7 @@ public class LichtstadApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Crashlytics crashlyticsKit = new Crashlytics.Builder()
-                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-                .build();
-        Fabric.with(this, crashlyticsKit);
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
 
         String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
         if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
