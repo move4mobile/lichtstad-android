@@ -1,21 +1,22 @@
 package com.move4mobile.lichtstad.program;
 
-import androidx.annotation.NonNull;
-import androidx.databinding.ObservableArrayMap;
-import androidx.databinding.ObservableMap;
-import androidx.recyclerview.widget.RecyclerView;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableArrayMap;
+import androidx.databinding.ObservableMap;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemProgramBinding;
 import com.move4mobile.lichtstad.model.Program;
+import com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter;
 
 
-public class ProgramDayAdapter extends FirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
+public class ProgramDayAdapter extends HackedFirebaseRecyclerAdapter<Program, ProgramDayAdapter.ViewHolder> implements ProgramPresenter {
 
     private ObservableMap<String, Boolean> expandedMap = new ObservableArrayMap<>();
     private ObservableMap<String, Boolean> favoriteMap = new ObservableArrayMap<>();

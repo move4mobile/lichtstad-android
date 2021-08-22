@@ -13,5 +13,5 @@
 /build
 /captures
 .externalNativeBuild
-keystore.jks
+*.jks
 play-keys.json

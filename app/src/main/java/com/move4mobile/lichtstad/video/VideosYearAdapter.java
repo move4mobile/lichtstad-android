@@ -1,16 +1,17 @@
 package com.move4mobile.lichtstad.video;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemVideoBinding;
 import com.move4mobile.lichtstad.model.Video;
+import com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter;
 
-public class VideosYearAdapter extends FirebaseRecyclerAdapter<Video, VideosYearAdapter.ViewHolder> implements VideoPresenter {
+public class VideosYearAdapter extends HackedFirebaseRecyclerAdapter<Video, VideosYearAdapter.ViewHolder> implements VideoPresenter {
 
     public VideosYearAdapter(FirebaseRecyclerOptions<Video> options) {
         super(options);

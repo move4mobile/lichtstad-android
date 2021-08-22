@@ -4,7 +4,7 @@ plugins {
     id('com.google.firebase.crashlytics')
 }
 
-def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
+def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "444") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {

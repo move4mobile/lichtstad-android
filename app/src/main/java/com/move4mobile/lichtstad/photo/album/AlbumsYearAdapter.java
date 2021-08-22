@@ -9,8 +9,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemAlbumBinding;
 import com.move4mobile.lichtstad.model.Album;
+import com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter;
 
-public class AlbumsYearAdapter extends FirebaseRecyclerAdapter<Album, AlbumsYearAdapter.ViewHolder> implements AlbumPresenter {
+public class AlbumsYearAdapter extends HackedFirebaseRecyclerAdapter<Album, AlbumsYearAdapter.ViewHolder> implements AlbumPresenter {
 
     private AlbumClickListener albumClickListener;
 

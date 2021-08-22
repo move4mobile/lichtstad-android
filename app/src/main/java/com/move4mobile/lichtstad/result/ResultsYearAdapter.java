@@ -11,7 +11,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
 
-public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
+public class ResultsYearAdapter extends com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
 
     public ResultsYearAdapter(FirebaseRecyclerOptions<Result> options) {
         super(options);
