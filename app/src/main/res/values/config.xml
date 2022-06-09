@@ -4,7 +4,7 @@
     <string name="notification_channel_id_default" translatable="false">DefaultChannel</string>
     <string name="notification_channel_id_program" translatable="false">program_notifications</string>
 
-    <string name="event_year" translatable="false">2020</string>
+    <string name="event_year" translatable="false">2022</string>
     <string name="event_timezone" translatable="false">Europe/Amsterdam</string>
 
     <string name="date_format" translatable="false">yyyy-MM-dd</string>

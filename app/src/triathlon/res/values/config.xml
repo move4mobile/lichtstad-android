@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
-        <item>2019-07-06</item>
+        <item>2022-07-02</item>
     </string-array>
 
     <string-array name="result_years">
-        <item>2019</item>
+        <item>2022</item>
     </string-array>
 
     <string-array name="photo_years">
@@ -17,6 +17,8 @@
     <string-array name="video_years">
         <item>2017</item>
         <item>2018</item>
+        <item>2019</item>
+        <item>2022</item>
     </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.575347</item>

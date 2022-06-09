@@ -1,25 +1,25 @@
 plugins {
     id('com.android.application')
     id('com.github.triplet.play') version '2.2.0'
-    id('io.fabric')
+    id('com.google.firebase.crashlytics')
 }
 
 ext.firebaseUIVersion = "6.3.0"
-ext.lifecycleVersion = "2.2.0"
+ext.lifecycleVersion = "2.4.1"
 
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 32
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 32
         versionCode buildNumber
-        versionName "2020.1"
+        versionName "2022.1"
+        resConfigs 'nl'
 
-        resConfigs "nl"
     }
 
     signingConfigs {
@@ -60,20 +60,20 @@ android {
         triathlon {
             dimension "app"
             applicationId "nl.triathlonhardenberg.app"
-            buildConfigField 'String', 'EVENT_YEAR', '"2019"'
+            buildConfigField 'String', 'EVENT_YEAR', '"2022"'
         }
     }
 
-    lintOptions {
-        lintConfig file("lint.xml")
-        warningsAsErrors true
-        textReport true
-        textOutput "stdout"
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lint {
+        lintConfig file('lint.xml')
+        textOutput file('stdout')
+        textReport true
+        warningsAsErrors true
     }
 }
 
@@ -84,27 +84,26 @@ play {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-rc1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0-alpha02'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
     implementation 'androidx.arch.core:core-runtime:2.1.0'
     implementation 'androidx.arch.core:core-common:2.1.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation "com.google.android.gms:play-services-maps:17.0.0"
-    implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation 'com.google.firebase:firebase-core:17.5.0'
-    implementation 'com.google.firebase:firebase-database:19.3.1'
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation "com.google.android.gms:play-services-maps:18.0.2"
+    implementation 'com.google.maps.android:android-maps-utils:2.2.0'
+    implementation 'com.google.firebase:firebase-core:21.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.5'
+    implementation 'com.google.firebase:firebase-messaging:23.0.5'
     implementation "com.firebaseui:firebase-ui-database:$firebaseUIVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.squareup.moshi:moshi:1.6.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
-    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
-        transitive = true
-    }
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.1"
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
+    implementation 'com.google.firebase:firebase-analytics:21.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
