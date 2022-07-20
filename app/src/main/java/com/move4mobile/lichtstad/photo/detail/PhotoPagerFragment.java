@@ -130,17 +130,7 @@ public class PhotoPagerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        if (binding != null && binding.viewPager.getAdapter() instanceof PhotoPagerAdapter) {
-            int currentIndex = binding.viewPager.getCurrentItem();
-            PhotoPagerAdapter photoPagerAdapter = (PhotoPagerAdapter) binding.viewPager.getAdapter();
-
-            // Sometimes photoPagerAdapter.count == 0 and the app would crash
-            // No idea when it happened, but checking the index should prevent the crash.
-            if (photoPagerAdapter.getCount() > currentIndex) {
-                outState.putParcelable(SAVED_KEY_CURRENT_PHOTO, ((PhotoPagerAdapter) binding.viewPager.getAdapter()).getItem(currentIndex));
-            }
-        }
+        outState.putParcelable(SAVED_KEY_CURRENT_PHOTO, scrollToPhoto);
     }
 
     @Override
