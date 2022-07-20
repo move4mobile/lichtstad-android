@@ -84,7 +84,7 @@ public class BottomNavigationViewTinter {
             menuViewField.setAccessible(true);
             Object menuView = menuViewField.get(navigationView);
             if (!menuView.getClass().getSimpleName().equals("BottomNavigationMenuView")) {
-                Log.e(TAG, "Menu view found, but not of correct class");
+                Log.e(TAG, "Menu view found, but not of correct class: " + menuView.getClass().getName());
                 return;
             }
             Field buttonsField = menuView.getClass().getSuperclass().getDeclaredField("buttons");
@@ -92,7 +92,7 @@ public class BottomNavigationViewTinter {
             Object foundButtons = buttonsField.get(menuView);
             Class<?> buttonType = foundButtons.getClass().getComponentType();
             if (!foundButtons.getClass().isArray() || !buttonType.getSimpleName().equals("NavigationBarItemView")) {
-                Log.e(TAG, "Buttons found, but not of correct class");
+                Log.e(TAG, "Buttons found, but not of correct class: " + buttonType.getName());
                 return;
             }
             Object[] buttons = (Object[]) foundButtons;

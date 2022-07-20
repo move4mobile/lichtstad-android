@@ -34,6 +34,13 @@ android {
         debug {
             ext.enableCrashlytics = false
         }
+        proguardTest {
+            ext.enableCrashlytics = false
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
+        }
         release {
             minifyEnabled true
             signingConfig signingConfigs.release

@@ -40,6 +40,12 @@
 -keepclassmembernames class com.google.android.material.bottomnavigation.** {
     *;
 }
+-keep class com.google.android.material.navigation.NavigationBarItemView {
+    *;
+}
+-keepclassmembernames class com.google.android.material.navigation.NavigationBarItemView {
+    *;
+}
 
 #Moshi
 -dontwarn okio.**
