@@ -2,6 +2,7 @@ package com.move4mobile.lichtstad.photo.detail;
 
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +37,7 @@ public class PhotoPagerFragment extends Fragment {
     private static final String ARG_ALBUM = "ALBUM";
     private static final String ARG_CURRENT_PHOTO = "CURRENT_PHOTO";
     private static final String SAVED_KEY_CURRENT_PHOTO = "CURRENT_PHOTO";
+    private static final String TAG = "PhotoPagerFragment";
 
     public static PhotoPagerFragment newInstance(@NonNull Album album, @Nullable Photo currentPhoto) {
         Bundle arguments = new Bundle();
@@ -48,6 +50,7 @@ public class PhotoPagerFragment extends Fragment {
     }
 
     private FragmentPhotoPagerBinding binding;
+    private PhotoPagerAdapter adapter;
 
     private Album album;
 
@@ -76,26 +79,34 @@ public class PhotoPagerFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
         binding.setLifecycleOwner(this);
 
-        final PhotoPagerAdapter adapter = new PhotoPagerAdapter(getAdapterOptions());
+        adapter = new PhotoPagerAdapter(getAdapterOptions());
         adapter.setOnMatrixChangedListener((matrix, photoView) -> photoView.setAllowParentInterceptOnEdge(photoView.getScale() <= 1));
-        adapter.setOnDataChangedListener(() -> {
-            adapter.setOnDataChangedListener(null);
-            if (scrollToPhoto != null) {
-                for (int i = 0; i < adapter.getSnapshots().size(); i++) {
-                    DataSnapshot snapshot = adapter.getSnapshots().getSnapshot(i);
-                    if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
-                        binding.viewPager.setCurrentItem(i, false);
-                    }
-                }
-            }
-            scrollToPhoto = null;
-        });
         binding.viewPager.setAdapter(adapter);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getActivity().setTitle(album.getTitle());
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!tryScrollToPhoto()) {
+            // Depending on.. things, sometimes photos are not loaded yet.
+            adapter.setOnDataChangedListener(() -> {
+                adapter.setOnDataChangedListener(null);
+                tryScrollToPhoto();
+            });
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // This should happen during onStop, but since the life cycle listeners are called before onStop,
+        // the adapter is already empty by the time we get there.
+        scrollToPhoto = new KeyedSnapshotParser<>(Photo.class).parseSnapshot(adapter.getSnapshots().getSnapshot(binding.viewPager.getCurrentItem()));
     }
 
     @Override
@@ -136,6 +147,21 @@ public class PhotoPagerFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        adapter = null;
+    }
+
+    private boolean tryScrollToPhoto() {
+        if (scrollToPhoto != null) {
+            for (int i = 0; i < adapter.getSnapshots().size(); i++) {
+                DataSnapshot snapshot = adapter.getSnapshots().getSnapshot(i);
+                if (snapshot.getKey().equals(scrollToPhoto.getKey())) {
+                    binding.viewPager.setCurrentItem(i, false);
+                    scrollToPhoto = null;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private FirebaseRecyclerOptions<Photo> getAdapterOptions() {

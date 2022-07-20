@@ -1,6 +1,7 @@
 package com.move4mobile.lichtstad.photo.detail;
 
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,12 @@ public class PhotoPagerAdapter extends FirebaseViewPagerAdapter<Photo> {
             }
         });
         return binding.getRoot();
+    }
+
+    @Override
+    public void stopListening() {
+        notifyDataSetChanged();
+        super.stopListening();
     }
 
     @Override
