@@ -95,7 +95,11 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
     private PendingIntent getNotificationPendingIntent(String dateAndKey) {
         Intent intent = new Intent(context, ProgramFavoriteNotificationBroadcastReceiver.class);
         intent.putExtra(EXTRA_PROGRAM_DATEKEY, dateAndKey);
-        return PendingIntent.getBroadcast(context, dateAndKey.hashCode(), intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT | Intent.FILL_IN_DATA);
+        int flags = PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT | Intent.FILL_IN_DATA;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        return PendingIntent.getBroadcast(context, dateAndKey.hashCode(), intent, flags);
     }
 
     private static void getProgram(Context context, String dateAndKey, ProgramUser programUser) {
@@ -167,13 +171,17 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
         }
 
         private Notification getNotification(Context context, Program program) {
+            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flags |= PendingIntent.FLAG_IMMUTABLE;
+            }
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.notification_channel_id_program))
                     .setContentTitle(program.getTitle())
                     .setContentText(getContentText(context, program))
                     .setAutoCancel(true)
                     .setSmallIcon(R.drawable.ic_notification_small)
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_notification_small))
-                    .setContentIntent(PendingIntent.getActivity(context, program.getKey().hashCode(), new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
+                    .setContentIntent(PendingIntent.getActivity(context, program.getKey().hashCode(), new Intent(context, MainActivity.class), flags));
             return builder.build();
         }
 

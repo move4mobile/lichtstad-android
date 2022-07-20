@@ -35,13 +35,17 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
     private Notification getLocalNotification(RemoteMessage.Notification notification) {
+        int flag = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flag |= PendingIntent.FLAG_IMMUTABLE;
+        }
         return new NotificationCompat.Builder(this, getChannelId(notification))
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getBody())
                 .setAutoCancel(true)
                 // Not setting small icon to notification small icon to reduce complexity a bit
                 .setSmallIcon(R.drawable.ic_notification_small)
-                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), flag))
                 .build();
                 // Not setting large icon for now to reduce complexity by a lot
     }
