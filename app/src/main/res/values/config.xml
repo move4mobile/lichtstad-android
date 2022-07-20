@@ -10,15 +10,15 @@
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
 
     <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
-        <item>2021-08-27</item>
-        <item>2021-08-28</item>
-        <item>2021-08-29</item>
-        <item>2021-08-30</item>
-        <item>2021-08-31</item>
-        <item>2021-09-01</item>
-        <item>2021-09-02</item>
-        <item>2021-09-03</item>
-        <item>2021-09-04</item>
+        <item>2022-08-26</item>
+        <item>2022-08-27</item>
+        <item>2022-08-28</item>
+        <item>2022-08-29</item>
+        <item>2022-08-30</item>
+        <item>2022-08-31</item>
+        <item>2022-09-01</item>
+        <item>2022-09-02</item>
+        <item>2022-09-03</item>
     </string-array>
 
     <string-array name="result_years">
@@ -28,6 +28,7 @@
         <item>2019</item>
         <item>2020</item>
         <item>2021</item>
+        <item>2022</item>
     </string-array>
 
     <string-array name="photo_years">
@@ -37,6 +38,7 @@
         <item>2019</item>
         <item>2020</item>
         <item>2021</item>
+        <item>2022</item>
     </string-array>
 
     <string-array name="video_years">
@@ -46,6 +48,7 @@
         <item>2019</item>
         <item>2020</item>
         <item>2021</item>
+        <item>2022</item>
     </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.5995</item>
