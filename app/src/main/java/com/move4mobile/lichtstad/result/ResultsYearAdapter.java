@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemResultBinding;
 import com.move4mobile.lichtstad.model.Result;
 
-public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
+public class ResultsYearAdapter extends com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter<Result, ResultsYearAdapter.ViewHolder> implements ResultPresenter {
 
     public ResultsYearAdapter(FirebaseRecyclerOptions<Result> options) {
         super(options);
@@ -42,7 +41,7 @@ public class ResultsYearAdapter extends FirebaseRecyclerAdapter<Result, ResultsY
     @Override
     public void onResultClick(View view, Result result) {
         if (resultClickListener != null) {
-            resultClickListener.onResultClick(result, DataBindingUtil.<ListItemResultBinding>findBinding(view));
+            resultClickListener.onResultClick(result, DataBindingUtil.findBinding(view));
         }
     }
 

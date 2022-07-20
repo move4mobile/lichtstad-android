@@ -115,7 +115,7 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
             MarkerDetailFragment fragment = MarkerDetailFragment.newInstance(markerContent);
             fragment.show(getChildFragmentManager(), null);
         } catch (IOException e) {
-            FirebaseCrashlytics.getInstance().log(e.toString());
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
         return true;

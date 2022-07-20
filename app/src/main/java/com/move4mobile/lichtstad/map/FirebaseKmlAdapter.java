@@ -69,7 +69,7 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
                 layer = new KmlLayer(map, stream, context);
                 layer.addLayerToMap();
             } catch (XmlPullParserException | IOException e) {
-                FirebaseCrashlytics.getInstance().log(e.toString());
+                FirebaseCrashlytics.getInstance().recordException(e);
             }
         }
     }

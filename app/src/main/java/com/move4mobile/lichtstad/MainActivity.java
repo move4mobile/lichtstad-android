@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
 
         NavigationHandler navigationHandler = new NavigationHandler(this);
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(navigationHandler);
-        //BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
-        //        this,
-        //        R.array.bottom_navigation_tint_lists
-        //);
+        binding.bottomNavigation.setOnItemSelectedListener(navigationHandler);
+        BottomNavigationViewTinter.tintBottomNavigationButtons(binding.bottomNavigation,
+                this,
+                R.array.bottom_navigation_tint_lists
+        );
 
         if (savedInstanceState == null) {
             navigationHandler.showInitialFragment();

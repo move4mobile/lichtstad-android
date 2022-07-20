@@ -1,17 +1,18 @@
 package com.move4mobile.lichtstad.photo.album;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.move4mobile.lichtstad.databinding.ListItemPhotoBinding;
 import com.move4mobile.lichtstad.model.Photo;
 import com.move4mobile.lichtstad.photo.detail.PhotoPresenter;
+import com.move4mobile.lichtstad.widget.HackedFirebaseRecyclerAdapter;
 
-public class AlbumDetailAdapter extends FirebaseRecyclerAdapter<Photo, AlbumDetailAdapter.ViewHolder> implements PhotoPresenter {
+public class AlbumDetailAdapter extends HackedFirebaseRecyclerAdapter<Photo, AlbumDetailAdapter.ViewHolder> implements PhotoPresenter {
 
     private PhotoClickListener photoClickListener = null;
 
