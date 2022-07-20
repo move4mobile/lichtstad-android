@@ -82,7 +82,7 @@ public class ProgramDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_program_day, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         adapter = new ProgramDayAdapter(getAdapterOptions());
         // Mark the favorites

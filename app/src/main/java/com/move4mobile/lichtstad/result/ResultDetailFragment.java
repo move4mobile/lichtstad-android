@@ -59,7 +59,7 @@ public class ResultDetailFragment extends Fragment implements ValueEventListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_detail, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         binding.setPresenter(this);
         binding.setResult(result);

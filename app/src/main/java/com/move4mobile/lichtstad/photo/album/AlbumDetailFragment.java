@@ -56,7 +56,7 @@ public class AlbumDetailFragment extends Fragment implements PhotoClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_album_detail, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         binding.recyclerView.setLayoutManager(getLayoutManager());
         binding.recyclerView.addItemDecoration(new GridSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.photo_spacing), false));

@@ -44,7 +44,7 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentMapBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_map, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         overlayKeys = getArguments().getStringArray(ARG_OVERLAYS);
 

@@ -34,7 +34,7 @@ public class WebPageFragment extends BaseContentFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentWebPageBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_web_page, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         binding.setContent(new FirebaseQueryStringLiveData(FirebaseReferences.instance().get(getArguments().getString(ARG_REFERENCE_KEY))));
         binding.setDefaultContent(getArguments().getString(ARG_DEFAULT_CONTENT));

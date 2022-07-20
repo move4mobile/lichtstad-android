@@ -77,7 +77,7 @@ public class PhotoPagerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_photo_pager, container, false);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(this.getViewLifecycleOwner());
 
         adapter = new PhotoPagerAdapter(getAdapterOptions());
         adapter.setOnMatrixChangedListener((matrix, photoView) -> photoView.setAllowParentInterceptOnEdge(photoView.getScale() <= 1));
