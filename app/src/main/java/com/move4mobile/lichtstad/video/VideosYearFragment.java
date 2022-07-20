@@ -84,20 +84,9 @@ public class VideosYearFragment extends Fragment implements VideoClickListener {
     }
 
     private Query getQuery() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Integer.parseInt(year), 0, 1, 0, 0, 0);
-
-        long startOfYear = calendar.getTimeInMillis();
-
-        calendar.add(Calendar.YEAR, 1);
-        calendar.add(Calendar.MILLISECOND, -1);
-
-        long endOfYear = calendar.getTimeInMillis();
-
         return FirebaseReferences.instance().get("youtube")
-                .orderByChild("date")
-                .startAt((double)startOfYear, "date")
-                .endAt((double)endOfYear, "date");
+                .child(year)
+                .orderByChild("date");
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {
