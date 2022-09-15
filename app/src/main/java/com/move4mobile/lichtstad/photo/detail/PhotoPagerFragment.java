@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.ObservableSnapshotArray;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
@@ -106,7 +107,11 @@ public class PhotoPagerFragment extends Fragment {
         super.onPause();
         // This should happen during onStop, but since the life cycle listeners are called before onStop,
         // the adapter is already empty by the time we get there.
-        scrollToPhoto = new KeyedSnapshotParser<>(Photo.class).parseSnapshot(adapter.getSnapshots().getSnapshot(binding.viewPager.getCurrentItem()));
+        ObservableSnapshotArray<Photo> snapshots = adapter.getSnapshots();
+        int currentItemIndex = binding.viewPager.getCurrentItem();
+        if (snapshots.size() > currentItemIndex) {
+            scrollToPhoto = new KeyedSnapshotParser<>(Photo.class).parseSnapshot(snapshots.getSnapshot(currentItemIndex));
+        }
     }
 
     @Override
