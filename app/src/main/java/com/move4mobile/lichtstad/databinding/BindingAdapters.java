@@ -40,7 +40,8 @@ public class BindingAdapters {
         if (source != null && source.length() == 0) {
             source = null;
         }
-        Picasso.with(imageView.getContext())
+        new Picasso.Builder(imageView.getContext())
+                .build()
                 .load(source)
                 .into(imageView);
     }

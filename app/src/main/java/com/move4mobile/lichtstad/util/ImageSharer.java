@@ -29,7 +29,7 @@ public class ImageSharer {
     }
 
     public void shareImage(@NonNull final String imageUrl) {
-        Picasso.with(context)
+        new Picasso.Builder(context).build()
                 .load(imageUrl)
                 .into(new Target() {
                     @Override
@@ -51,7 +51,7 @@ public class ImageSharer {
                     }
 
                     @Override
-                    public void onBitmapFailed(Drawable errorDrawable) {}
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {}
 
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) {}

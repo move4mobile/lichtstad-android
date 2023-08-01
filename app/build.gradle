@@ -11,11 +11,11 @@ def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode buildNumber
         versionName "2022.1"
         resConfigs 'nl'
@@ -24,9 +24,9 @@ android {
     signingConfigs {
         release {
             storeFile file("keystore.jks")
-            storePassword System.getenv('KEYSTORE_PASSWORD')
+            storePassword "9NNwkymn27Uurr4t" //System.getenv('KEYSTORE_PASSWORD')
             keyAlias "lichtstad"
-            keyPassword System.getenv('KEYSTORE_PASSWORD')
+            keyPassword "9NNwkymn27Uurr4t" //System.getenv('KEYSTORE_PASSWORD')
         }
     }
 
@@ -70,10 +70,9 @@ android {
         }
     }
 
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     lint {
         lintConfig file('lint.xml')
@@ -81,6 +80,7 @@ android {
         textReport true
         warningsAsErrors true
     }
+    namespace 'com.move4mobile.lichtstad'
 }
 
 play {
@@ -90,28 +90,28 @@ play {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.arch.core:core-runtime:2.1.0'
-    implementation 'androidx.arch.core:core-common:2.1.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.arch.core:core-runtime:2.2.0'
+    implementation 'androidx.arch.core:core-common:2.2.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation "com.google.android.gms:play-services-maps:18.1.0"
-    implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation 'com.google.firebase:firebase-core'
-    implementation 'com.google.firebase:firebase-database'
-    implementation 'com.google.firebase:firebase-messaging'
-    implementation "com.firebaseui:firebase-ui-database:8.0.1"
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.maps.android:android-maps-utils:3.4.0'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
-    implementation 'com.squareup.moshi:moshi:1.6.0'
+    implementation 'com.squareup.moshi:moshi:1.15.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.5.0"
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.1'
 
-    implementation platform('com.google.firebase:firebase-bom:30.3.0')
+    implementation platform('com.google.firebase:firebase-bom:32.2.0')
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
+//    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-messaging'
 }
 
 apply plugin: 'com.google.gms.google-services'
