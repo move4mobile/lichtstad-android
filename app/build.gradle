@@ -10,6 +10,9 @@ ext.lifecycleVersion = "2.4.1"
 def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdkVersion 33
     defaultConfig {
@@ -24,9 +27,9 @@ android {
     signingConfigs {
         release {
             storeFile file("keystore.jks")
-            storePassword "9NNwkymn27Uurr4t" //System.getenv('KEYSTORE_PASSWORD')
+            storePassword System.getenv('KEYSTORE_PASSWORD') ?: localProperties.getProperty('KEYSTORE_PASSWORD')
             keyAlias "lichtstad"
-            keyPassword "9NNwkymn27Uurr4t" //System.getenv('KEYSTORE_PASSWORD')
+            keyPassword System.getenv('KEYSTORE_PASSWORD') ?: localProperties.getProperty('KEYSTORE_PASSWORD')
         }
     }
 
@@ -109,7 +112,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.2.0')
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
-//    implementation 'com.google.firebase:firebase-core'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-messaging'
 }

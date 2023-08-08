@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,8 +21,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.google.maps.android.data.Feature;
-import com.google.maps.android.data.Layer;
 import com.move4mobile.lichtstad.BaseContentFragment;
 import com.move4mobile.lichtstad.FirebaseReferences;
 import com.move4mobile.lichtstad.R;
@@ -29,11 +31,7 @@ import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-
-public class MapFragment extends BaseContentFragment implements OnMapReadyCallback, Layer.OnFeatureClickListener, GoogleMap.OnMarkerClickListener {
+public class MapFragment extends BaseContentFragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private static final String TAG = MapFragment.class.getSimpleName();
     private static final String ARG_OVERLAYS = "overlays";
@@ -80,15 +78,11 @@ public class MapFragment extends BaseContentFragment implements OnMapReadyCallba
         ));
 
         for (String key : overlayKeys) {
-            FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.instance().get(key));
+            FirebaseKmlAdapter adapter = FirebaseKmlAdapter.startObserving(getContext(), this, googleMap, FirebaseReferences.instance().get(key));
+            adapter.setMarkerClickListener(this);
         }
 
-        googleMap.setOnMarkerClickListener(this);
-    }
-
-    @Override
-    public void onFeatureClick(Feature feature) {
-        //TODO: Show popup
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
     }
 
     private LatLngBounds getLatLngBounds() {

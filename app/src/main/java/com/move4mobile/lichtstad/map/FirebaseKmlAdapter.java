@@ -4,15 +4,23 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Marker;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.collections.GroundOverlayManager;
+import com.google.maps.android.collections.MarkerManager;
+import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.kml.KmlLayer;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -28,6 +36,7 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
     private GoogleMap map;
     private KmlLayer layer;
     private DatabaseReference reference;
+    private GoogleMap.OnMarkerClickListener markerClickListener;
 
     private FirebaseKmlAdapter(Context context, LifecycleOwner owner, GoogleMap map, DatabaseReference reference) {
         this.context = context;
@@ -36,8 +45,12 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
         owner.getLifecycle().addObserver(this);
     }
 
-    public static void startObserving(Context context, LifecycleOwner owner, GoogleMap map, DatabaseReference reference) {
-        new FirebaseKmlAdapter(context, owner, map, reference);
+    public static FirebaseKmlAdapter startObserving(Context context, LifecycleOwner owner, GoogleMap map, DatabaseReference reference) {
+        return new FirebaseKmlAdapter(context, owner, map, reference);
+    }
+
+    public void setMarkerClickListener(GoogleMap.OnMarkerClickListener markerClickListener) {
+        this.markerClickListener = markerClickListener;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -63,10 +76,23 @@ public class FirebaseKmlAdapter implements LifecycleObserver, ValueEventListener
 
         String kml = dataSnapshot.getValue(String.class);
 
+        MarkerManager mm = new MarkerManager(map) {
+
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                if (markerClickListener != null) {
+                    return markerClickListener.onMarkerClick(marker);
+                } else {
+                    return super.onMarkerClick(marker);
+                }
+            }
+        };
+
+
         if (kml != null) {
             InputStream stream = new ByteArrayInputStream(kml.getBytes(StandardCharsets.UTF_8));
             try {
-                layer = new KmlLayer(map, stream, context);
+                layer = new KmlLayer(map, stream, context, mm, null, null, null, null);
                 layer.addLayerToMap();
             } catch (XmlPullParserException | IOException e) {
                 FirebaseCrashlytics.getInstance().recordException(e);
