@@ -7,7 +7,7 @@ plugins {
 ext.firebaseUIVersion = "6.3.0"
 ext.lifecycleVersion = "2.4.1"
 
-def buildNumber = (System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
+def buildNumber = 447 //(System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 def localProperties = new Properties()
@@ -20,7 +20,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 33
         versionCode buildNumber
-        versionName "2022.1"
+        versionName "2023.1"
         resConfigs 'nl'
     }
 
