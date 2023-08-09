@@ -2,7 +2,7 @@ package com.move4mobile.lichtstad;
 
 import android.app.Application;
 import android.provider.Settings;
-import com.google.firebase.analytics.FirebaseAnalytics;
+//import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import com.move4mobile.context.ContextFixer;
@@ -25,7 +25,7 @@ public class LichtstadApplication extends Application {
 
         String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
         if (BuildConfig.DEBUG || "true".equals(testLabSetting)) {
-            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
+//            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
         }
 
         ContextFixer.startFixing(this, R.string.default_locale_language);
