@@ -4,21 +4,21 @@
     <string name="notification_channel_id_default" translatable="false">DefaultChannel</string>
     <string name="notification_channel_id_program" translatable="false">program_notifications</string>
 
-    <string name="event_year" translatable="false">2023</string>
+    <string name="event_year" translatable="false">2024</string>
     <string name="event_timezone" translatable="false">Europe/Amsterdam</string>
 
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
 
     <string-array name="lichtstad_days" tools:ignore="TypographyDashes">
-        <item>2023-08-25</item>
-        <item>2023-08-26</item>
-        <item>2023-08-27</item>
-        <item>2023-08-28</item>
-        <item>2023-08-29</item>
-        <item>2023-08-30</item>
-        <item>2023-08-31</item>
-        <item>2023-09-01</item>
-        <item>2023-09-02</item>
+        <item>2024-08-30</item>
+        <item>2024-08-31</item>
+        <item>2024-09-1</item>
+        <item>2024-09-2</item>
+        <item>2024-09-3</item>
+        <item>2024-09-4</item>
+        <item>2024-09-5</item>
+        <item>2024-09-6</item>
+        <item>2024-09-7</item>
     </string-array>
 
     <string-array name="result_years">
@@ -30,6 +30,7 @@
         <item>2021</item>
         <item>2022</item>
         <item>2023</item>
+        <item>2024</item>
     </string-array>
 
     <string-array name="photo_years">
@@ -41,6 +42,7 @@
         <item>2021</item>
         <item>2022</item>
         <item>2023</item>
+        <item>2024</item>
     </string-array>
 
     <string-array name="video_years">
@@ -52,6 +54,7 @@
         <item>2021</item>
         <item>2022</item>
         <item>2023</item>
+        <item>2024</item>
     </string-array>
 
     <item name="map_min_lat" type="dimen" format="float">52.5995</item>
