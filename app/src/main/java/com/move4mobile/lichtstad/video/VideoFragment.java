@@ -27,7 +27,6 @@ public class VideoFragment extends BaseContentFragment implements YearFragmentPa
 
         PagerAdapter adapter = new YearFragmentPagerAdapter(getChildFragmentManager(), getYears(), this);
         binding.component.viewPager.setAdapter(adapter);
-        binding.component.viewPager.setCurrentItem(adapter.getCount() - 1);
 
         binding.component.tabLayout.setupWithViewPager(binding.component.viewPager);
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.component.toolbar.toolbar);

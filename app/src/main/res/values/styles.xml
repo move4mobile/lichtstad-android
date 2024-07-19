@@ -17,9 +17,9 @@
     </style>
 
     <style name="AppTheme.Default">
-        <item name="tabMode">fixed</item>
         <item name="tabPaddingEnd">@dimen/tab_padding</item>
         <item name="tabPaddingStart">@dimen/tab_padding</item>
+        <item name="tabMode">scrollable</item>
     </style>
 
     <style name="AppTheme.Program" parent="AppTheme.Default">

@@ -43,7 +43,6 @@ public class ResultsFragment extends BaseContentFragment implements YearFragment
 
         PagerAdapter adapter = new YearFragmentPagerAdapter(getChildFragmentManager(), getYears(), this);
         binding.component.viewPager.setAdapter(adapter);
-        binding.component.viewPager.setCurrentItem(adapter.getCount() - 1);
 
         Bundle arguments = getArguments();
         if (arguments == null) {
