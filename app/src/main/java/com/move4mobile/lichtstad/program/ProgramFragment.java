@@ -56,8 +56,9 @@ public class ProgramFragment extends BaseContentFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.program, menu);
-        updateFavoriteIcon(menu.findItem(R.id.show_favorites));
+        // Favorites are no longer supported due to permission conflict
+//        inflater.inflate(R.menu.program, menu);
+//        updateFavoriteIcon(menu.findItem(R.id.show_favorites));
     }
 
     @Override
