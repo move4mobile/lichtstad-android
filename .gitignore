@@ -9,9 +9,11 @@
 /.idea/kotlinc.xml
 /.idea/deploymentTargetDropDown.xml
 /.idea/assetWizardSettings.xml
+.idea/
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 *.jks
 play-keys.json
+release/
