@@ -16,3 +16,4 @@
 .externalNativeBuild
 *.jks
 play-keys.json
+release/
