@@ -7,7 +7,7 @@ plugins {
 ext.firebaseUIVersion = "6.3.0"
 ext.lifecycleVersion = "2.4.1"
 
-def buildNumber = 449 //(System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
+def buildNumber = 451 //(System.getenv("TRAVIS_BUILD_NUMBER") ?: "1") as Integer
 def playTrack = System.getenv('PLAY_TRACK') ?: 'alpha'
 
 def localProperties = new Properties()
@@ -18,9 +18,9 @@ android {
     defaultConfig {
         applicationId "nl.gramsbergen.oranjevereniging.lichtstad"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode buildNumber
-        versionName "2024.1"
+        versionName "2025.1"
         resConfigs 'nl'
     }
 
