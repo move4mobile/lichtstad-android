@@ -62,20 +62,20 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
     }
 
     private void removeScheduledNotification(String dateAndKey) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(getNotificationPendingIntent(dateAndKey));
+//        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.cancel(getNotificationPendingIntent(dateAndKey));
     }
 
     private void addScheduledNotification(String dateAndKey, boolean reschedule) {
-        getProgram(context, dateAndKey, program -> {
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            if (alarmManager == null || !shouldSchedule(program, reschedule) || !FavoriteManager.isFavorite(context, dateAndKey)) return;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
-            } else {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
-            }
-        });
+//        getProgram(context, dateAndKey, program -> {
+//            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//            if (alarmManager == null || !shouldSchedule(program, reschedule) || !FavoriteManager.isFavorite(context, dateAndKey)) return;
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
+//            } else {
+//                alarmManager.setExact(AlarmManager.RTC_WAKEUP, getAlarmTriggerMillis(program), getNotificationPendingIntent(dateAndKey));
+//            }
+//        });
     }
 
     private long getAlarmTriggerMillis(Program program) {
@@ -112,8 +112,8 @@ public class ProgramFavoriteNotificationManager implements SharedPreferences.OnS
                             return;
                         }
 
-                        Program program = new KeyedSnapshotParser<>(Program.class).parseSnapshot(dataSnapshot);
-                        programUser.use(program);
+//                        Program program = new KeyedSnapshotParser<>(Program.class).parseSnapshot(dataSnapshot);
+//                        programUser.use(program);
                     }
 
                     @Override
